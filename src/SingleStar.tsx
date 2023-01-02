@@ -1,0 +1,47 @@
+import classNames from "classnames";
+import { useEffect, useRef, useState } from "react";
+
+export const SingleStar: React.FC = () => {
+  const x = useRef(Math.floor(Math.random() * 100)).current;
+  const y = useRef(Math.floor(Math.random() * 100)).current;
+  const defaultSize = useRef(Math.round(Math.random() * 30 + 15) / 10).current;
+  const deviation = useRef(Math.round(Math.random() * 10 + 2) / 10).current;
+  const blinkSpeed = useRef(Math.round(Math.random() * 5) / 100).current;
+  const [direction, setDirection] = useState(Math.random() > 0.5 ? 1 : -1);
+  const [size, setSize] = useState(defaultSize);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      if (defaultSize - deviation > size || defaultSize + deviation < size) {
+        setDirection((currentDirection) => currentDirection * -1);
+        setSize((currentSize) => currentSize + direction * blinkSpeed * -1);
+        return;
+      }
+      setSize((currentSize) => currentSize + direction * blinkSpeed);
+    }, 50);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [size]);
+
+  const className = classNames(
+    "absolute",
+    "rounded-full",
+    "bg-text",
+    "shadow-text",
+    "shadow-star"
+  );
+
+  return (
+    <div
+      className={className}
+      style={{
+        top: y + "%",
+        left: x + "%",
+        width: size,
+        height: size,
+      }}
+    />
+  );
+};
