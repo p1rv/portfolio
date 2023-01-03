@@ -8,11 +8,13 @@ module.exports = {
       },
     },
     colors: {
-      primary: "#0A1128",
-      secondary: "#034078",
-      text: "#fefcfb",
-      info: "#1282a2",
-      danger: "#001f54",
+      theme: {
+        0: "#fefcfb",
+        1: "#00a8e8",
+        2: "#007ea7",
+        3: "#003459",
+        4: "#00171f",
+      },
     },
   },
   plugins: [],
