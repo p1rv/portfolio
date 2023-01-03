@@ -2,8 +2,8 @@ import classNames from "classnames";
 import { useEffect, useRef, useState } from "react";
 
 export const SingleStar: React.FC = () => {
-  const x = useRef(Math.floor(Math.random() * 100)).current;
-  const y = useRef(Math.floor(Math.random() * 100)).current;
+  const [x, setX] = useState(Math.floor(Math.random() * 100));
+  const [y, setY] = useState(Math.floor(Math.random() * 100));
   const defaultSize = useRef(Math.round(Math.random() * 30 + 15) / 10).current;
   const deviation = useRef(Math.round(Math.random() * 10 + 2) / 10).current;
   const blinkSpeed = useRef(Math.round(Math.random() * 5) / 100).current;
@@ -17,8 +17,14 @@ export const SingleStar: React.FC = () => {
         setSize((currentSize) => currentSize + direction * blinkSpeed * -1);
         return;
       }
+      setX(
+        (currentX) => currentX + Math.floor(Math.random() * 100 - 50) / 1000
+      );
+      setY(
+        (currentY) => currentY + Math.floor(Math.random() * 100 - 50) / 1000
+      );
       setSize((currentSize) => currentSize + direction * blinkSpeed);
-    }, 50);
+    }, 100);
 
     return () => {
       clearTimeout(timerId);
@@ -28,8 +34,8 @@ export const SingleStar: React.FC = () => {
   const className = classNames(
     "absolute",
     "rounded-full",
-    "bg-text",
-    "shadow-text",
+    "bg-theme-0",
+    "shadow-theme-0",
     "shadow-star"
   );
 

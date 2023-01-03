@@ -9,7 +9,7 @@ export const StarryBackgroundWrapper: React.FC<PropsWithChildren> = ({
     .map((_, i) => <SingleStar key={i} />);
   return (
     <div className="">
-      <div className="stars-wrapper fixed inset-0 z-[-1] bg-primary">
+      <div className="stars-wrapper fixed inset-0 z-[-1] bg-theme-4">
         {renderedStars}
       </div>
       {children}
