@@ -1,3 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: Arcon;
+  src: url("./fonts/Arcon-Regular.otf");
+}
+
+.root {
+  --theme-0: "#fefcfb";
+  --theme-1: "#00a8e8";
+  --theme-2: "#007ea7";
+  --theme-3: "#003459";
+  --theme-4: "#00171f";
+}
+
+* {
+  font-family: Arcon, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue,
+    sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+.button.selected::after {
+  content: " ";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 80% !important;
+  transform: translateX(-50%);
+  height: 10px;
+  border-bottom: 3px solid #007ea7;
+}
+.button:not(.selected)::after {
+  transition: width 0.3s ease-in;
+  content: " ";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  transform: translateX(-50%);
+  height: 10px;
+  border-bottom: 3px solid #00a8e8;
+}
+.button:hover::after {
+  width: 60%;
+}
