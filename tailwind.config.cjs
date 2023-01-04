@@ -15,6 +15,7 @@ module.exports = {
         3: "#003459",
         4: "#00171f",
       },
+      nightsky: "#0b1026",
     },
   },
   plugins: [],

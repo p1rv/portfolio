@@ -3,11 +3,14 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import { StarryBackgroundWrapper } from "./StarryBackgroundWrapper";
+import { BrowserRouter } from "react-router-dom";
 
 createRoot(document.querySelector("#root") as HTMLDivElement).render(
   <React.StrictMode>
     <StarryBackgroundWrapper>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </StarryBackgroundWrapper>
   </React.StrictMode>
 );

@@ -18,11 +18,20 @@ export const Button: React.FC<PropsWithChildren<IButtonProps>> = ({
   className,
   ...rest
 }) => {
-  const classes = classNames(className, "button", "py-4", "px-6", "relative", {
-    "hover:text-theme-1": !selected,
-    "": primary,
-    "hover:text-theme-2 text-theme-2 selected": selected,
-  });
+  const classes = classNames(
+    className,
+    "button",
+    "py-4",
+    "px-6",
+    "relative",
+    "transition-colors",
+    "duration-200",
+    {
+      "hover:text-theme-1": !selected,
+      "": primary,
+      "hover:text-theme-2 text-theme-2 selected": selected,
+    }
+  );
   return (
     <button
       disabled={selected}
