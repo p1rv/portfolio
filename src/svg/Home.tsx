@@ -1,15 +1,23 @@
 import classNames from "classnames";
-import { memo, useEffect, useState } from "react";
+import { memo } from "react";
 
 export interface IIconProps {
   stroke?: string;
   fill?: string;
   className?: string;
   pathClassName?: string;
+  onClick?: (e: React.MouseEvent<HTMLOrSVGElement, MouseEvent>) => any;
+  [key: string]: any;
 }
 
 export const HomeIcon: React.FC<IIconProps> = memo(
-  ({ stroke = "#fefcfb", fill = "none", className, pathClassName }) => {
+  ({
+    stroke = "#fefcfb",
+    fill = "none",
+    className,
+    pathClassName,
+    ...rest
+  }) => {
     const classes = classNames(
       "transition-colors",
       "duration-200",
@@ -29,6 +37,7 @@ export const HomeIcon: React.FC<IIconProps> = memo(
         viewBox="0 0 200 200"
         xmlns="http://www.w3.org/2000/svg"
         className={classes}
+        {...rest}
       >
         <path
           className={pathClasses}

@@ -18,7 +18,7 @@ export const Header: React.FC = () => {
     "backdrop-blur-sm",
     "transition-all",
     "duration-200",
-    "ease-out",
+    "ease-in-out",
     pathname === "/" ? "w-screen" : "w-4/5"
   );
 

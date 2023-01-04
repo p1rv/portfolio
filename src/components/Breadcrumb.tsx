@@ -1,7 +1,7 @@
 import { useRouter } from "./useRouter";
 import React from "react";
 import { routes } from "./routes";
-import homeIcon from "../svg/home-light.min.svg";
+import { HomeIcon } from "../svg/Home";
 import chevronRight from "../svg/chevron-right.min.svg";
 
 export const Breadcrumb: React.FC = () => {
@@ -11,15 +11,6 @@ export const Breadcrumb: React.FC = () => {
   } = useRouter();
 
   if (pathname === "/") return null;
-
-  const renderedHome = (
-    <img
-      src={homeIcon}
-      alt="home"
-      className="w-4 h-4 cursor-pointer"
-      onClick={() => navigate(routes.home.path)}
-    />
-  );
 
   const explodedPath = pathname.split("/");
   const renderedPath = explodedPath.slice(1).map((piece) => (
@@ -37,8 +28,12 @@ export const Breadcrumb: React.FC = () => {
   ));
 
   return (
-    <div className="flex items-center w-4/5">
-      {renderedHome}
+    <div className="flex items-center w-4/5 my-[10px]">
+      <HomeIcon
+        className="group w-4 h-4 cursor-pointer"
+        pathClassName="group-hover:stroke-theme-1"
+        onClick={() => navigate(routes.home.path)}
+      />
       {renderedPath}
     </div>
   );
