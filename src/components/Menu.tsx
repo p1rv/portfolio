@@ -1,3 +1,4 @@
+import { HomeIcon } from "../svg/Home";
 import { Button } from "./Button";
 import { routes } from "./routes";
 import { useRouter } from "./useRouter";
@@ -15,7 +16,16 @@ export const Menu: React.FC = () => {
         selected={pathname.includes(routes.react.path)}
         primary
         onClick={() => navigate(routes.react.path)}
+        className="flex flex-col items-center"
       >
+        <HomeIcon
+          className="w-8 h-8"
+          pathClassName={
+            pathname.includes(routes.react.path)
+              ? "stroke-theme-2"
+              : "group-hover:stroke-theme-1"
+          }
+        />
         React
       </Button>
       <Button

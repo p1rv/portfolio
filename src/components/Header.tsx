@@ -2,22 +2,36 @@ import { Button } from "./Button";
 import { Menu } from "./Menu";
 import { routes } from "./routes";
 import { useRouter } from "./useRouter";
-import homeIcon from "../svg/home-light.min.svg";
+import { HomeIcon } from "../svg/Home";
+import classNames from "classnames";
 
 export const Header: React.FC = () => {
-  const { navigate } = useRouter();
+  const {
+    navigate,
+    location: { pathname },
+  } = useRouter();
+
+  const className = classNames(
+    "flex",
+    "flex-row",
+    "justify-between",
+    "backdrop-blur-sm",
+    "transition-all",
+    "duration-200",
+    "ease-out",
+    pathname === "/" ? "w-screen" : "w-4/5"
+  );
 
   return (
-    <div className="flex w-full flex-row justify-between backdrop-blur-sm">
+    <div className={className}>
       <Button
         primary
         onClick={() => navigate(routes.home.path)}
         className="flex flex-col items-center"
       >
-        <img
-          src={homeIcon}
-          alt="home"
-          className="w-6"
+        <HomeIcon
+          className="w-8 h-8"
+          pathClassName="group-hover:stroke-theme-1"
         />
         Home
       </Button>

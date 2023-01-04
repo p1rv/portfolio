@@ -26,6 +26,7 @@ export const Button: React.FC<PropsWithChildren<IButtonProps>> = ({
     "relative",
     "transition-colors",
     "duration-200",
+    "group",
     {
       "hover:text-theme-1": !selected,
       "": primary,
