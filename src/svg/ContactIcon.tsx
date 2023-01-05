@@ -3,7 +3,7 @@ import { memo } from "react";
 import { IIconProps } from "./Home";
 
 export const ContactIcon: React.FC<IIconProps> = memo(
-  ({ stroke = "#fefcfbff", selected, className }) => {
+  ({ stroke = "#fefcfbff", selected, className = "w-8 h-8" }) => {
     const classes = classNames(
       "transition-colors",
       "duration-200",

@@ -3,7 +3,7 @@ import { memo } from "react";
 import { IIconProps } from "./Home";
 
 export const ReactIcon: React.FC<IIconProps> = memo(
-  ({ stroke = "#fefcfbff", className, selected }) => {
+  ({ stroke = "#fefcfbff", className = "w-8 h-8", selected }) => {
     const classes = classNames(
       "transition-all duration-700 ease-in-out",
       {

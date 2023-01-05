@@ -3,7 +3,12 @@ import { memo } from "react";
 import { IIconProps } from "./Home";
 
 export const WeatherIcon: React.FC<IIconProps> = memo(
-  ({ stroke = "#fefcfbff", fill = "#ffffff00", className, selected }) => {
+  ({
+    stroke = "#fefcfbff",
+    fill = "#ffffff00",
+    className = "w-8 h-8",
+    selected,
+  }) => {
     const classes = classNames(
       "transition-colors",
       "duration-200",

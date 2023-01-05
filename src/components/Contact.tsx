@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 
 export const Contact: React.FC = () => {
-  return <div>Contact</div>;
+  return (
+    <div className="flex flex-col w-4/5 items-center h-full backdrop-blur-sm">
+      Contact
+    </div>
+  );
 };
