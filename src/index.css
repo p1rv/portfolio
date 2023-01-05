@@ -21,6 +21,10 @@
   font-size: 18px;
   font-weight: 600;
 }
+code span {
+  font-family: Mono;
+  font-weight: 400;
+}
 .button.selected::after {
   content: " ";
   position: absolute;
