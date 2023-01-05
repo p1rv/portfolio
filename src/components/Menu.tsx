@@ -16,49 +16,34 @@ export const Menu: React.FC = () => {
     <div className="h-full flex">
       <Button
         selected={pathname.includes(routes.react.path)}
-        primary
+        flexCenter
         onClick={() => navigate(routes.react.path)}
-        className="flex flex-col items-center"
       >
         <ReactIcon
           className="w-8 h-8"
-          pathClassName={
-            pathname.includes(routes.react.path)
-              ? "stroke-theme-2 fill-theme-2"
-              : "group-hover:stroke-theme-1 group-hover:fill-theme-2"
-          }
+          selected={pathname.includes(routes.react.path)}
         />
         React
       </Button>
       <Button
         selected={pathname.includes(routes.weather.path)}
-        primary
+        flexCenter
         onClick={() => navigate(routes.weather.path)}
-        className="flex flex-col items-center"
       >
         <WeatherIcon
           className="w-8 h-8"
-          pathClassName={
-            pathname.includes(routes.weather.path)
-              ? "stroke-theme-2 fill-theme-2"
-              : "group-hover:stroke-theme-1 group-hover:fill-theme-1"
-          }
+          selected={pathname.includes(routes.weather.path)}
         />
         Weather
       </Button>
       <Button
         selected={pathname.includes(routes.contact.path)}
-        primary
+        flexCenter
         onClick={() => navigate(routes.contact.path)}
-        className="flex flex-col items-center"
       >
         <ContactIcon
           className="w-8 h-8"
-          pathClassName={
-            pathname.includes(routes.contact.path)
-              ? "stroke-theme-2"
-              : "group-hover:stroke-theme-1"
-          }
+          selected={pathname.includes(routes.contact.path)}
         />
         Contact
       </Button>

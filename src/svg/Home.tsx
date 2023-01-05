@@ -6,6 +6,7 @@ export interface IIconProps {
   fill?: string;
   className?: string;
   pathClassName?: string;
+  selected?: boolean;
   onClick?: (e: React.MouseEvent<HTMLOrSVGElement, MouseEvent>) => any;
   [key: string]: any;
 }

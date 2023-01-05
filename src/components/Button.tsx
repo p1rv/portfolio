@@ -6,6 +6,7 @@ interface IButtonProps {
   selected?: boolean;
   danger?: boolean;
   info?: boolean;
+  flexCenter?: boolean;
   className?: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => any;
   [key: string]: any;
@@ -16,6 +17,7 @@ export const Button: React.FC<PropsWithChildren<IButtonProps>> = ({
   primary,
   selected,
   className,
+  flexCenter,
   ...rest
 }) => {
   const classes = classNames(
@@ -31,6 +33,7 @@ export const Button: React.FC<PropsWithChildren<IButtonProps>> = ({
       "hover:text-theme-1": !selected,
       "": primary,
       "hover:text-theme-2 text-theme-2 selected": selected,
+      "flex flex-col items-center": flexCenter,
     }
   );
   return (

@@ -19,6 +19,7 @@ export const Header: React.FC = () => {
     "transition-all",
     "duration-200",
     "ease-in-out",
+    "motion-reduce:!transition-none motion-reduce:!duration-0",
     pathname === "/" ? "w-screen" : "w-4/5"
   );
 

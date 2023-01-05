@@ -3,7 +3,7 @@ import { memo } from "react";
 import { IIconProps } from "./Home";
 
 export const WeatherIcon: React.FC<IIconProps> = memo(
-  ({ stroke = "#fefcfbff", fill = "#ffffff00", className, pathClassName }) => {
+  ({ stroke = "#fefcfbff", fill = "#ffffff00", className, selected }) => {
     const classes = classNames(
       "transition-colors",
       "duration-200",
@@ -14,7 +14,10 @@ export const WeatherIcon: React.FC<IIconProps> = memo(
       "transition-colors",
       "duration-200",
       "ease-in",
-      pathClassName
+      {
+        "stroke-theme-2 fill-theme-2": selected,
+        "group-hover:stroke-theme-1 group-hover:fill-theme-1": !selected,
+      }
     );
     return (
       <svg

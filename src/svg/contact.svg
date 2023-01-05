@@ -7,7 +7,7 @@
    viewBox="0 0 200 200"
    version="1.1"
    id="svg5"
-   inkscape:export-filename="react.svg"
+   inkscape:export-filename="../8c59a9b6/contact.svg"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
    sodipodi:docname="react.svg"
@@ -41,6 +41,10 @@
      inkscape:groupmode="layer"
      id="layer1"><path
        style="fill:none;stroke:#fafefb;stroke-width:7.50001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:13.6;stroke-opacity:1"
-       d="M 20,170 V 75 l 160,95 V 75 H 20 L 100,122.5 180,75 20,170 h 160"
+       d="M 20,170 V 80 l 160,90 V 80 H 20 m 160,0 -160,90 h 160"
        id="path3106"
-       sodipodi:nodetypes="ccccccccc" /></g></svg>
+       sodipodi:nodetypes="cccccccc" /><path
+       style="fill:none;stroke:#fafefb;stroke-width:7.50001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:13.6;stroke-opacity:1"
+       d="m 20,80 80,-50 80,50"
+       id="path5383"
+       sodipodi:nodetypes="ccc" /></g></svg>

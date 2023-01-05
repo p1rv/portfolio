@@ -3,18 +3,23 @@ import { memo } from "react";
 import { IIconProps } from "./Home";
 
 export const ReactIcon: React.FC<IIconProps> = memo(
-  ({ stroke = "#fefcfbff", fill = "#ffffff00", className, pathClassName }) => {
+  ({ stroke = "#fefcfbff", className, selected }) => {
     const classes = classNames(
-      "transition-colors",
-      "duration-200",
-      "easeOut",
+      "transition-all duration-700 ease-in-out",
+      {
+        "group-hover:rotate-[120deg]": !selected,
+        "rotate-[120deg]": selected,
+      },
       className
     );
     const pathClasses = classNames(
       "transition-colors",
       "duration-200",
       "ease-in",
-      pathClassName
+      {
+        "stroke-theme-2 fill-theme-2": selected,
+        "group-hover:stroke-theme-1 group-hover:fill-theme-2": !selected,
+      }
     );
     return (
       <svg
@@ -122,7 +127,6 @@ export const ReactIcon: React.FC<IIconProps> = memo(
         />
         <path
           className={pathClasses}
-          mix-blendMode="normal"
           fillOpacity="0"
           stroke={stroke}
           strokeWidth="10"
@@ -135,7 +139,6 @@ export const ReactIcon: React.FC<IIconProps> = memo(
         />
         <path
           className={pathClasses}
-          mix-blendMode="normal"
           fillOpacity="0"
           stroke={stroke}
           strokeWidth="10"
@@ -148,7 +151,6 @@ export const ReactIcon: React.FC<IIconProps> = memo(
         />
         <path
           className={pathClasses}
-          mix-blendMode="normal"
           fillOpacity="0"
           stroke={stroke}
           strokeWidth="10"
@@ -161,7 +163,6 @@ export const ReactIcon: React.FC<IIconProps> = memo(
         />
         <path
           className={pathClasses}
-          mix-blendMode="normal"
           fillOpacity="0"
           stroke={stroke}
           strokeWidth="10"
@@ -175,7 +176,6 @@ export const ReactIcon: React.FC<IIconProps> = memo(
         <circle
           className={pathClasses}
           opacity="1"
-          mix-blendMode="normal"
           fill={stroke}
           fillOpacity="1"
           stroke={stroke}
