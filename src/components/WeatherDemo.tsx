@@ -1,11 +1,34 @@
+import classNames from "classnames";
+import { useContext } from "react";
+import { MouseOverContext } from "./MouseOverContextProvider";
 import { routes } from "./routes";
 import { useRouter } from "./useRouter";
 
 export const WeatherDemo: React.FC = () => {
   const { navigate } = useRouter();
+  const { mouseOver } = useContext(MouseOverContext);
+  const mainClasses = classNames(
+    "animate-[slideIn3_2.5s]",
+    "ease-slide-in-3",
+    "h-96",
+    "w-[45vw]",
+    "absolute",
+    "top-32",
+    "right-0",
+    "bg-theme-0",
+    "rounded-xl",
+    "flex",
+    "flex-col",
+    "items-center",
+    "text-gray-700",
+    "shadow-black-24-1/3",
+    "group",
+    "transition-opacity",
+    { "opacity-40": mouseOver }
+  );
 
   return (
-    <div className="animate-[slideIn3_2.5s] ease-slide-in-3 h-96 w-[45vw] absolute top-32 right-0 bg-theme-0 rounded-xl flex flex-col items-center text-gray-700 shadow-black-24-1/3 group">
+    <div className={mainClasses}>
       <div
         className="absolute inset-0 bg-theme-4 rounded-lg opacity-0 cursor-pointer group-hover:opacity-30 transition-all"
         onClick={() => navigate(routes.weather.path)}
@@ -18,7 +41,7 @@ export const WeatherDemo: React.FC = () => {
           Search...
         </div>
       </div>
-      <div className="w-3/4 h-2/3 bg-gray-100 rounded-lg my-4">
+      <div className="w-4/5 h-2/3 bg-gray-100 rounded-lg my-4">
         <div className="p-2 text-sm w-full">New York, NY - 2PM EDT</div>
         <div className="w-[96%] m-[2%] h-2/3 bg-white rounded-lg"></div>
         <div className="w-full text-right text-xs px-2">

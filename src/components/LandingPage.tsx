@@ -1,3 +1,4 @@
+import { MouseOverContextProvider } from "./MouseOverContextProvider";
 import { ReactCode } from "./ReactCode";
 import { WeatherDemo } from "./WeatherDemo";
 
@@ -15,8 +16,10 @@ export const LandingPage: React.FC = () => {
         Explore available functionalities in the top-right corner.
       </p>
       <div className="relative w-[80vw]">
-        <ReactCode />
-        <WeatherDemo />
+        <MouseOverContextProvider>
+          <ReactCode />
+          <WeatherDemo />
+        </MouseOverContextProvider>
       </div>
     </div>
   );
