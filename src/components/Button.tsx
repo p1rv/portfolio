@@ -1,44 +1,36 @@
 import classNames from "classnames";
 import { PropsWithChildren } from "react";
 
-interface IButtonProps {
-  primary?: boolean;
-  selected?: boolean;
+export interface IButtonProps {
+  navButton?: boolean;
   danger?: boolean;
   info?: boolean;
-  flexCenter?: boolean;
   className?: string;
+  disabled?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => any;
   [key: string]: any;
 }
 
 export const Button: React.FC<PropsWithChildren<IButtonProps>> = ({
   children,
-  primary,
-  selected,
+  navButton,
   className,
-  flexCenter,
+  disabled,
   ...rest
 }) => {
   const classes = classNames(
-    className,
     "button",
     "py-4",
     "px-6",
-    "relative",
-    "transition-colors",
-    "duration-200",
-    "group",
     {
-      "hover:text-theme-1": !selected,
-      "": primary,
-      "hover:text-theme-2 text-theme-2 selected": selected,
-      "flex flex-col items-center": flexCenter,
-    }
+      "flex flex-col items-center overflow-hidden group duration-200 transition-colors relative":
+        navButton,
+    },
+    className
   );
   return (
     <button
-      disabled={selected}
+      disabled={disabled}
       className={classes}
       {...rest}
     >

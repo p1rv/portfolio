@@ -50,6 +50,24 @@ module.exports = {
           "80%": { opacity: 0 },
           "100%": { opacity: 0 },
         },
+        foldToRight: {
+          "0%": { width: "100%", transform: "translateX(-50%)" },
+          "60%": { width: "100%", transform: "translateX(50%)" },
+          "100%": { width: "100%", transform: "translateX(50%)" },
+        },
+        foldToLeft: {
+          "0%": { width: "100%", transform: "translateX(-50%)" },
+          "60%": { width: "100%", transform: "translateX(-150%)" },
+          "100%": { width: "100%", transform: "translateX(-150%)" },
+        },
+        unfoldFromRight: {
+          "0%": { width: "100%", transform: "translateX(50%)" },
+          "100%": { width: "100%", transform: "translateX(-50%)" },
+        },
+        unfoldFromLeft: {
+          "0%": { width: "100%", transform: "translateX(-150%)" },
+          "100%": { width: "100%", transform: "translateX(-50%)" },
+        },
       },
       transitionTimingFunction: {
         "slide-in-2": "cubic-bezier(0.75,0,0.5,0.7)",

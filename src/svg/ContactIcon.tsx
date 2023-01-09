@@ -7,14 +7,13 @@ export const ContactIcon: React.FC<IIconProps> = memo(
     const classes = classNames(
       "transition-colors",
       "duration-200",
-      "easeOut",
+      "ease-out",
       className
     );
-    console.log("icon");
     const pathClasses = classNames(
       "transition-all",
       "duration-200",
-      "ease-in",
+      "ease-out",
       {
         "stroke-theme-2": selected,
         "group-hover:stroke-theme-1": !selected,

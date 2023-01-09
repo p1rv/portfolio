@@ -1,43 +1,50 @@
-import { ContactIcon } from "../svg/ContactIcon";
-import { ReactIcon } from "../svg/ReactIcon";
-import { WeatherIcon } from "../svg/WeatherIcon";
-import { Button } from "./Button";
+import { useState } from "react";
+import { NavButton } from "./NavButton";
 import { routes } from "./routes";
 import { useRouter } from "./useRouter";
 
 export const Menu: React.FC = () => {
+  const [selected, setSelected] = useState(-1);
+  const [prevSelected, setPrevSelected] = useState(-1);
+
   const {
     navigate,
     location: { pathname },
   } = useRouter();
-  console.log(location);
 
-  return (
-    <div className="h-full flex">
-      <Button
-        selected={pathname.includes(routes.react.path)}
-        flexCenter
-        onClick={() => navigate(routes.react.path)}
-      >
-        <ReactIcon selected={pathname.includes(routes.react.path)} />
-        React
-      </Button>
-      <Button
-        selected={pathname.includes(routes.weather.path)}
-        flexCenter
-        onClick={() => navigate(routes.weather.path)}
-      >
-        <WeatherIcon selected={pathname.includes(routes.weather.path)} />
-        Weather
-      </Button>
-      <Button
-        selected={pathname.includes(routes.contact.path)}
-        flexCenter
-        onClick={() => navigate(routes.contact.path)}
-      >
-        <ContactIcon selected={pathname.includes(routes.contact.path)} />
-        Contact
-      </Button>
-    </div>
+  const filteredRoutes = Object.entries(routes).filter(
+    ([key]) => key !== "home"
   );
+  if (pathname === "/" && selected !== -1) {
+    setPrevSelected(selected);
+    setSelected(-1);
+  }
+  const renderedRoutes = filteredRoutes.map(([key, value], index) => {
+    if (pathname.includes(value.path) && selected !== index) {
+      setPrevSelected(selected);
+      setSelected(index);
+    }
+
+    const _prevSelected = (() => {
+      if (selected === -1 || prevSelected === -1 || prevSelected === selected)
+        return 0;
+      if (selected > prevSelected) return -1;
+      return 1;
+    })();
+
+    return (
+      <NavButton
+        key={key}
+        wasSelected={prevSelected === index}
+        prevSelected={_prevSelected}
+        selected={selected === index}
+        onClick={() => navigate(value.path)}
+      >
+        <value.icon selected={selected === index} />
+        {value.name}
+      </NavButton>
+    );
+  });
+
+  return <div className="h-full flex">{renderedRoutes}</div>;
 };

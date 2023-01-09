@@ -21,7 +21,6 @@ export const Breadcrumb: React.FC = () => {
         className="w-3 h-3 mx-3"
       />
       {Object.values(routes).map((route, ind) => {
-        console.log(route.path, ind);
         return route.path.replace("/", "") === piece && route.name;
       })}
     </React.Fragment>

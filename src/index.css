@@ -25,26 +25,21 @@ code span {
   font-family: Mono;
   font-weight: 400;
 }
-.button.selected::after {
+.button::after {
   content: " ";
   position: absolute;
   bottom: 0;
   left: 50%;
-  width: 80% !important;
   transform: translateX(-50%);
   height: 10px;
-  border-bottom: 3px solid #007ea7;
   transition: width 0.2s ease-out;
 }
+.button.selected::after {
+  width: 100% !important;
+  border-bottom: 3px solid #007ea7;
+}
 .button:not(.selected)::after {
-  transition: width 0.2s ease-out;
-  content: " ";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
   width: 0;
-  transform: translateX(-50%);
-  height: 10px;
   border-bottom: 3px solid #00a8e8;
 }
 .button:hover::after {

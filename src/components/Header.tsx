@@ -26,7 +26,7 @@ export const Header: React.FC = () => {
   return (
     <div className={className}>
       <Button
-        primary
+        navButton
         onClick={() => navigate(routes.home.path)}
         className="flex flex-col items-center"
       >

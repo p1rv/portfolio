@@ -15,7 +15,7 @@ export const ReactIcon: React.FC<IIconProps> = memo(
     const pathClasses = classNames(
       "transition-colors",
       "duration-200",
-      "ease-in",
+      "ease-out",
       {
         "stroke-theme-2 fill-theme-2": selected,
         "group-hover:stroke-theme-1 group-hover:fill-theme-2": !selected,
