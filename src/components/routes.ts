@@ -1,5 +1,5 @@
 import { ContactIcon } from "../svg/ContactIcon";
-import { HomeIcon } from "../svg/Home";
+import { HomeIcon } from "../svg/HomeIcon";
 import { ReactIcon } from "../svg/ReactIcon";
 import { WeatherIcon } from "../svg/WeatherIcon";
 import { Contact } from "./Contact";

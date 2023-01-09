@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { memo } from "react";
-import { IIconProps } from "./Home";
+import { IIconProps } from "./HomeIcon";
 
 export const ContactIcon: React.FC<IIconProps> = memo(
   ({ stroke = "#fefcfbff", selected, className = "w-8 h-8" }) => {

@@ -1,7 +1,7 @@
 import { useRouter } from "./useRouter";
 import React from "react";
 import { routes } from "./routes";
-import { HomeIcon } from "../svg/Home";
+import { HomeIcon } from "../svg/HomeIcon";
 import chevronRight from "../svg/chevron-right.min.svg";
 
 export const Breadcrumb: React.FC = () => {

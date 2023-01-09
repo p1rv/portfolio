@@ -2,7 +2,7 @@ import { Button } from "./Button";
 import { Menu } from "./Menu";
 import { routes } from "./routes";
 import { useRouter } from "./useRouter";
-import { HomeIcon } from "../svg/Home";
+import { HomeIcon } from "../svg/HomeIcon";
 import classNames from "classnames";
 
 export const Header: React.FC = () => {

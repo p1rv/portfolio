@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { memo } from "react";
-import { IIconProps } from "./Home";
+import { IIconProps } from "./HomeIcon";
 
 export const WeatherIcon: React.FC<IIconProps> = memo(
   ({
