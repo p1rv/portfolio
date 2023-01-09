@@ -42,6 +42,14 @@ module.exports = {
           "66%": { transform: "translateX(100%)", opacity: 0 },
           "100%": { transform: "translateX(0%)", opacity: 1 },
         },
+        blink: {
+          "0%": { opacity: 0 },
+          "20%": { opacity: 0 },
+          "30%": { opacity: 1 },
+          "70%": { opacity: 1 },
+          "80%": { opacity: 0 },
+          "100%": { opacity: 0 },
+        },
       },
       transitionTimingFunction: {
         "slide-in-2": "cubic-bezier(0.75,0,0.5,0.7)",

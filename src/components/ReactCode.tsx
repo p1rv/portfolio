@@ -1,20 +1,12 @@
-import { useEffect, useState } from "react";
 import Chevron from "../svg/chevron-right.min.svg";
 import { routes } from "./routes";
 import { useRouter } from "./useRouter";
 
 export const ReactCode: React.FC = () => {
-  const [visibleCursor, setVisibleCursor] = useState(false);
   const { navigate } = useRouter();
 
-  useEffect(() => {
-    const timerId = setInterval(() => {
-      setVisibleCursor((currentVisible) => !currentVisible);
-    }, 500);
-    return () => clearInterval(timerId);
-  }, []);
   return (
-    <div className="group w-[65vw] animate-[slideIn2_2s] ease-slide-in-2 max-w-[55vw] min-w-[50rem] my-16 shadow-black-24-1/2 relative">
+    <div className="group w-[55vw] animate-[slideIn2_2s] ease-slide-in-2 max-w-[85vw] min-w-[40rem] my-16 shadow-black-24-1/2 relative hover:z-[3] transition-all">
       <div
         className="absolute inset-0 bg-theme-0 opacity-0 rounded-lg cursor-pointer group-hover:opacity-10 transition-all"
         onClick={() => navigate(routes.react.path)}
@@ -118,7 +110,9 @@ export const ReactCode: React.FC = () => {
           <br /> <span className="text-theme-0">15</span>
           <span className="text-code-jsxTags pl-16"> &lt;</span>
           <span className="text-code-components bg-[#ffffff30]">App</span>
-          {visibleCursor && <span className="-translate-x-1 absolute">|</span>}
+          <span className="-translate-x-1 absolute animate-[blink_1s_ease-in-out_infinite]">
+            |
+          </span>
           <span className="text-code-jsxTags"> /</span>
           <span className="text-code-jsxTags">&gt;</span>;
           <br />

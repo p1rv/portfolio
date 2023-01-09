@@ -7,7 +7,7 @@ export const WeatherDemo: React.FC = () => {
   return (
     <div className="animate-[slideIn3_2.5s] ease-slide-in-3 h-96 w-[45vw] absolute top-32 right-0 bg-theme-0 rounded-xl flex flex-col items-center text-gray-700 shadow-black-24-1/3 group">
       <div
-        className="absolute inset-0 bg-theme-0 rounded-lg opacity-0 cursor-pointer group-hover:opacity-50 transition-all"
+        className="absolute inset-0 bg-theme-4 rounded-lg opacity-0 cursor-pointer group-hover:opacity-30 transition-all"
         onClick={() => navigate(routes.weather.path)}
       />
       <div className="w-full flex flex-row items-center justify-center mt-4 mb-2">
