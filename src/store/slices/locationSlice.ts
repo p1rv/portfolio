@@ -1,23 +1,53 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, SerializedError } from "@reduxjs/toolkit";
+import { getLocation } from "../thunks/getLocation";
 
-const initialState = {
-  address: "",
+export interface ILocationData {
+  address: string;
   coordinates: {
-    lat: 0,
-    lon: 0,
-  },
-};
+    lat: number;
+    lon: number;
+  };
+}
 
-export type ILocationState = typeof initialState;
+export interface ILocationState {
+  data: ILocationData;
+  error: null | SerializedError;
+  isLoading: boolean;
+}
+
+const initialState: ILocationState = {
+  data: {
+    address: "",
+    coordinates: {
+      lat: 0,
+      lon: 0,
+    },
+  },
+  error: null,
+  isLoading: false,
+};
 
 export const locationSlice = createSlice({
   name: "location",
   initialState: initialState,
   reducers: {
     setLocation: (state, action) => {
-      state.address = action.payload.address;
-      state.coordinates = action.payload.coordinates;
+      state.data.address = action.payload.address;
+      state.data.coordinates = action.payload.coordinates;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getLocation.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getLocation.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.data = action.payload;
+    });
+    builder.addCase(getLocation.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error;
+    });
   },
 });
 

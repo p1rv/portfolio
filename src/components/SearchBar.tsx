@@ -1,40 +1,36 @@
 import { useEffect, useState } from "react";
 import { SearchIcon } from "../svg/SearchIcon";
-import axios from "axios";
 import { useRouter } from "./useRouter";
-import { IRootState, setLocation, useAppDispatch } from "../store";
-import { getLocation } from "../apis/getLocation";
+import { IRootState, useAppDispatch } from "../store";
+import { getLocation } from "../store";
 import { useSelector } from "react-redux";
 
 export const SearchBar: React.FC = () => {
   const {
     location: { search },
-    navigate,
   } = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useAppDispatch();
   const retrievedAddress = useSelector(
-    ({ location: { address } }: IRootState) => address
+    ({
+      location: {
+        data: { address },
+      },
+    }: IRootState) => address
   );
-
-  const updateLocation = async (query = searchTerm) => {
-    const retrievedLocation = await getLocation(query);
-    dispatch(setLocation(retrievedLocation));
-  };
 
   useEffect(() => {
     (async () => {
       if (
-        search === "" ||
-        decodeURI(search).replace(/\?/g, "") === retrievedAddress
+        search !== "" &&
+        decodeURI(search).replace(/\?/g, "") !== retrievedAddress
       )
-        return;
-      updateLocation(search);
+        dispatch(getLocation(search));
     })();
   }, []);
 
   const handleSubmit = async () => {
-    updateLocation(searchTerm);
+    dispatch(getLocation(searchTerm));
     setSearchTerm("");
   };
 

@@ -7,14 +7,17 @@ import { useRouter } from "./useRouter";
 
 export const Weather: React.FC = () => {
   const {
-    location: { address },
+    location: {
+      data: { address },
+    },
   } = useSelector((state: IRootState) => state);
   const {
     navigate,
     location: { search },
   } = useRouter();
   useEffect(() => {
-    address !== decodeURI(search).replace(/\?/g, "") &&
+    search === "" &&
+      address !== decodeURI(search).replace(/\?/g, "") &&
       navigate({ search: address });
   }, [address]);
 

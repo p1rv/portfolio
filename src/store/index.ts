@@ -26,5 +26,6 @@ export const useAppDispatch: () => AppDispatch = useDispatch;
 
 export * from "./types";
 export * from "./slices/locationSlice";
+export * from "./thunks/getLocation";
 
 export default store;

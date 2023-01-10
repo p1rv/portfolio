@@ -3,7 +3,6 @@ import React from "react";
 import { routes } from "./routes";
 import { HomeIcon } from "../svg/HomeIcon";
 import chevronRight from "../svg/chevron-right.min.svg";
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { IRootState } from "../store";
 
@@ -13,7 +12,7 @@ export const Breadcrumb: React.FC = () => {
     location: { pathname, search },
   } = useRouter();
 
-  const { address } = useSelector((state: IRootState) => state.location);
+  const { address } = useSelector((state: IRootState) => state.location.data);
 
   const explodedPath = pathname.split(/\//g);
 
@@ -40,16 +39,7 @@ export const Breadcrumb: React.FC = () => {
         className="w-3 h-3 mx-3"
       />
       {Object.values(routes).map((route, ind) => {
-        return (
-          route.path.replace("/", "") === piece && (
-            <Link
-              to={route.path}
-              key={route.name}
-            >
-              {route.name}
-            </Link>
-          )
-        );
+        return route.path.replace("/", "") === piece && route.name;
       })}
     </React.Fragment>
   ));
