@@ -1,23 +1,24 @@
+import localforage from "localforage";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { IRootState } from "../store";
+import { ILocationData, IRootState } from "../store";
 import { ChartWrapper } from "./ChartWrapper";
 import { SearchBar } from "./SearchBar";
 import { useRouter } from "./useRouter";
 
 export const Weather: React.FC = () => {
   const {
-    location: {
-      data: { address },
-    },
+    location: { data },
   } = useSelector((state: IRootState) => state);
+  const { address } = data;
+
   const {
     navigate,
     location: { search },
   } = useRouter();
+
   useEffect(() => {
-    search === "" &&
-      address !== decodeURI(search).replace(/\?/g, "") &&
+    address !== decodeURI(search).replace(/\?/g, "") &&
       navigate({ search: address });
   }, [address]);
 

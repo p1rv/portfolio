@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { SearchIcon } from "../svg/SearchIcon";
 import { useRouter } from "./useRouter";
-import { IRootState, useAppDispatch } from "../store";
+import { IRootState, setLocation, useAppDispatch } from "../store";
 import { getLocation } from "../store";
 import { useSelector } from "react-redux";
+import localforage from "localforage";
 
 export const SearchBar: React.FC = () => {
   const {
@@ -11,26 +12,31 @@ export const SearchBar: React.FC = () => {
   } = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useAppDispatch();
-  const retrievedAddress = useSelector(
-    ({
-      location: {
-        data: { address },
-      },
-    }: IRootState) => address
-  );
+  const {
+    data: { address },
+    error,
+  } = useSelector(({ location }: IRootState) => location);
+
+  const updateLocation = async (query: string) => {
+    const savedLocation = await localforage.getItem(query);
+    if (savedLocation) {
+      dispatch(setLocation(savedLocation));
+      return;
+    }
+    const res = await dispatch(getLocation(query)).unwrap();
+    localforage.setItem(query, res);
+  };
 
   useEffect(() => {
     (async () => {
-      if (
-        search !== "" &&
-        decodeURI(search).replace(/\?/g, "") !== retrievedAddress
-      )
-        dispatch(getLocation(search));
+      if (search !== "" && decodeURI(search).replace(/\?/g, "") !== address) {
+        updateLocation(search);
+      }
     })();
   }, []);
 
   const handleSubmit = async () => {
-    dispatch(getLocation(searchTerm));
+    updateLocation(searchTerm);
     setSearchTerm("");
   };
 
