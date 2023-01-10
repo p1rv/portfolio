@@ -6,7 +6,7 @@ export const SearchBar: React.FC = () => {
   return (
     <div className="flex w-full justify-center">
       <input
-        className="rounded-l-full text-theme-4 py-2 px-4 focus:outline-none focus:shadow-theme-4 focus:shadow-[inset_0_0_5px] transition-all duration-300 ease-in-out w-1/3 focus:w-2/3"
+        className="bg-[#fefcfb0f] rounded-l-full py-2 px-4 !outline-none focus:shadow-[inset_0_0_3px_#fefcfb20] transition-all duration-300 ease-in-out w-1/3 focus:w-1/2 focus:bg-[#fefcfb18]"
         value={searchTerm}
         placeholder="Search"
         onChange={(e) => setSearchTerm(e.target.value)}

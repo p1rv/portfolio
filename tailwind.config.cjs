@@ -51,22 +51,54 @@ module.exports = {
           "100%": { opacity: 0 },
         },
         foldToRight: {
-          "0%": { width: "100%", transform: "translateX(-50%)" },
-          "60%": { width: "100%", transform: "translateX(50%)" },
+          "0%": {
+            width: "100%",
+            transform: "translateX(-50%)",
+            borderColor: "#007ea7",
+          },
+          "60%": {
+            width: "100%",
+            transform: "translateX(50%)",
+            borderColor: "#007ea7",
+          },
           "100%": { width: "100%", transform: "translateX(50%)" },
         },
         foldToLeft: {
-          "0%": { width: "100%", transform: "translateX(-50%)" },
-          "60%": { width: "100%", transform: "translateX(-150%)" },
+          "0%": {
+            width: "100%",
+            transform: "translateX(-50%)",
+            borderColor: "#007ea7",
+          },
+          "60%": {
+            width: "100%",
+            transform: "translateX(-150%)",
+            borderColor: "#007ea7",
+          },
           "100%": { width: "100%", transform: "translateX(-150%)" },
         },
         unfoldFromRight: {
-          "0%": { width: "100%", transform: "translateX(50%)" },
-          "100%": { width: "100%", transform: "translateX(-50%)" },
+          "0%": {
+            width: "100%",
+            transform: "translateX(50%)",
+            borderColor: "#007ea7",
+          },
+          "100%": {
+            width: "100%",
+            transform: "translateX(-50%)",
+            borderColor: "#007ea7",
+          },
         },
         unfoldFromLeft: {
-          "0%": { width: "100%", transform: "translateX(-150%)" },
-          "100%": { width: "100%", transform: "translateX(-50%)" },
+          "0%": {
+            width: "100%",
+            transform: "translateX(-150%)",
+            borderColor: "#007ea7",
+          },
+          "100%": {
+            width: "100%",
+            transform: "translateX(-50%)",
+            borderColor: "#007ea7",
+          },
         },
       },
       transitionTimingFunction: {
