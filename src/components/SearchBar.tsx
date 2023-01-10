@@ -2,31 +2,37 @@ import { useEffect, useState } from "react";
 import { SearchIcon } from "../svg/SearchIcon";
 import axios from "axios";
 import { useRouter } from "./useRouter";
+import { setLocation, useAppDispatch } from "../store";
+import { getLocation } from "../apis/getLocation";
 
 export const SearchBar: React.FC = () => {
   const { location, navigate } = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     (async () => {
       if (location.search === "") return;
-      const res = await axios.get(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${
-          location.search
-        }&key=${import.meta.env.VITE_GEOCODING_KEY}`
-      );
+      const data = await getLocation(location.search);
+      if (data.results.length === 0) return;
+      const {
+        results: [retrieved],
+      } = data;
+      const address = retrieved.formatted_address;
+      const {
+        geometry: {
+          location: { lat, lng: lon },
+        },
+      } = retrieved;
+
+      dispatch(setLocation({ address, coordinates: { lat, lon } }));
     })();
   }, []);
 
   const handleSubmit = async () => {
-    const res = await axios.get(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${searchTerm.replace(
-        /\ /g,
-        "+"
-      )}&key=${import.meta.env.VITE_GEOCODING_KEY}`
-    );
+    const data = await getLocation(searchTerm);
     navigate({
-      search: encodeURI(res.data.results[0].formatted_address),
+      search: encodeURI(data.results[0].formatted_address),
     });
     setSearchTerm("");
   };
