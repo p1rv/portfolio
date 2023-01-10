@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { ILocationData, IRootState } from "../store";
 import { ChartWrapper } from "./ChartWrapper";
 import { SearchBar } from "./SearchBar";
-import { useRouter } from "./useRouter";
+import { useRouter } from "../hooks/useRouter";
 
 export const Weather: React.FC = () => {
   const {
@@ -23,7 +23,7 @@ export const Weather: React.FC = () => {
   }, [address]);
 
   return (
-    <div className="flex flex-col w-4/5 items-center h-full backdrop-blur-sm">
+    <div className="flex flex-col w-4/5 items-center h-full">
       <SearchBar />
       <ChartWrapper />
     </div>

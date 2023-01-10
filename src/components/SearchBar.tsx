@@ -1,10 +1,17 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { SearchIcon } from "../svg/SearchIcon";
-import { useRouter } from "./useRouter";
-import { IRootState, setLocation, useAppDispatch } from "../store";
+import { useRouter } from "../hooks/useRouter";
+import {
+  ILocationData,
+  IRootState,
+  setIsLocationLoading,
+  setLocation,
+  useAppDispatch,
+} from "../store";
 import { getLocation } from "../store";
 import { useSelector } from "react-redux";
 import localforage from "localforage";
+import classNames from "classnames";
 
 export const SearchBar: React.FC = () => {
   const {
@@ -15,16 +22,25 @@ export const SearchBar: React.FC = () => {
   const {
     data: { address },
     error,
+    isLoading,
   } = useSelector(({ location }: IRootState) => location);
+  const [touched, setTouched] = useState(true);
 
   const updateLocation = async (query: string) => {
-    const savedLocation = await localforage.getItem(query);
+    dispatch(setIsLocationLoading(true));
+    const savedLocation: ILocationData | null = await localforage.getItem(
+      query
+    );
     if (savedLocation) {
       dispatch(setLocation(savedLocation));
       return;
     }
-    const res = await dispatch(getLocation(query)).unwrap();
-    localforage.setItem(query, res);
+    dispatch(getLocation(query))
+      .unwrap()
+      .then((res) => localforage.setItem(query, res))
+      .catch((err) => {
+        setTouched(false);
+      });
   };
 
   useEffect(() => {
@@ -40,13 +56,34 @@ export const SearchBar: React.FC = () => {
     setSearchTerm("");
   };
 
+  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+    !touched && setTouched(true);
+  };
+
+  const classes = classNames("flex w-full justify-center ", {
+    "animate-[shake_0.5s_ease-out]": !touched && error && !searchTerm,
+  });
+
+  const inputClasses = classNames(
+    "bg-[#fefcfb0f] rounded-l-full py-2 px-4 !outline-none focus:shadow-[inset_0_0_3px_#fefcfb20] transition-all duration-300 ease-in-out w-1/3 focus:w-1/2 focus:bg-[#fefcfb18]",
+    {
+      "placeholder:text-red-300 !shadow-[inset_0_0_3px_#ff0000a0]":
+        !touched && error && !searchTerm,
+    }
+  );
   return (
-    <div className="flex w-full justify-center">
+    <div className={classes}>
       <input
-        className="bg-[#fefcfb0f] rounded-l-full py-2 px-4 !outline-none focus:shadow-[inset_0_0_3px_#fefcfb20] transition-all duration-300 ease-in-out w-1/3 focus:w-1/2 focus:bg-[#fefcfb18]"
+        className={inputClasses}
         value={searchTerm}
-        placeholder="Search"
-        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder={
+          (!touched &&
+            error &&
+            "Address not found, try to be more specific...") ||
+          "Search"
+        }
+        onChange={(e) => onInputChange(e)}
         onKeyDown={({ key }) => key === "Enter" && handleSubmit()}
       />
       <div

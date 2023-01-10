@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavButton } from "./NavButton";
 import { routes } from "./routes";
-import { useRouter } from "./useRouter";
+import { useRouter } from "../hooks/useRouter";
 
 export const Menu: React.FC = () => {
   const [selected, setSelected] = useState(-1);

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import Chevron from "../svg/chevron-right.min.svg";
 import { MouseOverContext } from "./MouseOverContextProvider";
 import { routes } from "./routes";
-import { useRouter } from "./useRouter";
+import { useRouter } from "../hooks/useRouter";
 
 export const ReactCode: React.FC = () => {
   const { navigate } = useRouter();

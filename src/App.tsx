@@ -14,7 +14,7 @@ function App() {
   ));
 
   return (
-    <div className="app text-theme-0 h-screen w-screen flex flex-col items-center">
+    <div className="app text-theme-0 h-screen w-screen flex flex-col items-center backdrop-blur-sm">
       <Header />
       <Breadcrumb />
       <Routes>{assignedRoutes}</Routes>

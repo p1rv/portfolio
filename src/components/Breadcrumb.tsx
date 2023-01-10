@@ -1,4 +1,4 @@
-import { useRouter } from "./useRouter";
+import { useRouter } from "../hooks/useRouter";
 import React from "react";
 import { routes } from "./routes";
 import { HomeIcon } from "../svg/HomeIcon";
@@ -47,7 +47,7 @@ export const Breadcrumb: React.FC = () => {
   if (pathname === "/") return null;
 
   return (
-    <div className="flex items-center w-4/5 py-[10px] backdrop-blur-sm w-4/5">
+    <div className="flex items-center w-4/5 py-[10px] w-4/5">
       <HomeIcon
         className="group w-4 h-4 cursor-pointer"
         pathClassName="group-hover:stroke-theme-1"

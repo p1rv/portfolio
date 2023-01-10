@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { useContext } from "react";
 import { MouseOverContext } from "./MouseOverContextProvider";
 import { routes } from "./routes";
-import { useRouter } from "./useRouter";
+import { useRouter } from "../hooks/useRouter";
 
 export const WeatherDemo: React.FC = () => {
   const { navigate } = useRouter();

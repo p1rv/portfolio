@@ -100,6 +100,26 @@ module.exports = {
             borderColor: "#007ea7",
           },
         },
+        shake: {
+          "0%": {
+            transform: "translateX(0)",
+          },
+          "12.5%": {
+            transform: "translateX(2.5%)",
+          },
+          "37.5%": {
+            transform: "translateX(-2.5%)",
+          },
+          "62.5%": {
+            transform: "translateX(2.5%)",
+          },
+          "87.5%": {
+            transform: "translateX(-2.5%)",
+          },
+          "100%": {
+            transform: "translateX(0)",
+          },
+        },
       },
       transitionTimingFunction: {
         "slide-in-2": "cubic-bezier(0.75,0,0.5,0.7)",

@@ -1,7 +1,7 @@
 import { Button } from "./Button";
 import { Menu } from "./Menu";
 import { routes } from "./routes";
-import { useRouter } from "./useRouter";
+import { useRouter } from "../hooks/useRouter";
 import { HomeIcon } from "../svg/HomeIcon";
 import classNames from "classnames";
 
@@ -15,7 +15,6 @@ export const Header: React.FC = () => {
     "flex",
     "flex-row",
     "justify-between",
-    "backdrop-blur-sm",
     "transition-all",
     "duration-200",
     "ease-in-out",
