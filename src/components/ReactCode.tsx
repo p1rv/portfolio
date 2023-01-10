@@ -32,7 +32,7 @@ export const ReactCode: React.FC = () => {
           </span>
           <div className="h-px w-full bg-code-jsxTags opacity-50 mb-2" />
           <span className="text-code-jsxTags ml-2">1</span>
-          <span className="text-code-modules px-2 font-mono">import</span>
+          <span className="text-code-modules px-2">import</span>
           <span className="text-code-strings">"./index.css"</span>;
           <br /> <span className="text-code-jsxTags ml-2">2</span>
           <span className="text-code-modules px-2">import</span>
