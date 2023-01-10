@@ -13,14 +13,13 @@ export const Breadcrumb: React.FC = () => {
     location: { pathname, search },
   } = useRouter();
 
-  if (pathname === "/") return null;
+  const { address } = useSelector((state: IRootState) => state.location);
 
   const explodedPath = pathname.split(/\//g);
-  const address = useSelector((state: IRootState) => state.location.address);
 
   let renderedSearch;
-  if (address !== "") {
-    renderedSearch = (
+  if (pathname === routes.weather.path) {
+    renderedSearch = address && (
       <React.Fragment key={address}>
         <img
           src={chevronRight}
@@ -54,6 +53,8 @@ export const Breadcrumb: React.FC = () => {
       })}
     </React.Fragment>
   ));
+
+  if (pathname === "/") return null;
 
   return (
     <div className="flex items-center w-4/5 py-[10px] backdrop-blur-sm w-4/5">

@@ -8,6 +8,8 @@ const initialState = {
   },
 };
 
+export type ILocationState = typeof initialState;
+
 export const locationSlice = createSlice({
   name: "location",
   initialState: initialState,

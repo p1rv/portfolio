@@ -2,38 +2,39 @@ import { useEffect, useState } from "react";
 import { SearchIcon } from "../svg/SearchIcon";
 import axios from "axios";
 import { useRouter } from "./useRouter";
-import { setLocation, useAppDispatch } from "../store";
+import { IRootState, setLocation, useAppDispatch } from "../store";
 import { getLocation } from "../apis/getLocation";
+import { useSelector } from "react-redux";
 
 export const SearchBar: React.FC = () => {
-  const { location, navigate } = useRouter();
+  const {
+    location: { search },
+    navigate,
+  } = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useAppDispatch();
+  const retrievedAddress = useSelector(
+    ({ location: { address } }: IRootState) => address
+  );
+
+  const updateLocation = async (query = searchTerm) => {
+    const retrievedLocation = await getLocation(query);
+    dispatch(setLocation(retrievedLocation));
+  };
 
   useEffect(() => {
     (async () => {
-      if (location.search === "") return;
-      const data = await getLocation(location.search);
-      if (data.results.length === 0) return;
-      const {
-        results: [retrieved],
-      } = data;
-      const address = retrieved.formatted_address;
-      const {
-        geometry: {
-          location: { lat, lng: lon },
-        },
-      } = retrieved;
-
-      dispatch(setLocation({ address, coordinates: { lat, lon } }));
+      if (
+        search === "" ||
+        decodeURI(search).replace(/\?/g, "") === retrievedAddress
+      )
+        return;
+      updateLocation(search);
     })();
   }, []);
 
   const handleSubmit = async () => {
-    const data = await getLocation(searchTerm);
-    navigate({
-      search: encodeURI(data.results[0].formatted_address),
-    });
+    updateLocation(searchTerm);
     setSearchTerm("");
   };
 
