@@ -1,8 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SearchIcon } from "../svg/SearchIcon";
+import axios from "axios";
+import { useRouter } from "./useRouter";
 
 export const SearchBar: React.FC = () => {
+  const { location, navigate } = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      if (location.search === "") return;
+      const res = await axios.get(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${
+          location.search
+        }&key=${import.meta.env.VITE_GEOCODING_KEY}`
+      );
+    })();
+  }, []);
+
+  const handleSubmit = async () => {
+    const res = await axios.get(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${searchTerm.replace(
+        /\ /g,
+        "+"
+      )}&key=${import.meta.env.VITE_GEOCODING_KEY}`
+    );
+    navigate({
+      search: encodeURI(res.data.results[0].formatted_address),
+    });
+    setSearchTerm("");
+  };
+
   return (
     <div className="flex w-full justify-center">
       <input
@@ -10,8 +38,12 @@ export const SearchBar: React.FC = () => {
         value={searchTerm}
         placeholder="Search"
         onChange={(e) => setSearchTerm(e.target.value)}
+        onKeyDown={({ key }) => key === "Enter" && handleSubmit()}
       />
-      <div className="bg-theme-3 p-2 rounded-r-full cursor-pointer group hover:bg-theme-2 transition-colors duration-200">
+      <div
+        className="bg-theme-3 p-2 rounded-r-full cursor-pointer group hover:bg-theme-2 transition-colors duration-200"
+        onClick={handleSubmit}
+      >
         <SearchIcon className="w-6 h-6" />
       </div>
     </div>
