@@ -1,23 +1,6 @@
-import {
-  ActionCreatorWithPayload,
-  createSlice,
-  SerializedError,
-} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { getLocation } from "../thunks/getLocation";
-
-export interface ILocationData {
-  address: string;
-  coordinates: {
-    lat: number;
-    lon: number;
-  };
-}
-
-export interface ILocationState {
-  data: ILocationData;
-  error: null | SerializedError;
-  isLoading: boolean;
-}
+import { ILocationData, ILocationState } from "../types";
 
 const initialState: ILocationState = {
   data: {
