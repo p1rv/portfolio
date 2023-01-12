@@ -1,28 +1,15 @@
 import { useSelector } from "react-redux";
-import {
-  CartesianGrid,
-  Line,
-  LineChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
+import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
 import { IRootState } from "../store";
 
 export const ChartWrapper: React.FC = () => {
-  const { isLoading, error, data } = useSelector(
-    (state: IRootState) => state.openMeteo
-  );
+  const { isLoading, error, data } = useSelector((state: IRootState) => state.openMeteo);
 
-  const values = Object.values(data).map((value) => [
-    value.temperature_2m_max,
-    value.temperature_2m_min,
-  ]);
+  const values = Object.values(data).map((value) => [value.temperature_2m_max, value.temperature_2m_min]);
 
   const preparedData = Object.entries(data).map(([key, value], index) => {
     const date = new Date(key);
-    const yValue =
-      date.getDate() + "." + (date.getMonth() + 1).toString().padStart(2, "0");
+    const yValue = date.getDate() + "." + (date.getMonth() + 1).toString().padStart(2, "0");
     return {
       day: yValue,
       max_temp: values[index][0],
@@ -57,9 +44,7 @@ export const ChartWrapper: React.FC = () => {
                 d
                   .toString()
                   .split("_")
-                  .map(
-                    (part) => part.charAt(0).toLocaleUpperCase() + part.slice(1)
-                  )
+                  .map((part) => part.charAt(0).toLocaleUpperCase() + part.slice(1))
                   .join(" "),
               ];
             }}

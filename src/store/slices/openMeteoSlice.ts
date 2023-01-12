@@ -1,6 +1,6 @@
-import { createSlice, SerializedError } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, SerializedError } from "@reduxjs/toolkit";
 import { fetchOpenMeteo } from "../thunks/fetchOpenMeteo";
-import { IOpenMeteoState } from "../types";
+import { IOpenMeteoParsed, IOpenMeteoState } from "../types";
 
 const initialState: IOpenMeteoState = {
   data: {},
@@ -11,7 +11,13 @@ const initialState: IOpenMeteoState = {
 const openMeteo = createSlice({
   name: "openMeteo",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    setOpenMeteo: (state, action: PayloadAction<IOpenMeteoParsed>) => {
+      state.data = action.payload;
+      state.error = null;
+      state.isLoading = false;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchOpenMeteo.pending, (state) => {
       state.isLoading = true;
@@ -29,3 +35,4 @@ const openMeteo = createSlice({
 });
 
 export const openMeteoReducer = openMeteo.reducer;
+export const { setOpenMeteo } = openMeteo.actions;

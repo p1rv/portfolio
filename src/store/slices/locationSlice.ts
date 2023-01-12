@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { getLocation } from "../thunks/getLocation";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { fetchLocation } from "../thunks/fetchLocation";
 import { ILocationData, ILocationState } from "../types";
 
 const initialState: ILocationState = {
@@ -18,26 +18,23 @@ export const locationSlice = createSlice({
   name: "location",
   initialState: initialState,
   reducers: {
-    setLocation: (state, action: { payload: ILocationData }) => {
+    setLocation: (state, action: PayloadAction<ILocationData>) => {
       state.data.address = action.payload.address;
       state.data.coordinates = action.payload.coordinates;
       state.isLoading = false;
       state.error = null;
     },
-    setIsLocationLoading: (state, action: { payload: boolean }) => {
-      state.isLoading = action.payload;
-    },
   },
   extraReducers: (builder) => {
-    builder.addCase(getLocation.pending, (state) => {
+    builder.addCase(fetchLocation.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(getLocation.fulfilled, (state, action) => {
+    builder.addCase(fetchLocation.fulfilled, (state, action) => {
       state.isLoading = false;
       state.data = action.payload;
       state.error = null;
     });
-    builder.addCase(getLocation.rejected, (state, action) => {
+    builder.addCase(fetchLocation.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error;
     });
@@ -45,4 +42,4 @@ export const locationSlice = createSlice({
 });
 
 export const locationReducer = locationSlice.reducer;
-export const { setLocation, setIsLocationLoading } = locationSlice.actions;
+export const { setLocation } = locationSlice.actions;

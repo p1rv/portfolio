@@ -1,5 +1,11 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  SerializedError,
+  ThunkAction,
+} from "@reduxjs/toolkit";
 import axios from "axios";
+import localforage from "localforage";
+import { IRootState } from "..";
 import {
   ICoordinates,
   IOpenMeteoDailyKeys,
@@ -23,9 +29,9 @@ const forecastParameters = [
 const buildURL = (lat: number, lon: number) =>
   `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=${forecastParameters}&timezone=auto`;
 
-export const fetchOpenMeteo = createAsyncThunk(
+export const fetchOpenMeteo = createAsyncThunk<IOpenMeteoParsed, ICoordinates>(
   "openMeteo/get",
-  async ({ lat, lon }: ICoordinates) => {
+  async ({ lat, lon }) => {
     const {
       data: { daily },
     }: { data: IOpenMeteoData } = await axios.get(buildURL(lat, lon));
@@ -36,6 +42,13 @@ export const fetchOpenMeteo = createAsyncThunk(
         Object.fromEntries(keys.map((key) => [key, daily[key][index]])),
       ])
     ) as unknown as IOpenMeteoParsed;
+
+    const expires = new Date().getTime() + 86400000;
+    localforage.setItem(`om${lat.toPrecision(5)}${lon.toPrecision(5)}`, {
+      ...parsedData,
+      expires,
+    });
+
     return parsedData;
   }
 );
