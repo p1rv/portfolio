@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction, SerializedError } from "@reduxjs/toolkit";
 import { fetchOpenMeteo } from "../thunks/fetchOpenMeteo";
-import { IOpenMeteoParsed, IOpenMeteoState } from "../types";
+import { IForecast, IOpenMeteoParsed, IOpenMeteoState } from "../types";
 
 const initialState: IOpenMeteoState = {
-  data: {},
+  data: [],
   isLoading: false,
   error: null,
 };
@@ -12,7 +12,7 @@ const openMeteo = createSlice({
   name: "openMeteo",
   initialState: initialState,
   reducers: {
-    setOpenMeteo: (state, action: PayloadAction<IOpenMeteoParsed>) => {
+    setOpenMeteo: (state, action: PayloadAction<IForecast[]>) => {
       state.data = action.payload;
       state.error = null;
       state.isLoading = false;

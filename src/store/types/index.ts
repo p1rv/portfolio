@@ -14,8 +14,20 @@ export interface ILocationState {
   error: null | SerializedError;
   isLoading: boolean;
 }
+export interface IForecast {
+  precip_sum: number;
+  rain: number;
+  showers: number;
+  snow: number;
+  temp_max: number;
+  temp_min: number;
+  time: string;
+  wind_dir: number;
+  wind_gusts: number;
+  wind_speed: number;
+}
+
 export interface IOpenMeteoDaily {
-  precipitation_hours: number[];
   precipitation_sum: number[];
   rain_sum: number[];
   showers_sum: number[];
@@ -23,9 +35,9 @@ export interface IOpenMeteoDaily {
   temperature_2m_max: number[];
   temperature_2m_min: number[];
   time: string[];
-  winddirection_10_dominant: number[];
-  windgusts_10_max: number[];
-  windspeed_10_max: number[];
+  winddirection_10m_dominant: number[];
+  windgusts_10m_max: number[];
+  windspeed_10m_max: number[];
 }
 
 export type IOpenMeteoDailyKeys = Array<keyof IOpenMeteoDaily>;
@@ -53,7 +65,7 @@ export interface IOpenMeteoParsed {
 }
 
 export interface IOpenMeteoState {
-  data: IOpenMeteoParsed;
+  data: IForecast[];
   isLoading: boolean;
   error: null | SerializedError;
 }

@@ -4,12 +4,13 @@ import { useRouter } from "../hooks/useRouter";
 import { fetchOpenMeteo } from "../store/thunks/fetchOpenMeteo";
 import { setOpenMeteo } from "../store/slices/openMeteoSlice";
 import localforage from "localforage";
-import { IRootState, useAppDispatch } from "../store";
+import { IForecast, IRootState, useAppDispatch } from "../store";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
 interface IForageForecast {
   expires: number;
+  forecast: IForecast[];
 }
 
 export const Weather: React.FC = () => {
@@ -34,8 +35,8 @@ export const Weather: React.FC = () => {
       dispatch(fetchOpenMeteo({ lat, lon }));
       return;
     }
-    const { expires, ...rest } = saved;
-    dispatch(setOpenMeteo(rest));
+    const { expires, forecast } = saved;
+    dispatch(setOpenMeteo(forecast));
   };
 
   useEffect(() => {
