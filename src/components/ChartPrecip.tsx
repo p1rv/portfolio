@@ -14,7 +14,7 @@ export const ChartPrecip: (precip: number[]) => JSX.Element = (precip) => {
         ticks={ticks}
         yAxisId="precip"
         orientation="right"
-        label={{ value: "Precipitation", angle: 90, position: "insideRight", offset: 15 }}
+        label={{ value: "Precipitation [mm]", angle: 90, position: "insideRight", offset: 15 }}
       />
       <Bar
         dataKey="snow"

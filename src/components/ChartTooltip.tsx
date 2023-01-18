@@ -1,4 +1,4 @@
-import { Legend, Tooltip } from "recharts";
+import { Tooltip } from "recharts";
 
 const tooltipKeyDict = {
   temp_max: {
@@ -44,11 +44,6 @@ export const ChartTooltip: () => JSX.Element = () => {
         separator=": "
         formatter={(i, d: keyof typeof tooltipKeyDict) => {
           return [i + tooltipKeyDict[d].unit, tooltipKeyDict[d].label];
-        }}
-      />
-      <Legend
-        formatter={(i: keyof typeof tooltipKeyDict) => {
-          return tooltipKeyDict[i].label;
         }}
       />
     </>

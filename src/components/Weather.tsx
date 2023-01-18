@@ -7,6 +7,8 @@ import localforage from "localforage";
 import { IForecast, IRootState, useAppDispatch } from "../store";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import { WeatherFilters } from "./WeatherFilters";
+import { ForecastProvider } from "./ForecastProvider";
 
 interface IForageForecast {
   expires: number;
@@ -45,9 +47,14 @@ export const Weather: React.FC = () => {
   }, [address]);
 
   return (
-    <div className="flex flex-col w-4/5 items-center h-full">
-      <SearchBar />
-      <ChartWrapper />
-    </div>
+    <ForecastProvider>
+      <div className="flex flex-col w-4/5 items-center h-full">
+        <div className="flex flex-row w-full items-center relative">
+          <SearchBar />
+          <WeatherFilters />
+        </div>
+        <ChartWrapper />
+      </div>
+    </ForecastProvider>
   );
 };

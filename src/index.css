@@ -16,17 +16,15 @@
 }
 
 * {
-  font-family: Arcon, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue,
-    sans-serif;
+  font-family: Arcon, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
   font-size: 18px;
   font-weight: 600;
 }
 code span {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-weight: 400;
 }
-.button::after {
+.button.primary::after {
   content: " ";
   position: absolute;
   bottom: 0;
@@ -35,14 +33,14 @@ code span {
   height: 10px;
   transition: width 0.2s ease-out;
 }
-.button.selected::after {
+.button.primary.selected::after {
   width: 100% !important;
   border-bottom: 3px solid #007ea7;
 }
-.button:not(.selected)::after {
+.button.primary:not(.selected)::after {
   width: 0;
   border-bottom: 3px solid #00a8e8;
 }
-.button:hover::after {
+.button.primary:hover::after {
   width: 60%;
 }

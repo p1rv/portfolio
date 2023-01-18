@@ -13,7 +13,7 @@ export const ChartWinds: (gusts: number[]) => JSX.Element = (gusts) => {
         domain={[0, chartMax]}
         ticks={ticks}
         yAxisId="wind"
-        label={{ value: "Wind", angle: -90, position: "insideLeft", offset: 15 }}
+        label={{ value: "Wind [km/h]", angle: -90, position: "insideLeft", offset: 15 }}
       />
       <Line
         type="monotone"

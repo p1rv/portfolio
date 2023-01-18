@@ -4,7 +4,8 @@ import { Line, ReferenceLine, YAxis } from "recharts";
 export const ChartTemps: (min: number[], max: number[]) => JSX.Element = (min, max) => {
   const [chartMin, chartMax] = [Math.floor(min.sort((a, b) => a - b)[0] / 2) * 2 - 2, Math.ceil(max.sort((a, b) => b - a)[0] / 2) * 2 + 2];
   const ticks = [];
-  for (let i = chartMin; i < chartMax + 2; i += 2) {
+  const step = chartMax - chartMin > 20 ? 4 : 2;
+  for (let i = chartMin; i < chartMax + step; i += step) {
     ticks.push(i);
   }
   return (
@@ -13,7 +14,7 @@ export const ChartTemps: (min: number[], max: number[]) => JSX.Element = (min, m
         domain={[chartMin, chartMax]}
         ticks={ticks}
         yAxisId="temp"
-        label={{ value: "Temp", angle: -90, position: "insideLeft", offset: 20 }}
+        label={{ value: "Temperature [°C]", angle: -90, position: "insideLeft", offset: 20 }}
       />
       <Line
         type="monotone"
