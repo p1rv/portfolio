@@ -44,7 +44,7 @@ export const ChartWrapper: React.FC = () => {
           data.map(({ temp_min }) => temp_min),
           data.map(({ temp_max }) => temp_max)
         )}
-        {ChartWinds(data.map(({ wind_gusts }) => wind_gusts))}
+        {/* {ChartWinds(data.map(({ wind_gusts }) => wind_gusts))} */}
       </ComposedChart>
     </div>
   );

@@ -14,21 +14,25 @@ export const ChartPrecip: (precip: number[]) => JSX.Element = (precip) => {
         ticks={ticks}
         yAxisId="precip"
         orientation="right"
+        label={{ value: "Precipitation", angle: 90, position: "insideRight", offset: 15 }}
       />
       <Bar
         dataKey="snow"
+        fill="#00a8e8"
         className="fill-theme-1"
         yAxisId="precip"
         stackId="precip"
       />
       <Bar
         dataKey="rain"
+        fill="#007ea7"
         className="fill-theme-2"
         yAxisId="precip"
         stackId="precip"
       />
       <Bar
         dataKey="showers"
+        fill="#003459"
         className="fill-theme-3"
         yAxisId="precip"
         stackId="precip"

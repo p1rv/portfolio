@@ -3,7 +3,7 @@ import { Line, YAxis } from "recharts";
 export const ChartWinds: (gusts: number[]) => JSX.Element = (gusts) => {
   const chartMax = Math.ceil(gusts.sort((a, b) => b - a)[0] / 5) * 5 + 5;
   const ticks = [];
-  for (let i = 0; i < chartMax + 5; i += 5) {
+  for (let i = 0; i < chartMax + 10; i += 10) {
     ticks.push(i);
   }
 
@@ -13,6 +13,7 @@ export const ChartWinds: (gusts: number[]) => JSX.Element = (gusts) => {
         domain={[0, chartMax]}
         ticks={ticks}
         yAxisId="wind"
+        label={{ value: "Wind", angle: -90, position: "insideLeft", offset: 15 }}
       />
       <Line
         type="monotone"

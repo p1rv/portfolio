@@ -1,49 +1,56 @@
-import { Tooltip } from "recharts";
+import { Legend, Tooltip } from "recharts";
 
 const tooltipKeyDict = {
   temp_max: {
-    label: "Max. Temperature: ",
+    label: "Max. Temp.",
     unit: "°C",
   },
   temp_min: {
-    label: "Min. Temperature: ",
+    label: "Min. Temp.",
     unit: "°C",
   },
   precip_sum: {
-    label: "Precipitation: ",
+    label: "Precipitation",
     unit: " mm",
   },
   snow: {
-    label: "Snowfall: ",
+    label: "Snowfall",
     unit: " mm",
   },
   rain: {
-    label: "Rain: ",
+    label: "Rain",
     unit: " mm",
   },
   showers: {
-    label: "Showers: ",
+    label: "Showers",
     unit: " mm",
   },
   wind_speed: {
-    label: "Wind speed: ",
+    label: "Wind speed",
     unit: " km/h",
   },
   wind_gusts: {
-    label: "Wind gusts: ",
+    label: "Wind gusts",
     unit: " km/h",
   },
 };
 
 export const ChartTooltip: () => JSX.Element = () => {
   return (
-    <Tooltip
-      wrapperClassName=""
-      labelFormatter={(day) => "Date: " + day}
-      separator=": "
-      formatter={(i, d: keyof typeof tooltipKeyDict) => {
-        return [i + tooltipKeyDict[d].unit, tooltipKeyDict[d].label];
-      }}
-    />
+    <>
+      <Tooltip
+        wrapperClassName=""
+        labelFormatter={(day) => "Date: " + day}
+        separator=": "
+        formatter={(i, d: keyof typeof tooltipKeyDict) => {
+          return [i + tooltipKeyDict[d].unit, tooltipKeyDict[d].label];
+        }}
+      />
+      <Legend
+        formatter={(i: keyof typeof tooltipKeyDict) => {
+          return tooltipKeyDict[i].label;
+        }}
+      />
+    </>
   );
 };

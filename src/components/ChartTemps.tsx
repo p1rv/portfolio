@@ -13,6 +13,7 @@ export const ChartTemps: (min: number[], max: number[]) => JSX.Element = (min, m
         domain={[chartMin, chartMax]}
         ticks={ticks}
         yAxisId="temp"
+        label={{ value: "Temp", angle: -90, position: "insideLeft", offset: 20 }}
       />
       <Line
         type="monotone"
