@@ -42,7 +42,9 @@ export const SearchBar: React.FC = () => {
   useEffect(() => {
     if (search !== "" && decodeURI(search).replace(/\?/g, "") !== address) {
       updateLocation(search);
+      return;
     }
+    navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => updateLocation(`${latitude},${longitude}`));
   }, []);
 
   useEffect(() => {
