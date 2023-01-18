@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Bar, CartesianGrid, ComposedChart, Line, ReferenceLine, Tooltip, XAxis, YAxis } from "recharts";
+import { CartesianGrid, ComposedChart, XAxis } from "recharts";
 import { IRootState } from "../store";
 import { ChartPrecip } from "./ChartPrecip";
 import { ChartTemps } from "./ChartTemps";

@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { Line, ReferenceLine, YAxis } from "recharts";
 
 export const ChartTemps: (min: number[], max: number[]) => JSX.Element = (min, max) => {

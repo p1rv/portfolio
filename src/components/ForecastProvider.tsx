@@ -1,4 +1,4 @@
-import { createContext, Dispatch, PropsWithChildren, SetStateAction, useContext, useEffect, useState } from "react";
+import { createContext, PropsWithChildren, useEffect, useState } from "react";
 
 const types = ["Temperature", "Wind", "Precipitation"] as const;
 
@@ -24,8 +24,6 @@ interface IForecastProvider {
 
 export const ForecastProvider: React.FC<PropsWithChildren<IForecastProvider>> = ({ children }) => {
   const [show, setInternalShow] = useState<typeof types[number][]>(["Temperature", "Precipitation"]);
-
-  useEffect(() => console.log(show), [show]);
 
   const setShow = (type: typeof types[number]) => {
     setInternalShow((currentShow) => {

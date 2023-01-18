@@ -44,9 +44,7 @@ export const WeatherDemo: React.FC = () => {
       <div className="w-4/5 h-2/3 bg-gray-100 rounded-lg my-4">
         <div className="p-2 text-sm w-full">New York, NY - 2PM EDT</div>
         <div className="w-[96%] m-[2%] h-2/3 bg-white rounded-lg"></div>
-        <div className="w-full text-right text-xs px-2">
-          source: one.weather
-        </div>
+        <div className="w-full text-right text-xs px-2">source: one.weather</div>
       </div>
     </div>
   );
