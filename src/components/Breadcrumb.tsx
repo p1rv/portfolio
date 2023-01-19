@@ -9,7 +9,7 @@ import { IRootState } from "../store";
 export const Breadcrumb: React.FC = () => {
   const {
     navigate,
-    location: { pathname, search },
+    location: { pathname },
   } = useRouter();
 
   const { address } = useSelector((state: IRootState) => state.location.data);

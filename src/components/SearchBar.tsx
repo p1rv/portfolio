@@ -19,9 +19,7 @@ export const SearchBar: React.FC = () => {
     isLoading,
   } = useSelector((state: IRootState) => state.location);
 
-  const {
-    location: { search },
-  } = useRouter();
+  const { query } = useRouter();
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -40,8 +38,9 @@ export const SearchBar: React.FC = () => {
   };
 
   useEffect(() => {
-    if (search !== "" && decodeURI(search).replace(/\?/g, "") !== address) {
-      updateLocation(search);
+    const addressQuery = query.get("address") || "";
+    if (addressQuery !== "" && addressQuery !== address) {
+      updateLocation(addressQuery);
       return;
     }
     navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => updateLocation(`${latitude},${longitude}`));

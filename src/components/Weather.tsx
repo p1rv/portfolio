@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { WeatherFilters } from "./WeatherFilters";
 import { ForecastProvider } from "./ForecastProvider";
+import { createSearchParams } from "react-router-dom";
 
 interface IForageForecast {
   expires: number;
@@ -16,10 +17,7 @@ interface IForageForecast {
 }
 
 export const Weather: React.FC = () => {
-  const {
-    location: { search },
-    navigate,
-  } = useRouter();
+  const { query, navigate } = useRouter();
 
   const {
     data: {
@@ -42,7 +40,8 @@ export const Weather: React.FC = () => {
   };
 
   useEffect(() => {
-    address !== decodeURI(search).replace(/\?/g, "") && navigate({ search: address });
+    const addressQuery = query.get("address") || "";
+    address !== addressQuery && navigate({ search: `?${createSearchParams({ address })}` });
     updateForecast();
   }, [address]);
 
