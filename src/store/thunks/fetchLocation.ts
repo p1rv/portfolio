@@ -1,9 +1,6 @@
-import { createAsyncThunk, miniSerializeError } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "..";
 import { ILocationData } from "../types";
-import { fetchOpenMeteo } from "./fetchOpenMeteo";
 
 export const fetchLocation = createAsyncThunk<ILocationData, string>("location/get", async (searchTerm: string) => {
   const { data } = await axios.get(

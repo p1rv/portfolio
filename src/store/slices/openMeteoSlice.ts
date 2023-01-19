@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { setLoading } from "../actions";
 import { fetchOpenMeteo } from "../thunks/fetchOpenMeteo";
 import { IForecast, IForecastState } from "../types";
 
@@ -17,11 +18,11 @@ const openMeteo = createSlice({
       state.error = null;
       state.isLoading = false;
     },
-    setLoading: (state, action: PayloadAction<boolean>) => {
-      state.isLoading = action.payload;
-    },
   },
   extraReducers: (builder) => {
+    builder.addCase(setLoading, (state, action) => {
+      state.isLoading = action.payload;
+    });
     builder.addCase(fetchOpenMeteo.pending, (state) => {
       state.isLoading = true;
     });
@@ -38,4 +39,4 @@ const openMeteo = createSlice({
 });
 
 export const openMeteoReducer = openMeteo.reducer;
-export const { setOpenMeteo, setLoading } = openMeteo.actions;
+export const { setOpenMeteo } = openMeteo.actions;

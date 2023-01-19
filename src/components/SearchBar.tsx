@@ -1,11 +1,12 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { SearchIcon } from "../svg/SearchIcon";
 import { useRouter } from "../hooks/useRouter";
-import { ILocationData, IRootState, setLocation, useAppDispatch, setLoading } from "../store";
+import { ILocationData, IRootState, setLocation, useAppDispatch } from "../store";
 import { fetchLocation } from "../store";
 import { useSelector } from "react-redux";
 import localforage from "localforage";
 import classNames from "classnames";
+import { setLoading } from "../store/actions";
 
 export const SearchBar: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");

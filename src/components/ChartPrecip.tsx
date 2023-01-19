@@ -1,13 +1,20 @@
 import { Bar, YAxis } from "recharts";
 
-export const ChartPrecip: (precip: number[], preferExploded: boolean) => JSX.Element = (precip, preferExploded = true) => {
+export const ChartPrecip: (precip: number[], singleBar?: boolean) => JSX.Element = (precip, singleBar = true) => {
   const chartMax = Math.ceil(precip.sort((a, b) => b - a)[0] / 10) * 10 * 2;
   const ticks = [];
   for (let i = 0; i < chartMax + 10; i += 10) {
     ticks.push(i);
   }
 
-  const bars = preferExploded ? (
+  const bars = singleBar ? (
+    <Bar
+      dataKey="precip_sum"
+      fill="#007ea7"
+      yAxisId="precip"
+      stackId="precip"
+    />
+  ) : (
     <>
       <Bar
         dataKey="snow"
@@ -28,13 +35,6 @@ export const ChartPrecip: (precip: number[], preferExploded: boolean) => JSX.Ele
         stackId="precip"
       />
     </>
-  ) : (
-    <Bar
-      dataKey="precip_sum"
-      fill="#007ea7"
-      yAxisId="precip"
-      stackId="precip"
-    />
   );
 
   return (

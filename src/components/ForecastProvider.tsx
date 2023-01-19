@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useEffect, useState } from "react";
+import { createContext, PropsWithChildren, useState } from "react";
 
 const types = ["Temperature", "Wind", "Precipitation"] as const;
 

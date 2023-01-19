@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchStormGlass } from "../thunks/fetchStormGlass";
 import { IForecast, IForecastState } from "../types";
+import { setLoading } from "../actions";
 
 const initialState: IForecastState = {
   data: [],
@@ -17,11 +18,11 @@ const stormGlass = createSlice({
       state.error = null;
       state.isLoading = false;
     },
-    setLoading: (state, action: PayloadAction<boolean>) => {
-      state.isLoading = action.payload;
-    },
   },
   extraReducers: (builder) => {
+    builder.addCase(setLoading, (state, action) => {
+      state.isLoading = action.payload;
+    });
     builder.addCase(fetchStormGlass.pending, (state) => {
       state.isLoading = true;
     });
@@ -38,4 +39,4 @@ const stormGlass = createSlice({
 });
 
 export const stormGlassReducer = stormGlass.reducer;
-export const { setStormGlass, setLoading } = stormGlass.actions;
+export const { setStormGlass } = stormGlass.actions;

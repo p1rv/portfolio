@@ -1,26 +1,20 @@
 import { useContext, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { CartesianGrid, ComposedChart, XAxis } from "recharts";
-import { IRootState } from "../store";
+import { IForecastState } from "../store";
 import { ChartPrecip } from "./ChartPrecip";
 import { ChartTemps } from "./ChartTemps";
 import { ChartTooltip } from "./ChartTooltip";
 import { ChartWinds } from "./ChartWinds";
 import { ForecastContext } from "./ForecastProvider";
-import { defaultData } from "./defaultForecastData";
 import { getDayName } from "../utils/forecast";
 import { DefaultForecastChart } from "./DefaultForecastChart";
 
 interface IChartWrapperProps {
-  om?: boolean;
-  sg?: boolean;
+  data: IForecastState;
+  source: "OpenMeteo" | "StormGlass";
 }
 
-export const ChartWrapper: React.FC<IChartWrapperProps> = ({ om, sg }) => {
-  const { isLoading, error, data } = useSelector((state: IRootState) => {
-    if (om) return state.openMeteo;
-    return state.stormGlass;
-  });
+export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, error, data }, source }) => {
   const { show } = useContext(ForecastContext);
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(window.innerHeight);
@@ -89,7 +83,7 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ om, sg }) => {
       {show.includes("Precipitation") &&
         ChartPrecip(
           data.map(({ precip_sum }) => precip_sum),
-          !sg
+          source === "StormGlass"
         )}
       {show.includes("Temperature") &&
         ChartTemps(

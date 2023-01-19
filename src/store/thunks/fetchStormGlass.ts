@@ -1,17 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import localforage from "localforage";
-import {
-  Entries,
-  ICoordinates,
-  IForecast,
-  IStormGlassDaily,
-  IStormGlassData,
-  IStormGlassDay,
-  IStormGlassHours,
-  IStormGlassRecordSG,
-} from "../types";
-import { stormGlassData } from "./stormglassexample";
+import { ICoordinates, IForecast, IStormGlassDaily, IStormGlassData, IStormGlassDay } from "../types";
 
 const forecastParameters = ["airTemperature", "precipitation", "windSpeed", "gust", "windDirection"].join(",");
 
