@@ -26,6 +26,7 @@ export const useAppDispatch: () => AppDispatch = useDispatch;
 
 export * from "./types";
 export * from "./slices/locationSlice";
+export * from "./slices/openMeteoSlice";
 export * from "./thunks/fetchLocation";
 
 export default store;

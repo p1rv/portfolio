@@ -17,6 +17,9 @@ const openMeteo = createSlice({
       state.error = null;
       state.isLoading = false;
     },
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchOpenMeteo.pending, (state) => {
@@ -35,4 +38,4 @@ const openMeteo = createSlice({
 });
 
 export const openMeteoReducer = openMeteo.reducer;
-export const { setOpenMeteo } = openMeteo.actions;
+export const { setOpenMeteo, setLoading } = openMeteo.actions;

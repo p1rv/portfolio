@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { SearchIcon } from "../svg/SearchIcon";
 import { useRouter } from "../hooks/useRouter";
-import { ILocationData, IRootState, setLocation, useAppDispatch } from "../store";
+import { ILocationData, IRootState, setLocation, useAppDispatch, setLoading } from "../store";
 import { fetchLocation } from "../store";
 import { useSelector } from "react-redux";
 import localforage from "localforage";
@@ -43,7 +43,11 @@ export const SearchBar: React.FC = () => {
       updateLocation(addressQuery);
       return;
     }
-    navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => updateLocation(`${latitude},${longitude}`));
+    dispatch(setLoading(true));
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => updateLocation(`${latitude},${longitude}`), // success callback
+      () => dispatch(setLoading(false)) // error (block access) callback
+    );
   }, []);
 
   useEffect(() => {
@@ -70,10 +74,10 @@ export const SearchBar: React.FC = () => {
     "animate-[shake_0.5s_ease-out]": !touched && error && !searchTerm,
   });
 
-  const inputWrapper = classNames("relative w-1/3 flex items-center transition-all duration-300 ease-in-out", {
+  const inputWrapper = classNames("relative w-1/4 flex items-center transition-all duration-300 ease-in-out", {
     "after:content-[' '] after:w-6 after:h-6 after:rounded-full after:border-4 after:border-theme-0 after:border-l-transparent after:absolute after:right-2 after:animate-spin":
       isLoading,
-    "w-1/2": isFocused,
+    "!w-1/3": isFocused,
   });
 
   const inputClasses = classNames(

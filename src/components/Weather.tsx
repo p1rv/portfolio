@@ -2,9 +2,8 @@ import { ChartWrapper } from "./ChartWrapper";
 import { SearchBar } from "./SearchBar";
 import { useRouter } from "../hooks/useRouter";
 import { fetchOpenMeteo } from "../store/thunks/fetchOpenMeteo";
-import { setOpenMeteo } from "../store/slices/openMeteoSlice";
 import localforage from "localforage";
-import { IForecast, IRootState, useAppDispatch } from "../store";
+import { IForecast, IRootState, useAppDispatch, setOpenMeteo } from "../store";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { WeatherFilters } from "./WeatherFilters";
@@ -52,7 +51,23 @@ export const Weather: React.FC = () => {
           <SearchBar />
           <WeatherFilters />
         </div>
-        <ChartWrapper />
+        <div className="w-full bg-theme-0 mt-4 rounded-[30px] text-theme-4 flex flex-col items-center justify-center py-[1vh]">
+          <div className="w-full text-left pl-4 text-sm">{address}</div>
+          <ChartWrapper />
+          {address && (
+            <div className="w-full text-right pr-4">
+              <span className="text-xs">source: </span>
+              <a
+                href="https://open-meteo.com"
+                target="_blank"
+                title="Open in new tab"
+                className="text-xs"
+              >
+                open-meteo.com
+              </a>
+            </div>
+          )}
+        </div>
       </div>
     </ForecastProvider>
   );

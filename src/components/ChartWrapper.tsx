@@ -7,25 +7,9 @@ import { ChartTemps } from "./ChartTemps";
 import { ChartTooltip } from "./ChartTooltip";
 import { ChartWinds } from "./ChartWinds";
 import { ForecastContext } from "./ForecastProvider";
-
-const getDayName = (day: number) => {
-  switch (day) {
-    case 0:
-      return "Sun";
-    case 1:
-      return "Mon";
-    case 2:
-      return "Tue";
-    case 3:
-      return "Wed";
-    case 4:
-      return "Thu";
-    case 5:
-      return "Fri";
-    case 6:
-      return "Sat";
-  }
-};
+import { defaultData } from "./defaultForecastData";
+import { getDayName } from "../utils/forecast";
+import { DefaultForecastChart } from "./DefaultForecastChart";
 
 export const ChartWrapper: React.FC = () => {
   const { isLoading, error, data } = useSelector((state: IRootState) => state.openMeteo);
@@ -50,37 +34,45 @@ export const ChartWrapper: React.FC = () => {
       return "auto";
     }
   };
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  return (
-    <div className="w-5/6 bg-theme-0 mt-4 rounded-[30px] text-theme-4 flex flex-col items-center justify-center py-[2vh]">
-      <ComposedChart
-        width={width * 0.64}
-        height={height * 0.4}
-        data={data}
+  if (isLoading || data.length === 0) {
+    return (
+      <DefaultForecastChart
+        width={width}
+        height={height}
       >
-        <XAxis
-          dataKey={"time"}
-          interval={0}
-          tickFormatter={formatDateTick}
-          padding={show.includes("Precipitation") ? undefined : { right: 40, left: 40 }}
-        />
-        <CartesianGrid
-          stroke="#ddd"
-          horizontal={false}
-        />
-        {ChartTooltip()}
-        {show.includes("Precipitation") && ChartPrecip(data.map(({ precip_sum }) => precip_sum))}
-        {show.includes("Temperature") &&
-          ChartTemps(
-            data.map(({ temp_min }) => temp_min),
-            data.map(({ temp_max }) => temp_max)
-          )}
-        {show.includes("Wind") && ChartWinds(data.map(({ wind_gusts }) => wind_gusts))}
-      </ComposedChart>
-    </div>
+        {isLoading ? (
+          <div className="after:content-[' '] after:w-16 after:h-16 after:rounded-full after:border-8 after:border-theme-3 after:border-l-transparent after:block after:animate-spin after:transition-all after:duration-200"></div>
+        ) : (
+          <div>Search for a location or allow auto-detecting</div>
+        )}
+      </DefaultForecastChart>
+    );
+  }
+  return (
+    <ComposedChart
+      width={width * 0.64}
+      height={height * 0.4}
+      data={data}
+      className="py-2"
+    >
+      <XAxis
+        dataKey={"time"}
+        interval={0}
+        tickFormatter={formatDateTick}
+        padding={show.includes("Precipitation") ? undefined : { right: 40, left: 40 }}
+      />
+      <CartesianGrid
+        stroke="#ddd"
+        horizontal={false}
+      />
+      {ChartTooltip()}
+      {show.includes("Precipitation") && ChartPrecip(data.map(({ precip_sum }) => precip_sum))}
+      {show.includes("Temperature") &&
+        ChartTemps(
+          data.map(({ temp_min }) => temp_min),
+          data.map(({ temp_max }) => temp_max)
+        )}
+      {show.includes("Wind") && ChartWinds(data.map(({ wind_gusts }) => wind_gusts))}
+    </ComposedChart>
   );
 };
