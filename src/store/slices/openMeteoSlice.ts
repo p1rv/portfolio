@@ -1,8 +1,8 @@
-import { createSlice, PayloadAction, SerializedError } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchOpenMeteo } from "../thunks/fetchOpenMeteo";
-import { IForecast, IOpenMeteoParsed, IOpenMeteoState } from "../types";
+import { IForecast, IForecastState } from "../types";
 
-const initialState: IOpenMeteoState = {
+const initialState: IForecastState = {
   data: [],
   isLoading: false,
   error: null,

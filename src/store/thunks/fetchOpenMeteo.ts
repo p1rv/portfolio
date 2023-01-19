@@ -1,8 +1,7 @@
-import { createAsyncThunk, SerializedError, ThunkAction } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import localforage from "localforage";
-import { IRootState } from "..";
-import { ICoordinates, IForecast, IOpenMeteoDaily, IOpenMeteoDailyKeys, IOpenMeteoData, IOpenMeteoParsed } from "../types";
+import { ICoordinates, IForecast, IOpenMeteoDailyKeys, IOpenMeteoData } from "../types";
 
 const forecastParameters = [
   "temperature_2m_max",

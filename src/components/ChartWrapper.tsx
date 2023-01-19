@@ -11,8 +11,16 @@ import { defaultData } from "./defaultForecastData";
 import { getDayName } from "../utils/forecast";
 import { DefaultForecastChart } from "./DefaultForecastChart";
 
-export const ChartWrapper: React.FC = () => {
-  const { isLoading, error, data } = useSelector((state: IRootState) => state.openMeteo);
+interface IChartWrapperProps {
+  om?: boolean;
+  sg?: boolean;
+}
+
+export const ChartWrapper: React.FC<IChartWrapperProps> = ({ om, sg }) => {
+  const { isLoading, error, data } = useSelector((state: IRootState) => {
+    if (om) return state.openMeteo;
+    return state.stormGlass;
+  });
   const { show } = useContext(ForecastContext);
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(window.innerHeight);
@@ -34,17 +42,29 @@ export const ChartWrapper: React.FC = () => {
       return "auto";
     }
   };
-  if (isLoading || data.length === 0) {
+
+  const getDefaultContent = (loading: boolean, length: boolean, hasError: boolean) => {
+    if (loading) {
+      return (
+        <div className="after:content-[' '] after:w-16 after:h-16 after:rounded-full after:border-8 after:border-theme-3 after:border-l-transparent after:block after:animate-spin after:transition-all after:duration-200"></div>
+      );
+    }
+    if (error) {
+      return <div>Error during data retrieval, please try again later...</div>;
+    }
+    if (data) {
+      return <div>Search for a location or allow auto-detecting</div>;
+    }
+  };
+
+  if (isLoading || data.length === 0 || error) {
+    const content = getDefaultContent(!!isLoading, !data.length, !!error);
     return (
       <DefaultForecastChart
         width={width}
         height={height}
       >
-        {isLoading ? (
-          <div className="after:content-[' '] after:w-16 after:h-16 after:rounded-full after:border-8 after:border-theme-3 after:border-l-transparent after:block after:animate-spin after:transition-all after:duration-200"></div>
-        ) : (
-          <div>Search for a location or allow auto-detecting</div>
-        )}
+        {content}
       </DefaultForecastChart>
     );
   }
@@ -66,7 +86,11 @@ export const ChartWrapper: React.FC = () => {
         horizontal={false}
       />
       {ChartTooltip()}
-      {show.includes("Precipitation") && ChartPrecip(data.map(({ precip_sum }) => precip_sum))}
+      {show.includes("Precipitation") &&
+        ChartPrecip(
+          data.map(({ precip_sum }) => precip_sum),
+          !sg
+        )}
       {show.includes("Temperature") &&
         ChartTemps(
           data.map(({ temp_min }) => temp_min),
