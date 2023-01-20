@@ -5,6 +5,11 @@ import { useRouter } from "../hooks/useRouter";
 import { HomeIcon } from "../svg/HomeIcon";
 import classNames from "classnames";
 
+const homeButtonText = {
+  en: "Home",
+  pl: "",
+};
+
 export const Header: React.FC = () => {
   const {
     navigate,

@@ -4,7 +4,7 @@ import { IRootState } from "../store";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { WeatherFilters } from "./WeatherFilters";
-import { ForecastProvider } from "./ForecastProvider";
+import { ForecastProvider } from "../context/ForecastProvider";
 import { createSearchParams } from "react-router-dom";
 import { StormGlassWrapper } from "./StormGlassWrapper";
 import { OpenMeteoWrapper } from "./OpenMeteoWrapper";

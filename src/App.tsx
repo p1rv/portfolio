@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { Breadcrumb } from "./components/Breadcrumb";
 import { Header } from "./components/Header";
 import { routes } from "./components/routes";
+import { LanguageProvider } from "./context/LanguageProvider";
 
 function App() {
   const assignedRoutes = Object.values(routes).map(({ path, Component }) => (
@@ -14,11 +15,13 @@ function App() {
   ));
 
   return (
-    <div className="app text-theme-0 h-screen w-screen flex flex-col items-center backdrop-blur-sm">
-      <Header />
-      <Breadcrumb />
-      <Routes>{assignedRoutes}</Routes>
-    </div>
+    <LanguageProvider>
+      <div className="app text-theme-0 h-screen w-screen flex flex-col items-center backdrop-blur-sm">
+        <Header />
+        <Breadcrumb />
+        <Routes>{assignedRoutes}</Routes>
+      </div>
+    </LanguageProvider>
   );
 }
 

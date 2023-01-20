@@ -1,7 +1,7 @@
 import { Button } from "./Button";
 import chevronIcon from "../svg/chevron-right.min.svg";
 import { useContext, useEffect, useRef, useState } from "react";
-import { ForecastContext } from "./ForecastProvider";
+import { ForecastContext } from "../context/ForecastProvider";
 import classNames from "classnames";
 
 export const WeatherFilters: React.FC = () => {

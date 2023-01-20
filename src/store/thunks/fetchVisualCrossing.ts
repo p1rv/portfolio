@@ -2,7 +2,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import localforage from "localforage";
 import { ICoordinates, IForecast, IVisualCrossingData } from "../types";
-import { visualcrossingexample } from "./visualcrossingexample";
 
 const params = ["datetime", "tempmax", "tempmin", "precip", "snow", "windgust", "windspeed", "winddir"].join(",");
 

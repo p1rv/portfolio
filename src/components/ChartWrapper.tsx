@@ -5,7 +5,7 @@ import { ChartPrecip } from "./ChartPrecip";
 import { ChartTemps } from "./ChartTemps";
 import { ChartTooltip } from "./ChartTooltip";
 import { ChartWinds } from "./ChartWinds";
-import { ForecastContext } from "./ForecastProvider";
+import { ForecastContext } from "../context/ForecastProvider";
 import { getDayName } from "../utils/forecast";
 import { DefaultForecastChart } from "./DefaultForecastChart";
 
