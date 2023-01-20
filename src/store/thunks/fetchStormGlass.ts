@@ -5,13 +5,15 @@ import { ICoordinates, IForecast, IStormGlassDaily, IStormGlassData, IStormGlass
 
 const forecastParameters = ["airTemperature", "precipitation", "windSpeed", "gust", "windDirection"].join(",");
 
-const buildURL = (lat: number, lon: number) =>
+const buildURL = ({ lat, lon }: ICoordinates) =>
   `https://api.stormglass.io/v2/weather/point?lat=${lat}&lng=${lon}&params=${forecastParameters}&source=sg`;
 
 export const fetchStormGlass = createAsyncThunk<IForecast[], ICoordinates>("stormGlass/get", async ({ lat, lon }) => {
   const {
     data: { hours },
-  }: { data: IStormGlassData } = await axios.get(buildURL(lat, lon), { headers: { Authorization: import.meta.env.VITE_STORMGLASS_KEY } });
+  }: { data: IStormGlassData } = await axios.get(buildURL({ lat, lon }), {
+    headers: { Authorization: import.meta.env.VITE_STORMGLASS_KEY },
+  });
 
   const daily = {} as IStormGlassDaily;
   hours.forEach((entry) => {

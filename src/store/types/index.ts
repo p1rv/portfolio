@@ -18,6 +18,7 @@ export interface ILocationState {
   error: null | SerializedError;
   isLoading: boolean;
 }
+
 export interface IForecast {
   precip_sum: number;
   rain: number;
@@ -30,6 +31,12 @@ export interface IForecast {
   wind_gusts: number;
   wind_speed: number;
 }
+
+export const initialForecastState: IForecastState = {
+  data: [],
+  isLoading: false,
+  error: null,
+};
 
 export interface IForecastState {
   data: IForecast[];
@@ -79,4 +86,19 @@ export interface IStormGlassDaily {
 
 export interface IStormGlassData {
   hours: IStormGlassHours[];
+}
+
+export interface IVisualCrossingDay {
+  datetime: string;
+  tempmax: number;
+  tempmin: number;
+  precip: number;
+  snow: number;
+  windgust: number;
+  windspeed: number;
+  winddir: number;
+}
+
+export interface IVisualCrossingData {
+  days: IVisualCrossingDay[];
 }

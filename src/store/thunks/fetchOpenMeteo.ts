@@ -15,7 +15,7 @@ const forecastParameters = [
   "winddirection_10m_dominant",
 ].join(",");
 
-const buildURL = (lat: number, lon: number) =>
+const buildURL = ({ lat, lon }: ICoordinates) =>
   `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=${forecastParameters}&timezone=auto`;
 
 const translateOpenMeteoKeys = (key: string): keyof IForecast => {
@@ -48,7 +48,7 @@ const translateOpenMeteoKeys = (key: string): keyof IForecast => {
 export const fetchOpenMeteo = createAsyncThunk<IForecast[], ICoordinates>("openMeteo/get", async ({ lat, lon }) => {
   const {
     data: { daily },
-  }: { data: IOpenMeteoData } = await axios.get(buildURL(lat, lon));
+  }: { data: IOpenMeteoData } = await axios.get(buildURL({ lat, lon }));
   const keys = Object.keys(daily) as IOpenMeteoDailyKeys;
   const forecast = daily.time.map((_, index) =>
     Object.fromEntries(keys.map((key) => [translateOpenMeteoKeys(key), daily[key][index]]))

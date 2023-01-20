@@ -1,17 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { setLoading } from "../actions";
 import { fetchOpenMeteo } from "../thunks/fetchOpenMeteo";
-import { IForecast, IForecastState } from "../types";
-
-const initialState: IForecastState = {
-  data: [],
-  isLoading: false,
-  error: null,
-};
+import { IForecast, initialForecastState } from "../types";
 
 const openMeteo = createSlice({
   name: "openMeteo",
-  initialState: initialState,
+  initialState: initialForecastState,
   reducers: {
     setOpenMeteo: (state, action: PayloadAction<IForecast[]>) => {
       state.data = action.payload;

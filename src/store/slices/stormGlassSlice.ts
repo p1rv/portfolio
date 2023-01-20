@@ -1,17 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchStormGlass } from "../thunks/fetchStormGlass";
-import { IForecast, IForecastState } from "../types";
+import { IForecast, initialForecastState } from "../types";
 import { setLoading } from "../actions";
-
-const initialState: IForecastState = {
-  data: [],
-  isLoading: false,
-  error: null,
-};
 
 const stormGlass = createSlice({
   name: "stormGlass",
-  initialState: initialState,
+  initialState: initialForecastState,
   reducers: {
     setStormGlass: (state, action: PayloadAction<IForecast[]>) => {
       state.data = action.payload;
