@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from "react";
+import { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Breadcrumb } from "./components/Breadcrumb";
 import { Header } from "./components/Header";
@@ -10,7 +10,11 @@ function App() {
     <Route
       key={path}
       path={path}
-      element={<Component />}
+      element={
+        <Suspense fallback={<div>Loading...</div>}>
+          <Component />
+        </Suspense>
+      }
     />
   ));
 

@@ -10,7 +10,7 @@ import { StormGlassWrapper } from "./StormGlassWrapper";
 import { OpenMeteoWrapper } from "./OpenMeteoWrapper";
 import { VisualCrossingWrapper } from "./VisualCrossingWrapper";
 
-export const Weather: React.FC = () => {
+const Weather: React.FC = () => {
   const { query, navigate } = useRouter();
 
   const {
@@ -36,3 +36,5 @@ export const Weather: React.FC = () => {
     </ForecastProvider>
   );
 };
+
+export default Weather;
