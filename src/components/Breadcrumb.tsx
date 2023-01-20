@@ -30,6 +30,11 @@ export const Breadcrumb: React.FC = () => {
     );
   }
 
+  if (pathname === "/") {
+    document.title = "Karol Król  |  Portfolio";
+    return null;
+  }
+
   // slice(1) - skip home route
   const renderedPath = explodedPath.slice(1).map((piece) => (
     <React.Fragment key={piece}>
@@ -39,12 +44,13 @@ export const Breadcrumb: React.FC = () => {
         className="w-3 h-3 mx-3"
       />
       {Object.values(routes).map((route, ind) => {
-        return route.path.replace("/", "") === piece && route.name;
+        if (route.path.replace("/", "") === piece) {
+          document.title = route.name + "  |  Karol Król";
+          return route.name;
+        }
       })}
     </React.Fragment>
   ));
-
-  if (pathname === "/") return null;
 
   return (
     <div className="flex items-center w-4/5 py-[10px] w-4/5">
