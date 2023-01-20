@@ -1,0 +1,20 @@
+<svg
+  width="200mm"
+  height="200mm"
+  viewBox="0 0 200 200"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+>
+  <path
+    style="fill:#fefcfb;stroke:#00a8e8;stroke-width:40;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:13.6;stroke-dasharray:none;stroke-opacity:1"
+    d="M 20,20 V 180"
+  />
+  <path
+    style="fill:none;stroke:#007ea7;stroke-width:40;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:13.6;stroke-dasharray:none;stroke-opacity:1"
+    d="M 180,20 20,100 180,180"
+  />
+  <path
+    style="fill:#fefcfb;stroke:#00a8e8;stroke-width:40;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:13.6;stroke-dasharray:none;stroke-opacity:1"
+    d="M 90,20 V 180"
+  />
+</svg>

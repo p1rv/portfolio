@@ -6,7 +6,7 @@ import chevronRight from "../svg/chevron-right.min.svg";
 import { useSelector } from "react-redux";
 import { IRootState } from "../store";
 
-const Breadcrumb: React.FC = () => {
+export const Breadcrumb: React.FC = () => {
   const {
     navigate,
     location: { pathname },
@@ -64,5 +64,3 @@ const Breadcrumb: React.FC = () => {
     </div>
   );
 };
-
-export default Breadcrumb;
