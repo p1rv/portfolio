@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import localforage from "localforage";
-import { ICoordinates, IForecast, IStormGlassDaily, IStormGlassData, IStormGlassDay } from "../types";
+import { ICoordinates, IForecast, IStormGlassDaily, IStormGlassData, IStormGlassDay, IStormGlassHours, Entries } from "../types";
 
 const forecastParameters = ["airTemperature", "precipitation", "windSpeed", "gust", "windDirection"].join(",");
 
@@ -17,19 +17,18 @@ export const fetchStormGlass = createAsyncThunk<IForecast[], ICoordinates>("stor
   hours.forEach((entry) => {
     const dateObj = new Date(entry.time);
     const date = `${dateObj.getFullYear()}-${(dateObj.getMonth() + 1).toString().padStart(2, "0")}-${dateObj.getDate()}`;
+    const hoursEntries = Object.entries(entry) as Entries<IStormGlassHours>;
     if (!daily.hasOwnProperty(date)) {
       daily[date] = {} as IStormGlassDay;
-      Object.entries(entry).forEach(([key, { sg }]) => {
+      hoursEntries.forEach(([key, value]) => {
         if (key === "time") return;
-        //@ts-ignore
-        daily[date][key] = [sg];
+        daily[date][key] = [value.sg];
       });
       return;
     }
-    Object.entries(entry).forEach(([key, { sg }]) => {
+    hoursEntries.forEach(([key, value]) => {
       if (key === "time") return;
-      //@ts-ignore
-      daily[date][key].push(sg);
+      daily[date][key].push(value.sg);
     });
   });
   const forecast = Object.entries(daily).map(([date, values]) => {
