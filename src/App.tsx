@@ -1,9 +1,9 @@
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Breadcrumb } from "./components/Breadcrumb";
-import { Header } from "./components/Header";
 import { routes } from "./components/routes";
 import { LanguageProvider } from "./context/LanguageProvider";
+const Breadcrumb = lazy(() => import("./components/Breadcrumb"));
+const Header = lazy(() => import("./components/Header"));
 
 function App() {
   const assignedRoutes = Object.values(routes).map(({ path, Component }) => (
@@ -19,13 +19,17 @@ function App() {
   ));
 
   return (
-    <LanguageProvider>
-      <div className="app text-theme-0 h-screen w-screen flex flex-col items-center backdrop-blur-sm">
-        <Header />
-        <Breadcrumb />
+    <div className="app text-theme-0 h-screen w-screen flex flex-col items-center backdrop-blur-sm">
+      <LanguageProvider>
+        <Suspense fallback={<div className="w-screen h-24" />}>
+          <Header />
+        </Suspense>
+        <Suspense fallback={<div />}>
+          <Breadcrumb />
+        </Suspense>
         <Routes>{assignedRoutes}</Routes>
-      </div>
-    </LanguageProvider>
+      </LanguageProvider>
+    </div>
   );
 }
 

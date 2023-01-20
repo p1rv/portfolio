@@ -10,7 +10,7 @@ const homeButtonText = {
   pl: "",
 };
 
-export const Header: React.FC = () => {
+const Header: React.FC = () => {
   const {
     navigate,
     location: { pathname },
@@ -45,3 +45,5 @@ export const Header: React.FC = () => {
     </div>
   );
 };
+
+export default Header;
