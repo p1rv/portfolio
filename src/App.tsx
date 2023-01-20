@@ -4,6 +4,7 @@ import { routes } from "./components/routes";
 import { LanguageProvider } from "./context/LanguageProvider";
 import { Breadcrumb } from "./components/Breadcrumb";
 import { Header } from "./components/Header";
+import { LoadingFallback } from "./components/LoadingFallback";
 
 function App() {
   const assignedRoutes = Object.values(routes).map(({ path, Component }) => (
@@ -11,7 +12,7 @@ function App() {
       key={path}
       path={path}
       element={
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<LoadingFallback />}>
           <Component />
         </Suspense>
       }

@@ -44,3 +44,35 @@ code span {
 .button.primary:hover::after {
   width: 60%;
 }
+#fallback-icon {
+  width: 20vh;
+  height: 20vh;
+  display: block;
+  animation: pulse 1s linear infinite;
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(0.91);
+  }
+  25% {
+    transform: scale(0.9);
+  }
+  35% {
+    transform: scale(0.91);
+  }
+  65% {
+    transform: scale(1.09);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+  85% {
+    transform: scale(1.09);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

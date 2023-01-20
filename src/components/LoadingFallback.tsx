@@ -9,12 +9,12 @@ export const LoadingFallback: React.FC = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#030611",
+        backdropFilter: "blur(4px)",
       }}
     >
       <img
         src={logo}
-        style={{ height: "30vh", width: "30vh" }}
+        id="fallback-icon"
         alt="Logo"
       />
     </div>
