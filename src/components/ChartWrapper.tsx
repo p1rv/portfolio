@@ -11,7 +11,7 @@ import { DefaultForecastChart } from "./DefaultForecastChart";
 
 interface IChartWrapperProps {
   data: IForecastState;
-  source: "OpenMeteo" | "StormGlass";
+  source: "OpenMeteo" | "StormGlass" | "VisualCrossing";
 }
 
 export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, error, data }, source }) => {

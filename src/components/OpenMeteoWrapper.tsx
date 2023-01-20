@@ -1,8 +1,7 @@
 import localforage from "localforage";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { IForecast, IRootState, setOpenMeteo, useAppDispatch } from "../store";
-import { fetchOpenMeteo } from "../store/thunks/fetchOpenMeteo";
+import { IForecast, IRootState, setOpenMeteo, useAppDispatch, fetchOpenMeteo } from "../store";
 import { ChartWrapper } from "./ChartWrapper";
 import { IForecastWrapperProps } from "./StormGlassWrapper";
 

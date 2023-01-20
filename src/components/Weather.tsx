@@ -8,6 +8,7 @@ import { ForecastProvider } from "./ForecastProvider";
 import { createSearchParams } from "react-router-dom";
 import { StormGlassWrapper } from "./StormGlassWrapper";
 import { OpenMeteoWrapper } from "./OpenMeteoWrapper";
+import { VisualCrossingWrapper } from "./VisualCrossingWrapper";
 
 export const Weather: React.FC = () => {
   const { query, navigate } = useRouter();
@@ -29,7 +30,8 @@ export const Weather: React.FC = () => {
           <WeatherFilters />
         </div>
         <OpenMeteoWrapper />
-        <StormGlassWrapper />
+        {/* <StormGlassWrapper /> */}
+        <VisualCrossingWrapper />
       </div>
     </ForecastProvider>
   );
