@@ -2,7 +2,7 @@ import "./index.css";
 import React, { lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { StarryBackgroundWrapper } from "./components/StarryBackgroundWrapper";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 import { LoadingFallback } from "./components/LoadingFallback";
@@ -12,11 +12,11 @@ createRoot(document.querySelector("#root") as HTMLDivElement).render(
   <React.StrictMode>
     <Provider store={store}>
       <StarryBackgroundWrapper>
-        <BrowserRouter>
+        <HashRouter>
           <Suspense fallback={<LoadingFallback />}>
             <App />
           </Suspense>
-        </BrowserRouter>
+        </HashRouter>
       </StarryBackgroundWrapper>
     </Provider>
   </React.StrictMode>
