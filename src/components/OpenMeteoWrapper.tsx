@@ -10,7 +10,7 @@ export interface IForageForecast {
   forecast: IForecast[];
 }
 
-export const OpenMeteoWrapper: React.FC<IForecastWrapperProps> = () => {
+const OpenMeteoWrapper: React.FC<IForecastWrapperProps> = () => {
   const {
     location: {
       data: {
@@ -60,3 +60,5 @@ export const OpenMeteoWrapper: React.FC<IForecastWrapperProps> = () => {
     </div>
   );
 };
+
+export default OpenMeteoWrapper;

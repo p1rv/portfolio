@@ -50,6 +50,20 @@ code span {
   display: block;
   animation: pulse 1s linear infinite;
 }
+#weather-fallback {
+  background: linear-gradient(-75deg, #fefcfb04, #fefcfb04, #fefcfb04, #fefcfb04, #fefcfb60, #fefcfb04, #fefcfb04, #fefcfb04, #fefcfb04);
+  background-size: 400% 400%;
+  animation: gradient 2s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 @keyframes pulse {
   0% {
     transform: scale(1);

@@ -44,11 +44,6 @@ export const SearchBar: React.FC = () => {
       updateLocation(addressQuery);
       return;
     }
-    dispatch(setLoading(true));
-    navigator.geolocation.getCurrentPosition(
-      ({ coords: { latitude, longitude } }) => updateLocation(`${latitude},${longitude}`), // success callback
-      () => dispatch(setLoading(false)) // error (block access) callback
-    );
   }, []);
 
   useEffect(() => {

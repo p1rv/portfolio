@@ -47,7 +47,7 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, 
       return <div>Error during data retrieval, please try again later...</div>;
     }
     if (data) {
-      return <div>Search for a location or allow auto-detecting</div>;
+      return <div>Search for a location</div>;
     }
   };
 

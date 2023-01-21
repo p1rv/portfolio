@@ -1,14 +1,15 @@
-import { SearchBar } from "./SearchBar";
 import { useRouter } from "../hooks/useRouter";
 import { IRootState } from "../store";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import { WeatherFilters } from "./WeatherFilters";
+import { useEffect, lazy, Suspense } from "react";
 import { ForecastProvider } from "../context/ForecastProvider";
 import { createSearchParams } from "react-router-dom";
-import { StormGlassWrapper } from "./StormGlassWrapper";
-import { OpenMeteoWrapper } from "./OpenMeteoWrapper";
-import { VisualCrossingWrapper } from "./VisualCrossingWrapper";
+import { LoadingFallback } from "./LoadingFallback";
+import { SearchBar } from "./SearchBar";
+import { WeatherFilters } from "./WeatherFilters";
+const OpenMeteoWrapper = lazy(() => import("./OpenMeteoWrapper"));
+const StormGlassWrapper = lazy(() => import("./StormGlassWrapper"));
+const VisualCrossingWrapper = lazy(() => import("./VisualCrossingWrapper"));
 
 const Weather: React.FC = () => {
   const { query, navigate } = useRouter();
@@ -29,9 +30,15 @@ const Weather: React.FC = () => {
           <SearchBar />
           <WeatherFilters />
         </div>
-        <OpenMeteoWrapper />
-        {/* <StormGlassWrapper /> */}
-        <VisualCrossingWrapper />
+        <Suspense fallback={<LoadingFallback weather />}>
+          <OpenMeteoWrapper />
+        </Suspense>
+        {/* <Suspense fallback={<LoadingFallback weather/>}>
+          <StormGlassWrapper />
+        </Suspense> */}
+        <Suspense fallback={<LoadingFallback weather />}>
+          <VisualCrossingWrapper />
+        </Suspense>
       </div>
     </ForecastProvider>
   );

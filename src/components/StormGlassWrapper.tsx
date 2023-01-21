@@ -7,7 +7,7 @@ import { IForageForecast } from "./OpenMeteoWrapper";
 
 export interface IForecastWrapperProps {}
 
-export const StormGlassWrapper: React.FC<IForecastWrapperProps> = () => {
+const StormGlassWrapper: React.FC<IForecastWrapperProps> = () => {
   const {
     location: {
       data: {
@@ -57,3 +57,5 @@ export const StormGlassWrapper: React.FC<IForecastWrapperProps> = () => {
     </div>
   );
 };
+
+export default StormGlassWrapper;

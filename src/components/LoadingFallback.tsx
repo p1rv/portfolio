@@ -1,17 +1,29 @@
+import classNames from "classnames";
 import logo from "../svg/fav.svg";
 
-export const LoadingFallback: React.FC = () => {
+interface ILoadingFallbackProps {
+  className?: string;
+  weather?: boolean;
+}
+
+export const LoadingFallback: React.FC<ILoadingFallbackProps> = ({ className, weather }) => {
+  const classes = classNames(
+    "flex",
+    "items-center",
+    "justify-center",
+    { "backdrop-blur-[4px] absolute inset-0": !className && !weather },
+    className
+  );
+  if (weather) {
+    return (
+      <div
+        id="weather-fallback"
+        className="w-full mt-4 rounded-[30px] h-[450px]"
+      />
+    );
+  }
   return (
-    <div
-      style={{
-        position: "absolute",
-        inset: 0,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        backdropFilter: "blur(4px)",
-      }}
-    >
+    <div className={classes}>
       <img
         src={logo}
         id="fallback-icon"
