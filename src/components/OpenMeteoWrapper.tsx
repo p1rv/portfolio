@@ -44,19 +44,17 @@ const OpenMeteoWrapper: React.FC<IForecastWrapperProps> = () => {
         data={openMeteo}
         source="OpenMeteo"
       />
-      {address && (
-        <div className="w-full text-right pr-4">
-          <span className="text-xs">source: </span>
-          <a
-            href="https://open-meteo.com"
-            target="_blank"
-            title="Open in new tab"
-            className="text-xs"
-          >
-            open-meteo.com
-          </a>
-        </div>
-      )}
+      <div className="w-full text-right pr-4">
+        <span className="text-xs">source: </span>
+        <a
+          href="https://open-meteo.com"
+          target="_blank"
+          title="Open in new tab"
+          className="text-xs"
+        >
+          open-meteo.com
+        </a>
+      </div>
     </div>
   );
 };

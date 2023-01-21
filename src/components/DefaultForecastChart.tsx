@@ -11,7 +11,7 @@ interface IDefaultForecastChartProps {
 
 export const DefaultForecastChart: React.FC<PropsWithChildren<IDefaultForecastChartProps>> = ({ width, height, children }) => {
   return (
-    <div className="w-5/6 bg-theme-0 mt-4 rounded-[30px] text-theme-4 flex flex-col items-center justify-center py-[2vh] relative">
+    <div className="w-5/6 bg-theme-0 mt-4 rounded-[30px] text-theme-4 flex flex-col items-center justify-center relative">
       <ComposedChart
         width={width * 0.64}
         height={height * 0.4}

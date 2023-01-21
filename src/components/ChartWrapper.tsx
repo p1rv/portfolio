@@ -43,16 +43,16 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, 
         <div className="after:content-[' '] after:w-16 after:h-16 after:rounded-full after:border-8 after:border-theme-3 after:border-l-transparent after:block after:animate-spin after:transition-all after:duration-200"></div>
       );
     }
-    if (error) {
+    if (hasError) {
       return <div>Error during data retrieval, please try again later...</div>;
     }
-    if (data) {
+    if (!length) {
       return <div>Search for a location</div>;
     }
   };
 
   if (isLoading || data.length === 0 || error) {
-    const content = getDefaultContent(!!isLoading, !data.length, !!error);
+    const content = getDefaultContent(!!isLoading, !!data.length, !!error);
     return (
       <DefaultForecastChart
         width={width}

@@ -41,19 +41,17 @@ const StormGlassWrapper: React.FC<IForecastWrapperProps> = () => {
         data={stormGlass}
         source="StormGlass"
       />
-      {address && (
-        <div className="w-full text-right pr-4">
-          <span className="text-xs">source: </span>
-          <a
-            href="https://stormglass.io"
-            target="_blank"
-            title="Open in new tab"
-            className="text-xs"
-          >
-            stormglass.io
-          </a>
-        </div>
-      )}
+      <div className="w-full text-right pr-4">
+        <span className="text-xs">source: </span>
+        <a
+          href="https://stormglass.io"
+          target="_blank"
+          title="Open in new tab"
+          className="text-xs"
+        >
+          stormglass.io
+        </a>
+      </div>
     </div>
   );
 };

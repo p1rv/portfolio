@@ -39,19 +39,17 @@ const VisualCrossingWrapper: React.FC = () => {
         data={visualCrossing}
         source="VisualCrossing"
       />
-      {address && (
-        <div className="w-full text-right pr-4">
-          <span className="text-xs">source: </span>
-          <a
-            href="https://www.visualcrossing.com/"
-            target="_blank"
-            title="Open in new tab"
-            className="text-xs"
-          >
-            visualcrossing.com
-          </a>
-        </div>
-      )}
+      <div className="w-full text-right pr-4">
+        <span className="text-xs">source: </span>
+        <a
+          href="https://www.visualcrossing.com/"
+          target="_blank"
+          title="Open in new tab"
+          className="text-xs"
+        >
+          visualcrossing.com
+        </a>
+      </div>
     </div>
   );
 };
