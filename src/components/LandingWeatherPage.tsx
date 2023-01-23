@@ -6,7 +6,7 @@ import { SearchBar } from "./SearchBar";
 export const LandingWeatherPage: React.FC = () => {
   const { isFocused, setIsFocused } = useContext(ElementFocusContext);
   const innerClasses = classNames(
-    "flex flex-row w-full items-center absolute left-[50%] -translate-x-[50%] top-[35%] transition-all duration-200",
+    "flex flex-row w-full items-center absolute left-[50%] -translate-x-[50%] top-[35%] transition-all duration-300",
     { "top-0": isFocused }
   );
 

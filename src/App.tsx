@@ -16,7 +16,7 @@ const App: React.FC = memo(() => {
   ));
 
   return (
-    <div className="app text-theme-0 h-screen w-screen flex flex-col items-center backdrop-blur-sm">
+    <div className="app text-theme-0 h-screen w-screen flex flex-col items-center">
       <LanguageProvider>
         <Header />
         <Breadcrumb />

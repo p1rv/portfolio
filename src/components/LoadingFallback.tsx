@@ -13,7 +13,10 @@ export const LoadingFallback: React.FC<ILoadingFallbackProps> = ({ className, we
     "flex",
     "items-center",
     "justify-center",
-    { "backdrop-blur-[4px] absolute inset-0": !className && !weather, "relative mt-4 rounded-[30px] overflow-hidden": weather },
+    {
+      "absolute inset-0": !className && !weather,
+      "relative mt-4 rounded-[30px] overflow-hidden": weather,
+    },
     className
   );
   if (weather) {
@@ -22,7 +25,7 @@ export const LoadingFallback: React.FC<ILoadingFallbackProps> = ({ className, we
         className={classes}
         style={{ width, height }}
       >
-        <p>Loading very slow charting library...</p>
+        <p>Loading one incredibly slow charting library...</p>
         <div id="weather-fallback" />
       </div>
     );
