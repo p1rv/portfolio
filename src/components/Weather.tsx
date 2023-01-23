@@ -1,15 +1,16 @@
 import { useRouter } from "../hooks/useRouter";
 import { IRootState } from "../store";
 import { useSelector } from "react-redux";
-import { useEffect, lazy, Suspense } from "react";
+import { useEffect } from "react";
 import { ForecastProvider } from "../context/ForecastProvider";
 import { createSearchParams } from "react-router-dom";
-import { LoadingFallback } from "./LoadingFallback";
 import { SearchBar } from "./SearchBar";
 import { WeatherFilters } from "./WeatherFilters";
-const OpenMeteoWrapper = lazy(() => import("./OpenMeteoWrapper"));
-const StormGlassWrapper = lazy(() => import("./StormGlassWrapper"));
-const VisualCrossingWrapper = lazy(() => import("./VisualCrossingWrapper"));
+import { OpenMeteoWrapper } from "./OpenMeteoWrapper";
+import { StormGlassWrapper } from "./StormGlassWrapper";
+import { VisualCrossingWrapper } from "./VisualCrossingWrapper";
+import { LandingWeatherPage } from "./LandingWeatherPage";
+import { ElementFocusProvider } from "../context/ElementFocusProvider";
 
 const Weather: React.FC = () => {
   const { query, navigate } = useRouter();
@@ -23,6 +24,14 @@ const Weather: React.FC = () => {
     address !== addressQuery && navigate({ search: `?${createSearchParams({ address })}` });
   }, [address]);
 
+  if (!address) {
+    return (
+      <ElementFocusProvider>
+        <LandingWeatherPage />
+      </ElementFocusProvider>
+    );
+  }
+
   return (
     <ForecastProvider>
       <div className="flex flex-col w-4/5 items-center h-full">
@@ -30,15 +39,10 @@ const Weather: React.FC = () => {
           <SearchBar />
           <WeatherFilters />
         </div>
-        <Suspense fallback={<LoadingFallback weather />}>
-          <OpenMeteoWrapper />
-        </Suspense>
-        {/* <Suspense fallback={<LoadingFallback weather/>}>
-          <StormGlassWrapper />
-        </Suspense> */}
-        <Suspense fallback={<LoadingFallback weather />}>
-          <VisualCrossingWrapper />
-        </Suspense>
+        <OpenMeteoWrapper />
+        {/* 
+          <StormGlassWrapper />*/}
+        <VisualCrossingWrapper />
       </div>
     </ForecastProvider>
   );

@@ -5,7 +5,7 @@ import { IRootState, setVisualCrossing, useAppDispatch, fetchVisualCrossing } fr
 import { ChartWrapper } from "./ChartWrapper";
 import { IForageForecast } from "./OpenMeteoWrapper";
 
-const VisualCrossingWrapper: React.FC = () => {
+export const VisualCrossingWrapper: React.FC = () => {
   const {
     visualCrossing,
     location: {
@@ -53,5 +53,3 @@ const VisualCrossingWrapper: React.FC = () => {
     </div>
   );
 };
-
-export default VisualCrossingWrapper;

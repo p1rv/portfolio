@@ -14,7 +14,6 @@ const App: React.FC = memo(() => {
       element={<Component />}
     />
   ));
-  console.log("app rerender");
 
   return (
     <div className="app text-theme-0 h-screen w-screen flex flex-col items-center backdrop-blur-sm">
