@@ -4,22 +4,27 @@ import logo from "../svg/fav.svg";
 interface ILoadingFallbackProps {
   className?: string;
   weather?: boolean;
+  width?: number;
+  height?: number;
 }
 
-export const LoadingFallback: React.FC<ILoadingFallbackProps> = ({ className, weather }) => {
+export const LoadingFallback: React.FC<ILoadingFallbackProps> = ({ className, weather, width, height }) => {
   const classes = classNames(
     "flex",
     "items-center",
     "justify-center",
-    { "backdrop-blur-[4px] absolute inset-0": !className && !weather },
+    { "backdrop-blur-[4px] absolute inset-0": !className && !weather, "relative mt-4 rounded-[30px] overflow-hidden": weather },
     className
   );
   if (weather) {
     return (
       <div
-        id="weather-fallback"
-        className="w-full mt-4 rounded-[30px] h-[450px]"
-      />
+        className={classes}
+        style={{ width, height }}
+      >
+        <p>Loading very slow charting library...</p>
+        <div id="weather-fallback" />
+      </div>
     );
   }
   return (

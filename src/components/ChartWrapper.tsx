@@ -1,13 +1,14 @@
-import { useContext, useEffect, useState } from "react";
-import { CartesianGrid, ComposedChart, XAxis } from "recharts";
+import { lazy, Suspense, useContext, useEffect, useState } from "react";
+import { CartesianGrid, Tooltip, XAxis } from "recharts";
+const LazyChart = lazy(() => import("./LazyChart"));
 import { IForecastState } from "../store";
 import { ChartPrecip } from "./ChartPrecip";
 import { ChartTemps } from "./ChartTemps";
-import { ChartTooltip } from "./ChartTooltip";
 import { ChartWinds } from "./ChartWinds";
 import { ForecastContext } from "../context/ForecastProvider";
 import { getDayName } from "../utils/forecast";
-import { DefaultForecastChart } from "./DefaultForecastChart";
+import { tooltipFormatter } from "../utils/formatChartTooltip";
+import { LoadingFallback } from "./LoadingFallback";
 
 interface IChartWrapperProps {
   data: IForecastState;
@@ -16,13 +17,13 @@ interface IChartWrapperProps {
 
 export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, error, data }, source }) => {
   const { show } = useContext(ForecastContext);
-  const [width, setWidth] = useState(window.innerWidth);
-  const [height, setHeight] = useState(window.innerHeight);
+  const [width, setWidth] = useState(window.innerWidth * 0.64);
+  const [height, setHeight] = useState(window.innerHeight * 0.4);
 
   useEffect(() => {
     const recalculateScreenSize = () => {
-      setWidth(window.innerWidth);
-      setHeight(window.innerHeight);
+      setWidth(window.innerWidth * 0.64);
+      setHeight(window.innerHeight * 0.4);
     };
     window.addEventListener("resize", recalculateScreenSize);
     return () => window.removeEventListener("resize", recalculateScreenSize);
@@ -37,60 +38,75 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, 
     }
   };
 
-  const getDefaultContent = (loading: boolean, length: boolean, hasError: boolean) => {
-    if (loading) {
+  const getDefaultContent = () => {
+    if (isLoading) {
       return (
         <div className="after:content-[' '] after:w-16 after:h-16 after:rounded-full after:border-8 after:border-theme-3 after:border-l-transparent after:block after:animate-spin after:transition-all after:duration-200"></div>
       );
     }
-    if (hasError) {
+    if (error) {
       return <div>Error during data retrieval, please try again later...</div>;
-    }
-    if (!length) {
-      return <div>Search for a location</div>;
     }
   };
 
   if (isLoading || data.length === 0 || error) {
-    const content = getDefaultContent(!!isLoading, !!data.length, !!error);
+    const content = getDefaultContent();
     return (
-      <DefaultForecastChart
-        width={width}
-        height={height}
+      <div
+        className="flex justify-center items-center bg-theme-1/30 rounded-[30px]"
+        style={{
+          width,
+          height,
+        }}
       >
         {content}
-      </DefaultForecastChart>
+      </div>
     );
   }
   return (
-    <ComposedChart
-      width={width * 0.64}
-      height={height * 0.4}
-      data={data}
-      className="py-2"
+    <Suspense
+      fallback={
+        <LoadingFallback
+          weather
+          width={width}
+          height={height}
+        />
+      }
     >
-      <XAxis
-        dataKey={"time"}
-        interval={0}
-        tickFormatter={formatDateTick}
-        padding={show.includes("Precipitation") ? undefined : { right: 40, left: 40 }}
-      />
-      <CartesianGrid
-        stroke="#ddd"
-        horizontal={false}
-      />
-      {ChartTooltip()}
-      {show.includes("Precipitation") &&
-        ChartPrecip(
-          data.map(({ precip_sum }) => precip_sum),
-          source === "StormGlass"
-        )}
-      {show.includes("Temperature") &&
-        ChartTemps(
-          data.map(({ temp_min }) => temp_min),
-          data.map(({ temp_max }) => temp_max)
-        )}
-      {show.includes("Wind") && ChartWinds(data.map(({ wind_gusts }) => wind_gusts))}
-    </ComposedChart>
+      <LazyChart
+        width={width}
+        height={height}
+        data={data}
+        className="py-2"
+      >
+        <XAxis
+          dataKey={"time"}
+          interval={0}
+          tickFormatter={formatDateTick}
+          padding={show.includes("Precipitation") ? undefined : { right: 40, left: 40 }}
+        />
+        <CartesianGrid
+          stroke="#ddd"
+          horizontal={false}
+        />
+        <Tooltip
+          wrapperClassName=""
+          labelFormatter={(day) => "Date: " + day}
+          separator=": "
+          formatter={(i, d) => tooltipFormatter(i, d)}
+        />
+        {show.includes("Precipitation") &&
+          ChartPrecip(
+            data.map(({ precip_sum }) => precip_sum),
+            source === "StormGlass"
+          )}
+        {show.includes("Temperature") &&
+          ChartTemps(
+            data.map(({ temp_min }) => temp_min),
+            data.map(({ temp_max }) => temp_max)
+          )}
+        {show.includes("Wind") && ChartWinds(data.map(({ wind_gusts }) => wind_gusts))}
+      </LazyChart>
+    </Suspense>
   );
 };

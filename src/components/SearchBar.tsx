@@ -6,7 +6,6 @@ import { fetchLocation } from "../store";
 import { useSelector } from "react-redux";
 import localforage from "localforage";
 import classNames from "classnames";
-import { setLoading } from "../store/actions";
 
 export const SearchBar: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -33,7 +32,7 @@ export const SearchBar: React.FC = () => {
     dispatch(fetchLocation(query))
       .unwrap()
       .then((res) => localforage.setItem(query, res))
-      .catch((err) => {
+      .catch(() => {
         setTouched(false);
       });
   };
@@ -91,7 +90,7 @@ export const SearchBar: React.FC = () => {
           className={inputClasses}
           value={searchTerm}
           disabled={isLoading}
-          placeholder={(!touched && error && "Address not found, try to be more specific...") || "Search"}
+          placeholder={(!touched && error && "Address not found, try to be more specific...") || "Search for a location"}
           onChange={(e) => onInputChange(e)}
           onKeyDown={({ key }) => key === "Enter" && handleSubmit()}
         />
