@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useState } from "react";
+import { createContext, PropsWithChildren, useMemo, useState } from "react";
 
 const types = ["Temperature", "Wind", "Precipitation"] as const;
 
@@ -37,6 +37,7 @@ export const ForecastProvider: React.FC<PropsWithChildren<IForecastProvider>> = 
       return showCopy;
     });
   };
+  const value = useMemo(() => ({ types, show, setShow }), [show]);
 
-  return <ForecastContext.Provider value={{ types, show, setShow }}>{children}</ForecastContext.Provider>;
+  return <ForecastContext.Provider value={value}>{children}</ForecastContext.Provider>;
 };

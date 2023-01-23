@@ -1,4 +1,4 @@
-import { createContext, Dispatch, PropsWithChildren, SetStateAction, useState } from "react";
+import { createContext, Dispatch, PropsWithChildren, SetStateAction, useMemo, useState } from "react";
 
 type ISupportedLanguages = "en" | "pl";
 
@@ -16,5 +16,8 @@ export const LanguageContext = createContext<ILanguageContext>(initialContext);
 
 export const LanguageProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [language, setLanguage] = useState<ISupportedLanguages>("en");
-  return <LanguageContext.Provider value={{ language, setLanguage }}>{children}</LanguageContext.Provider>;
+
+  const value = useMemo(() => ({ language, setLanguage }), [language]);
+
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 };
