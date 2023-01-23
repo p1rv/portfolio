@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { SearchIcon } from "../svg/SearchIcon";
 import { useRouter } from "../hooks/useRouter";
 import { ILocationData, IRootState, setLocation, useAppDispatch } from "../store";
@@ -21,8 +21,6 @@ export const SearchBar: React.FC = () => {
 
   const { query } = useRouter();
 
-  const inputRef = useRef<HTMLInputElement | null>(null);
-
   const updateLocation = async (query: string) => {
     const savedLocation: ILocationData | null = await localforage.getItem(query);
     if (savedLocation) {
@@ -44,16 +42,6 @@ export const SearchBar: React.FC = () => {
       return;
     }
   }, []);
-
-  useEffect(() => {
-    if (!inputRef.current) return;
-    inputRef.current.onfocus = () => {
-      setIsFocused(true);
-    };
-    inputRef.current.onblur = () => {
-      setIsFocused(false);
-    };
-  }, [inputRef.current]);
 
   const handleSubmit = async () => {
     updateLocation(searchTerm);
@@ -86,7 +74,8 @@ export const SearchBar: React.FC = () => {
     <div className={classes}>
       <div className={inputWrapper}>
         <input
-          ref={inputRef}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
           className={inputClasses}
           value={searchTerm}
           disabled={isLoading}
