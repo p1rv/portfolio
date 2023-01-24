@@ -23,15 +23,18 @@ const errorMessage: ILanguageObject = {
 
 export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, error, data }, source }) => {
   const { show } = useContext(ForecastContext);
-  const [width, setWidth] = useState(window.innerWidth * 0.64);
-  const [height, setHeight] = useState(window.innerHeight * 0.4);
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
   const { language } = useContext(LanguageContext);
 
+  const recalculateScreenSize = () => {
+    const newWidth = window.innerWidth * 0.64;
+    newWidth < 740 ? setWidth(740) : setWidth(newWidth);
+    const newHeight = window.innerHeight * 0.4;
+    newHeight < 350 ? setHeight(350) : setHeight(newHeight);
+  };
   useEffect(() => {
-    const recalculateScreenSize = () => {
-      setWidth(window.innerWidth * 0.64);
-      setHeight(window.innerHeight * 0.4);
-    };
+    recalculateScreenSize();
     window.addEventListener("resize", recalculateScreenSize);
     return () => window.removeEventListener("resize", recalculateScreenSize);
   }, []);
