@@ -9,16 +9,23 @@ import { ForecastContext } from "../context/ForecastProvider";
 import { getDayName } from "../utils/forecast";
 import { tooltipFormatter } from "../utils/formatChartTooltip";
 import { LoadingFallback } from "./LoadingFallback";
+import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
 
 interface IChartWrapperProps {
   data: IForecastState;
   source: "OpenMeteo" | "StormGlass" | "VisualCrossing";
 }
 
+const errorMessage: ILanguageObject = {
+  EN: "Error during data retrieval, please try again later...",
+  PL: "Błąd podczas pobierania danych, spróbuj ponownie...",
+};
+
 export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, error, data }, source }) => {
   const { show } = useContext(ForecastContext);
   const [width, setWidth] = useState(window.innerWidth * 0.64);
   const [height, setHeight] = useState(window.innerHeight * 0.4);
+  const { language } = useContext(LanguageContext);
 
   useEffect(() => {
     const recalculateScreenSize = () => {
@@ -41,11 +48,11 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, 
   const getDefaultContent = () => {
     if (isLoading) {
       return (
-        <div className="after:content-[' '] after:w-16 after:h-16 after:rounded-full after:border-8 after:border-theme-3 after:border-l-transparent after:block after:animate-spin after:transition-all after:duration-200"></div>
+        <div className="after:content-[' '] after:w-16 after:h-16 after:rounded-full after:border-8 after:border-theme-3 after:border-l-transparent after:block after:animate-spin after:transition-all after:duration-200" />
       );
     }
     if (error) {
-      return <div>Error during data retrieval, please try again later...</div>;
+      return <div>{errorMessage[language]}</div>;
     }
   };
 
@@ -83,7 +90,7 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, 
           dataKey={"time"}
           interval={0}
           tickFormatter={formatDateTick}
-          padding={show.includes("Precipitation") ? undefined : { right: 40, left: 40 }}
+          padding={show.includes("precip") ? undefined : { right: 40, left: 40 }}
         />
         <CartesianGrid
           stroke="#ddd"
@@ -95,17 +102,23 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, 
           separator=": "
           formatter={(i, d) => tooltipFormatter(i, d)}
         />
-        {show.includes("Precipitation") &&
+        {show.includes("precip") &&
           ChartPrecip(
+            language,
             data.map(({ precip_sum }) => precip_sum),
             source === "StormGlass"
           )}
-        {show.includes("Temperature") &&
+        {show.includes("temp") &&
           ChartTemps(
+            language,
             data.map(({ temp_min }) => temp_min),
             data.map(({ temp_max }) => temp_max)
           )}
-        {show.includes("Wind") && ChartWinds(data.map(({ wind_gusts }) => wind_gusts))}
+        {show.includes("wind") &&
+          ChartWinds(
+            language,
+            data.map(({ wind_gusts }) => wind_gusts)
+          )}
       </LazyChart>
     </Suspense>
   );

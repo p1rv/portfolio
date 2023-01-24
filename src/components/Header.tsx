@@ -4,10 +4,12 @@ import { routes } from "./routes";
 import { useRouter } from "../hooks/useRouter";
 import { HomeIcon } from "../svg/HomeIcon";
 import classNames from "classnames";
+import { useContext } from "react";
+import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
 
-const homeButtonText = {
-  en: "Home",
-  pl: "",
+const homeButtonText: ILanguageObject = {
+  EN: "Home",
+  PL: "Strona główna",
 };
 
 export const Header: React.FC = () => {
@@ -15,6 +17,8 @@ export const Header: React.FC = () => {
     navigate,
     location: { pathname },
   } = useRouter();
+
+  const { language } = useContext(LanguageContext);
 
   const className = classNames(
     "flex",
@@ -39,7 +43,7 @@ export const Header: React.FC = () => {
           className="w-8 h-8"
           pathClassName="group-hover:stroke-theme-1"
         />
-        Home
+        {homeButtonText[language]}
       </Button>
       <Menu />
     </div>

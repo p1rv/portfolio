@@ -1,6 +1,7 @@
 import localforage from "localforage";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
 import { IForecast, IRootState, setOpenMeteo, useAppDispatch, fetchOpenMeteo } from "../store";
 import { ChartWrapper } from "./ChartWrapper";
 import { IForecastWrapperProps } from "./StormGlassWrapper";
@@ -9,6 +10,11 @@ export interface IForageForecast {
   expires: number;
   forecast: IForecast[];
 }
+
+const sourceMessage: ILanguageObject = {
+  EN: "source",
+  PL: "źródło",
+};
 
 export const OpenMeteoWrapper: React.FC<IForecastWrapperProps> = () => {
   const {
@@ -20,6 +26,8 @@ export const OpenMeteoWrapper: React.FC<IForecastWrapperProps> = () => {
     },
     openMeteo,
   } = useSelector(({ location, openMeteo }: IRootState) => ({ location, openMeteo }));
+
+  const { language } = useContext(LanguageContext);
 
   const dispatch = useAppDispatch();
 
@@ -45,7 +53,7 @@ export const OpenMeteoWrapper: React.FC<IForecastWrapperProps> = () => {
         source="OpenMeteo"
       />
       <div className="w-full text-right pr-4">
-        <span className="text-xs">source: </span>
+        <span className="text-xs">{sourceMessage[language]}: </span>
         <a
           href="https://open-meteo.com"
           target="_blank"

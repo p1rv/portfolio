@@ -1,4 +1,6 @@
 import classNames from "classnames";
+import { useContext } from "react";
+import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
 import logo from "../svg/fav.svg";
 
 interface ILoadingFallbackProps {
@@ -8,7 +10,13 @@ interface ILoadingFallbackProps {
   height?: number;
 }
 
+const loadingMessage: ILanguageObject = {
+  EN: "Loading one incredibly slow charting library...",
+  PL: "Trwa ładowanie niesamowicie powolnej biblioteki rysującej wykresy...",
+};
+
 export const LoadingFallback: React.FC<ILoadingFallbackProps> = ({ className, weather, width, height }) => {
+  const { language } = useContext(LanguageContext);
   const classes = classNames(
     "flex",
     "items-center",
@@ -25,7 +33,7 @@ export const LoadingFallback: React.FC<ILoadingFallbackProps> = ({ className, we
         className={classes}
         style={{ width, height }}
       >
-        <p>Loading one incredibly slow charting library...</p>
+        <p>{loadingMessage[language]}</p>
         <div id="weather-fallback" />
       </div>
     );

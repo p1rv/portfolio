@@ -1,16 +1,19 @@
 import { useRouter } from "../hooks/useRouter";
-import React from "react";
+import React, { useContext } from "react";
 import { routes } from "./routes";
 import { HomeIcon } from "../svg/HomeIcon";
 import chevronRight from "../svg/chevron-right.min.svg";
 import { useSelector } from "react-redux";
 import { IRootState } from "../store";
+import { LanguageContext } from "../context/LanguageProvider";
 
 export const Breadcrumb: React.FC = () => {
   const {
     navigate,
     location: { pathname },
   } = useRouter();
+
+  const { language } = useContext(LanguageContext);
 
   const { address } = useSelector((state: IRootState) => state.location.data);
 
@@ -45,8 +48,8 @@ export const Breadcrumb: React.FC = () => {
       />
       {Object.values(routes).map((route, ind) => {
         if (route.path.replace("/", "") === piece) {
-          document.title = route.name + "  |  Karol Król";
-          return route.name;
+          document.title = route.name[language] + "  |  Karol Król";
+          return route.name[language];
         }
       })}
     </React.Fragment>

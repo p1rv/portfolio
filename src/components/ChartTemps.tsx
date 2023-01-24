@@ -1,6 +1,12 @@
 import { Line, ReferenceLine, YAxis } from "recharts";
+import { ILanguageObject, languages } from "../context/LanguageProvider";
 
-export const ChartTemps: (min: number[], max: number[]) => JSX.Element = (min, max) => {
+const message: ILanguageObject = {
+  EN: "Temperature [°C]",
+  PL: "Temperatura [°C]",
+};
+
+export const ChartTemps: (language: typeof languages[number], min: number[], max: number[]) => JSX.Element = (language, min, max) => {
   const [chartMin, chartMax] = [Math.floor(min.sort((a, b) => a - b)[0] / 2) * 2 - 2, Math.ceil(max.sort((a, b) => b - a)[0] / 2) * 2 + 2];
   const ticks = [];
   const step = chartMax - chartMin > 20 ? 4 : 2;
@@ -13,7 +19,7 @@ export const ChartTemps: (min: number[], max: number[]) => JSX.Element = (min, m
         domain={[chartMin, chartMax]}
         ticks={ticks}
         yAxisId="temp"
-        label={{ value: "Temperature [°C]", angle: -90, position: "insideLeft", offset: 20 }}
+        label={{ value: message[language], angle: -90, position: "insideLeft", offset: 20 }}
       />
       <Line
         type="monotone"

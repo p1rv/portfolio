@@ -1,6 +1,12 @@
 import { Line, YAxis } from "recharts";
+import { ILanguageObject, languages } from "../context/LanguageProvider";
 
-export const ChartWinds: (gusts: number[]) => JSX.Element = (gusts) => {
+const message: ILanguageObject = {
+  EN: "Wind [km/h]",
+  PL: "Wiatr [km/h]",
+};
+
+export const ChartWinds: (language: typeof languages[number], gusts: number[]) => JSX.Element = (language, gusts) => {
   const chartMax = Math.ceil(gusts.sort((a, b) => b - a)[0] / 5) * 5 + 5;
   const ticks = [];
   for (let i = 0; i < chartMax + 10; i += 10) {
@@ -13,7 +19,7 @@ export const ChartWinds: (gusts: number[]) => JSX.Element = (gusts) => {
         domain={[0, chartMax]}
         ticks={ticks}
         yAxisId="wind"
-        label={{ value: "Wind [km/h]", angle: -90, position: "insideLeft", offset: 15 }}
+        label={{ value: message[language], angle: -90, position: "insideLeft", offset: 15 }}
       />
       <Line
         type="monotone"

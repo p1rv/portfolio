@@ -1,6 +1,16 @@
 import { Bar, YAxis } from "recharts";
+import { ILanguageObject, languages } from "../context/LanguageProvider";
 
-export const ChartPrecip: (precip: number[], singleBar?: boolean) => JSX.Element = (precip, singleBar = true) => {
+const message: ILanguageObject = {
+  EN: "Precipitation [mm]",
+  PL: "Opady [mm]",
+};
+
+export const ChartPrecip: (language: typeof languages[number], precip: number[], singleBar?: boolean) => JSX.Element = (
+  language,
+  precip,
+  singleBar = true
+) => {
   const chartMax = Math.ceil(precip.sort((a, b) => b - a)[0] / 10) * 10 * 2;
   const ticks = [];
   for (let i = 0; i < chartMax + 10; i += 10) {
@@ -44,7 +54,7 @@ export const ChartPrecip: (precip: number[], singleBar?: boolean) => JSX.Element
         ticks={ticks}
         yAxisId="precip"
         orientation="right"
-        label={{ value: "Precipitation [mm]", angle: 90, position: "insideRight", offset: 15 }}
+        label={{ value: message[language], angle: 90, position: "insideRight", offset: 15 }}
       />
       {bars}
     </>

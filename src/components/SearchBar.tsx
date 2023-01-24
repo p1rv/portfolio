@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { SearchIcon } from "../svg/SearchIcon";
 import { useRouter } from "../hooks/useRouter";
 import { ILocationData, IRootState, setLocation, useAppDispatch } from "../store";
@@ -6,6 +6,18 @@ import { fetchLocation } from "../store";
 import { useSelector } from "react-redux";
 import localforage from "localforage";
 import classNames from "classnames";
+import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
+
+const searchBarMessages: { [key: string]: ILanguageObject } = {
+  error: {
+    EN: "Address not found, try to be more specific...",
+    PL: "Adres nie został znaleziony, spróbuj ponownie...",
+  },
+  search: {
+    EN: "Search for an address",
+    PL: "Wprowadź adres",
+  },
+};
 
 export const SearchBar: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -18,6 +30,8 @@ export const SearchBar: React.FC = () => {
     error,
     isLoading,
   } = useSelector((state: IRootState) => state.location);
+
+  const { language } = useContext(LanguageContext);
 
   const { query } = useRouter();
 
@@ -79,7 +93,7 @@ export const SearchBar: React.FC = () => {
           className={inputClasses}
           value={searchTerm}
           disabled={isLoading}
-          placeholder={(!touched && error && "Address not found, try to be more specific...") || "Search for a location"}
+          placeholder={(!touched && error && searchBarMessages.error[language]) || searchBarMessages.search[language]}
           onChange={(e) => onInputChange(e)}
           onKeyDown={({ key }) => key === "Enter" && handleSubmit()}
         />

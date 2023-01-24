@@ -1,13 +1,23 @@
 import { Button } from "./Button";
 import chevronIcon from "../svg/chevron-right.min.svg";
 import { useContext, useEffect, useRef, useState } from "react";
-import { ForecastContext } from "../context/ForecastProvider";
+import { ForecastContext, IForecastTypes } from "../context/ForecastProvider";
 import classNames from "classnames";
+import { IMessagesWithLanguage, LanguageContext } from "../context/LanguageProvider";
+
+const filterMessages: IMessagesWithLanguage = {
+  main: {
+    EN: "Filter results",
+    PL: "Filtruj wyniki",
+  },
+};
 
 export const WeatherFilters: React.FC = () => {
   const [hidden, setHidden] = useState(true);
   const filtersRef = useRef<HTMLDivElement | null>(null);
   const { types, show, setShow } = useContext(ForecastContext);
+
+  const { language } = useContext(LanguageContext);
 
   useEffect(() => {
     const hide = ({ target }: MouseEvent) => {
@@ -19,19 +29,19 @@ export const WeatherFilters: React.FC = () => {
     return () => window.removeEventListener("click", hide, { capture: true });
   }, []);
 
-  const onDropdownSelect = (_type: typeof types[number]) => {
+  const onDropdownSelect = (_type: IForecastTypes) => {
     setShow(_type);
     setHidden(true);
   };
 
-  const renderTypes = types.map((_type) => (
+  const renderTypes = Object.entries(types).map(([key, value]) => (
     <Button
-      key={_type}
+      key={key}
       secondary
-      selected={show.includes(_type)}
-      onClick={() => onDropdownSelect(_type)}
+      selected={show.includes(key as IForecastTypes)}
+      onClick={() => onDropdownSelect(key as IForecastTypes)}
     >
-      {_type}
+      {value[language]}
     </Button>
   ));
 
@@ -58,7 +68,7 @@ export const WeatherFilters: React.FC = () => {
         className="flex flex-row items-center justify-around w-full"
         onClick={(e) => setHidden((currentHidden) => !currentHidden)}
       >
-        <p>Filter results</p>
+        <p>{filterMessages.main[language]}</p>
         <img
           src={chevronIcon}
           alt="chevron"
