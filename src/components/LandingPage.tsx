@@ -14,7 +14,7 @@ const welcomeMessage: ILanguageObject = {
   ),
   PL: (
     <>
-      Pokazowy projekt zbudowany na frameworku React, Typescript i Vite.
+      Pokazowy projekt zbudowany na bibliotece React z Typescriptem przy pomocy Vite.
       <br />
       Dalsze funkcjonalności dostępne w prawym górnym rogu.
     </>

@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { useContext } from "react";
 import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
 import logo from "../svg/fav.svg";
+import { WeatherChartSVG } from "../svg/WeatherChart";
 
 interface ILoadingFallbackProps {
   className?: string;
@@ -23,7 +24,7 @@ export const LoadingFallback: React.FC<ILoadingFallbackProps> = ({ className, we
     "justify-center",
     {
       "absolute inset-0": !className && !weather,
-      "relative mt-4 rounded-[30px] overflow-hidden": weather,
+      "relative p-4 rounded-[30px] overflow-hidden bg-white/50": weather,
     },
     className
   );
@@ -33,8 +34,13 @@ export const LoadingFallback: React.FC<ILoadingFallbackProps> = ({ className, we
         className={classes}
         style={{ width, height }}
       >
-        <p>{loadingMessage[language]}</p>
-        <div id="weather-fallback" />
+        {/* <p>{loadingMessage[language]}</p> */}
+
+        <div
+          id="weather-fallback"
+          className="p-6"
+        />
+        <WeatherChartSVG mono />
       </div>
     );
   }

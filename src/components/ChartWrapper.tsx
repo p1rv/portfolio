@@ -60,7 +60,7 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, 
     const content = getDefaultContent();
     return (
       <div
-        className="flex justify-center items-center rounded-[30px]"
+        className="w-full m-auto flex justify-center items-center rounded-[30px]"
         style={{
           width,
           height,
