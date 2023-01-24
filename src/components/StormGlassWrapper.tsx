@@ -36,7 +36,7 @@ export const StormGlassWrapper: React.FC<IForecastWrapperProps> = () => {
   }, [address]);
 
   return (
-    <div className="w-full bg-theme-0 mt-4 rounded-[30px] text-theme-4 flex flex-col items-center justify-center py-[1vh]">
+    <div className="w-full bg-theme-0 mt-4 rounded-[30px] text-theme-4 py-[1vh]">
       <ChartWrapper
         data={stormGlass}
         source="StormGlass"

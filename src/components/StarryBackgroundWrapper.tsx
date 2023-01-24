@@ -7,7 +7,7 @@ export const StarryBackgroundWrapper: React.FC<PropsWithChildren> = ({ children 
   return (
     <div>
       <div
-        className="stars-wrapper fixed inset-0 w-[110vw] h-[110vh] -translate-y-[5vh] -translate-x-[5vw] z-[-1] blur-sm"
+        className="stars-wrapper fixed inset-0 w-[130vw] h-[130vh] -translate-y-[15vh] -translate-x-[15vw] z-[-1] blur-sm"
         style={{
           background: "radial-gradient(circle at 50% 150%, #0a1234, black)",
         }}

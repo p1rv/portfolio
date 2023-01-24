@@ -71,55 +71,59 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, 
     );
   }
   return (
-    <Suspense
-      fallback={
-        <LoadingFallback
-          weather
-          width={width}
-          height={height}
-        />
-      }
-    >
-      <LazyChart
-        width={width}
-        height={height}
-        data={data}
-        className="py-2"
-      >
-        <XAxis
-          dataKey={"time"}
-          interval={0}
-          tickFormatter={formatDateTick}
-          padding={show.includes("precip") ? undefined : { right: 40, left: 40 }}
-        />
-        <CartesianGrid
-          stroke="#ddd"
-          horizontal={false}
-        />
-        <Tooltip
-          wrapperClassName=""
-          labelFormatter={(day) => "Date: " + day}
-          separator=": "
-          formatter={(i, d) => tooltipFormatter(i, d)}
-        />
-        {show.includes("precip") &&
-          ChartPrecip(
-            language,
-            data.map(({ precip_sum }) => precip_sum),
-            source === "StormGlass"
-          )}
-        {show.includes("temp") &&
-          ChartTemps(
-            language,
-            data.map(({ temp_min }) => temp_min),
-            data.map(({ temp_max }) => temp_max)
-          )}
-        {show.includes("wind") &&
-          ChartWinds(
-            language,
-            data.map(({ wind_gusts }) => wind_gusts)
-          )}
-      </LazyChart>
-    </Suspense>
+    <div className="w-full overflow-x-scroll overflow-y-hidden">
+      <div className="w-max m-auto">
+        <Suspense
+          fallback={
+            <LoadingFallback
+              weather
+              width={width}
+              height={height}
+            />
+          }
+        >
+          <LazyChart
+            width={(width / 7) * data.length}
+            height={height}
+            data={data}
+            className="py-2"
+          >
+            <XAxis
+              dataKey={"time"}
+              interval={0}
+              tickFormatter={formatDateTick}
+              padding={show.includes("precip") ? undefined : { right: 40, left: 40 }}
+            />
+            <CartesianGrid
+              stroke="#ddd"
+              horizontal={false}
+            />
+            <Tooltip
+              wrapperClassName=""
+              labelFormatter={(day) => "Date: " + day}
+              separator=": "
+              formatter={(i, d) => tooltipFormatter(i, d)}
+            />
+            {show.includes("precip") &&
+              ChartPrecip(
+                language,
+                data.map(({ precip_sum }) => precip_sum),
+                source === "StormGlass"
+              )}
+            {show.includes("temp") &&
+              ChartTemps(
+                language,
+                data.map(({ temp_min }) => temp_min),
+                data.map(({ temp_max }) => temp_max)
+              )}
+            {show.includes("wind") &&
+              ChartWinds(
+                language,
+                data.map(({ wind_gusts }) => wind_gusts)
+              )}
+          </LazyChart>
+        </Suspense>
+      </div>
+    </div>
   );
 };
