@@ -5,6 +5,7 @@ import { locationReducer } from "./slices/locationSlice";
 import { openMeteoReducer } from "./slices/openMeteoSlice";
 import { stormGlassReducer } from "./slices/stormGlassSlice";
 import { visualCrossingReducer } from "./slices/visualCrossingSlice";
+import { weatherBitReducer } from "./slices/weatherBitSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     visualCrossing: visualCrossingReducer,
     openMeteo: openMeteoReducer,
     stormGlass: stormGlassReducer,
+    weatherBit: weatherBitReducer,
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware();
@@ -29,9 +31,11 @@ export * from "./slices/locationSlice";
 export * from "./slices/openMeteoSlice";
 export * from "./slices/stormGlassSlice";
 export * from "./slices/visualCrossingSlice";
+export * from "./slices/weatherBitSlice";
 export * from "./thunks/fetchLocation";
 export * from "./thunks/fetchOpenMeteo";
 export * from "./thunks/fetchStormGlass";
 export * from "./thunks/fetchVisualCrossing";
+export * from "./thunks/fetchWeatherBit";
 
 export default store;
