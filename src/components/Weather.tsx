@@ -9,6 +9,7 @@ import { WeatherFilters } from "./WeatherFilters";
 import { OpenMeteoWrapper } from "./OpenMeteoWrapper";
 import { StormGlassWrapper } from "./StormGlassWrapper";
 import { VisualCrossingWrapper } from "./VisualCrossingWrapper";
+import { WeatherBitWrapper } from "./WeatherBitWrapper";
 import { LandingWeatherPage } from "./LandingWeatherPage";
 import { ElementFocusProvider } from "../context/ElementFocusProvider";
 
@@ -40,9 +41,9 @@ const Weather: React.FC = () => {
           <WeatherFilters />
         </div>
         <OpenMeteoWrapper />
-        {/* 
-          <StormGlassWrapper />*/}
+        <StormGlassWrapper />
         <VisualCrossingWrapper />
+        <WeatherBitWrapper />
       </div>
     </ForecastProvider>
   );

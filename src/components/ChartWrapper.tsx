@@ -13,7 +13,7 @@ import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
 
 interface IChartWrapperProps {
   data: IForecastState;
-  source: "OpenMeteo" | "StormGlass" | "VisualCrossing";
+  source: "OpenMeteo" | "StormGlass" | "VisualCrossing" | "WeatherBit";
 }
 
 const errorMessage: ILanguageObject = {
