@@ -33,9 +33,9 @@ export const Button: React.FC<PropsWithChildren<IButtonProps>> = ({
       "cursor-pointer": !disabled,
       "primary flex flex-col items-center overflow-hidden group relative": navButton,
       "hover:text-theme-1": primary,
-      "bg-theme-0 text-theme-3 w-full hover:bg-theme-1": secondary,
-      "hover:text-theme-3": secondary && !selected,
-      "bg-theme-3 !text-theme-0": secondary && selected,
+      "bg-theme-0 text-theme-3 w-full hover:!bg-nightsky/50 py-3 border-theme-0 border-b border-t-0 border-x-0 last:border-0 hover:!text-theme-3":
+        secondary,
+      "!bg-[#000010] !text-theme-1": secondary && selected,
       "!text-theme-1": primary && disabled,
     },
     className

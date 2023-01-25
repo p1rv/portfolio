@@ -34,7 +34,7 @@ export const WeatherFilters: React.FC = () => {
     setHidden(true);
   };
 
-  const renderTypes = Object.entries(types).map(([key, value]) => (
+  const renderedButtons = Object.entries(types).map(([key, value]) => (
     <Button
       key={key}
       secondary
@@ -47,11 +47,23 @@ export const WeatherFilters: React.FC = () => {
 
   const dropdownClasses = classNames(
     "absolute",
-    "bg-theme-4",
+    "md:relative",
+    "right-0",
+    "w-[15vw]",
+    "min-w-[200px]",
+    "md:w-[70vw]",
+    "lg:!min-w-[165px]",
+    "md:mt-4"
+  );
+
+  const typesListClasses = classNames(
+    "absolute",
+    "top-14",
+    "w-full",
+    "bg-theme-0",
     "z-10",
     "animate-[slideIn_0.2s_ease-in-out]",
-    "rounded-[30px]",
-    "rounded-t-none",
+    "rounded-[10px]",
     "overflow-hidden",
     "shadow-[0_2px_10px]",
     "shadow-theme-4/70",
@@ -60,22 +72,22 @@ export const WeatherFilters: React.FC = () => {
 
   return (
     <div
-      className="absolute sm:relative right-0 w-max min-w-[200px] sm:w-[90vw] lg:min-w-[150px] text-center z-20"
+      className={dropdownClasses}
       ref={filtersRef}
     >
       <Button
         primary
-        className="flex flex-row items-center justify-around w-full"
+        className="flex flex-row items-center justify-between w-full bg-[#fefcfb0f] rounded-full py-2"
         onClick={(e) => setHidden((currentHidden) => !currentHidden)}
       >
         <p>{filterMessages.main[language]}</p>
         <img
           src={chevronIcon}
           alt="chevron"
-          className={`transition-all duration-200 ease-in-out w-3 h-3 ${!hidden && "rotate-90"} absolute right-[1vw]`}
+          className={`transition-all duration-200 ease-in-out w-3 h-3 ${!hidden && "rotate-90"}`}
         />
       </Button>
-      <div className={dropdownClasses}>{renderTypes}</div>
+      <div className={typesListClasses}>{renderedButtons}</div>
     </div>
   );
 };
