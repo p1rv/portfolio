@@ -2,10 +2,16 @@ import { RefObject, useEffect, useMemo, useState } from "react";
 
 export const useIsIntersecting = (ref: RefObject<HTMLElement | null>, threshold: number = 0.01) => {
   const [wasIntersected, setWasIntersected] = useState(false);
-  const [isIntersecting, setIsIntersecting] = useState(false);
-  isIntersecting && !wasIntersected && setWasIntersected(true);
+  const [intersectingState, setIntersectingState] = useState(false);
   const observer = useMemo(
-    () => new IntersectionObserver(([entry]) => setIsIntersecting(entry.isIntersecting), { threshold }),
+    () =>
+      new IntersectionObserver(
+        ([{ isIntersecting }]) => {
+          intersectingState && !isIntersecting && setWasIntersected(true);
+          setIntersectingState(isIntersecting);
+        },
+        { threshold }
+      ),
     [ref.current]
   );
   useEffect(() => {
@@ -13,5 +19,5 @@ export const useIsIntersecting = (ref: RefObject<HTMLElement | null>, threshold:
     observer.observe(ref.current);
     return () => observer.disconnect();
   }, [ref.current]);
-  return { isIntersecting, wasIntersected };
+  return { isIntersecting: intersectingState, wasIntersected };
 };

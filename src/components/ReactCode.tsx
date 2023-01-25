@@ -12,7 +12,7 @@ export const ReactCode: React.FC = () => {
     <div
       onMouseOver={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
-      className="group w-[55vw] animate-[slideIn2_2s] ease-slide-in-2 max-w-[85vw] min-w-[40rem] sm:min-w-[96vw] sm:mx-[2vw] overflow-scroll my-16 shadow-black-24-1/2 relative"
+      className="group w-[55vw] animate-[slideIn2_2s] ease-slide-in-2 max-w-[85vw] min-w-[40rem] sm:min-w-[96vw] sm:mx-[2vw] overflow-scroll my-16 shadow-black-24-1/2 hover:shadow-black-24-2/3 relative"
     >
       <div
         className="absolute inset-0 bg-theme-0 opacity-0 rounded-lg cursor-pointer group-hover:opacity-10 transition-all min-w-[40rem]"

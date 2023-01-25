@@ -26,6 +26,7 @@ export const WeatherDemo: React.FC = () => {
     "items-center",
     "text-gray-700",
     "shadow-black-24-1/3",
+    "hover:shadow-black-24-1/2",
     "group",
     "transition-opacity",
     { "opacity-40": mouseOver, "sm:animate-[weatherPeek_3s]": isIntersecting, "animate-[slideIn3_2.5s]": !wasIntersected }
@@ -37,7 +38,7 @@ export const WeatherDemo: React.FC = () => {
       ref={divRef}
     >
       <div
-        className="absolute inset-0 bg-theme-0 rounded-lg opacity-0 cursor-pointer group-hover:opacity-10 transition-all"
+        className="absolute inset-0 bg-theme-0 rounded-xl opacity-0 cursor-pointer group-hover:opacity-10 transition-all"
         onClick={() => navigate(routes.weather.path)}
       />
       <div className="w-full flex flex-row items-center justify-center mt-4 mb-2">
