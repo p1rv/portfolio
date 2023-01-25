@@ -63,7 +63,7 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, 
     const content = getDefaultContent();
     return (
       <div
-        className="w-full m-auto flex justify-center items-center rounded-[30px]"
+        className="w-full sm:!w-[96vw] m-auto flex justify-center items-center rounded-[30px]"
         style={{
           width,
           height,
@@ -74,7 +74,7 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, 
     );
   }
   return (
-    <div className="w-full overflow-x-scroll overflow-y-hidden">
+    <div className="w-full overflow-x-scroll overflow-y-hidden h-max">
       <div className="w-max m-auto">
         <Suspense
           fallback={
