@@ -77,12 +77,9 @@ export const SearchBar: React.FC = () => {
     "!w-[40%] md:!w-[80vw] md:!w-[90vw]": isFocused,
   });
 
-  const inputClasses = classNames(
-    "bg-[#fefcfb0f] rounded-l-full py-2 px-4 !outline-none focus:shadow-[inset_0_0_3px_#fefcfb20] w-full focus:bg-[#fefcfb18]",
-    {
-      "placeholder:text-red-300 !shadow-[inset_0_0_3px_#ff0000a0]": !touched && error && !searchTerm,
-    }
-  );
+  const inputClasses = classNames("bg-[#fefcfb0f] rounded-l-full py-2 px-4 !outline-none w-full focus:bg-[#fefcfb1b]", {
+    "placeholder:text-red-300 !shadow-[inset_0_0_3px_#ff0000a0]": !touched && error && !searchTerm,
+  });
 
   return (
     <div className={classes}>

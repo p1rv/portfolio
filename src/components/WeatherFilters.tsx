@@ -56,6 +56,18 @@ export const WeatherFilters: React.FC = () => {
     "md:mt-4"
   );
 
+  const buttonClasses = classNames(
+    "flex",
+    "flex-row",
+    "items-center",
+    "justify-between",
+    "w-full",
+    "bg-[#fefcfb0f]",
+    "rounded-full",
+    "py-2",
+    { "bg-[#fefcfb1b] text-theme-1": !hidden }
+  );
+
   const typesListClasses = classNames(
     "absolute",
     "top-14",
@@ -77,7 +89,7 @@ export const WeatherFilters: React.FC = () => {
     >
       <Button
         primary
-        className="flex flex-row items-center justify-between w-full bg-[#fefcfb0f] rounded-full py-2"
+        className={buttonClasses}
         onClick={(e) => setHidden((currentHidden) => !currentHidden)}
       >
         <p>{filterMessages.main[language]}</p>
