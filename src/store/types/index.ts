@@ -102,3 +102,14 @@ export interface IVisualCrossingDay {
 export interface IVisualCrossingData {
   days: IVisualCrossingDay[];
 }
+
+export interface IWeatherBitData {
+  max_temp: number;
+  min_temp: number;
+  datetime: string;
+  precip: number;
+  snow: number;
+  wind_gust_spd: number;
+  wind_spd: number;
+  wind_dir: number;
+}
