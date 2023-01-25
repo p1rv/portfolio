@@ -33,7 +33,7 @@ const translateVisualCrossingKeys = (key: string): keyof IForecast => {
   }
 };
 
-export const fetchVisualCrossing = createAsyncThunk<IForecast[], ICoordinates>("visualCrossing/fetch", async ({ lat, lon }) => {
+export const fetchVisualCrossing = createAsyncThunk<IForecast[], ICoordinates>("visualCrossing/get", async ({ lat, lon }) => {
   const {
     data: { days },
   }: { data: IVisualCrossingData } = await axios.get(buildURL({ lat, lon }));
