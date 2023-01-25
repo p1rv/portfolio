@@ -14,11 +14,11 @@ export const WeatherDemo: React.FC = () => {
   const { isIntersecting, wasIntersected } = useIsIntersecting(divRef, 0.35);
   const mainClasses = classNames(
     "ease-slide-in-3",
-    "h-96 sm:h-max",
-    "w-[45vw] sm:w-[80vw]",
+    "h-max",
+    "w-[45vw] md:w-[80vw]",
     "absolute",
-    "top-32 sm:top-[18rem]",
-    "right-0 sm:right-[-50vw]",
+    "top-32 md:top-[18rem]",
+    "right-0 md:right-[-50vw]",
     "bg-nightsky",
     "rounded-xl",
     "flex",
@@ -29,7 +29,7 @@ export const WeatherDemo: React.FC = () => {
     "hover:shadow-black-24-1/2",
     "group",
     "transition-opacity",
-    { "opacity-40": mouseOver, "sm:animate-[weatherPeek_3s]": isIntersecting, "animate-[slideIn3_2.5s]": !wasIntersected }
+    { "opacity-40": mouseOver, "md:animate-[weatherPeek_3s]": isIntersecting, "animate-[slideIn3_2.5s]": !wasIntersected }
   );
 
   return (
@@ -49,12 +49,12 @@ export const WeatherDemo: React.FC = () => {
           <SearchIcon className="w-6 h-6" />
         </div>
       </div>
-      <div className="w-4/5 h-2/3 sm:h-[40%] bg-gray-100 rounded-lg my-4">
+      <div className="w-4/5 h-2/3 md:h-[40%] bg-gray-100 rounded-lg my-4">
         <div className="p-2 text-sm w-full">New York, NY - 2PM EDT</div>
-        <div className="w-[96%] m-[2%] sm:m-auto h-[60%] sm:h-max rounded-lg">
+        <div className="w-[96%] m-[2%] md:m-auto h-[60%] md:h-max rounded-lg">
           <WeatherChartSVG />
         </div>
-        <div className="w-full text-right text-xs px-2">source: one.weather</div>
+        <div className="w-full text-right text-xs px-2 pb-2">source: one.weather</div>
       </div>
     </div>
   );
