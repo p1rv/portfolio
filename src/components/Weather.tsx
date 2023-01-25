@@ -34,8 +34,8 @@ const Weather: React.FC = () => {
 
   return (
     <ForecastProvider>
-      <div className="flex flex-col w-4/5 items-center h-full">
-        <div className="flex flex-row w-full items-center relative">
+      <div className="flex flex-col sm:w-[95vw] w-4/5 items-center h-full">
+        <div className="flex flex-row sm:flex-col w-full items-center relative">
           <SearchBar />
           <WeatherFilters />
         </div>

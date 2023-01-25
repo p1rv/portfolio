@@ -25,9 +25,10 @@ export const Button: React.FC<PropsWithChildren<IButtonProps>> = ({
   const classes = classNames(
     "button",
     "py-4",
-    "px-6",
+    "px-6 sm:px-4",
     "duration-200",
     "transition-colors",
+    "min-w-min",
     {
       "cursor-pointer": !disabled,
       "primary flex flex-col items-center overflow-hidden group relative": navButton,

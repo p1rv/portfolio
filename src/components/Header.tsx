@@ -9,7 +9,7 @@ import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
 
 const homeButtonText: ILanguageObject = {
   EN: "Home",
-  PL: "Strona główna",
+  PL: "Główna",
 };
 
 export const Header: React.FC = () => {
@@ -28,7 +28,7 @@ export const Header: React.FC = () => {
     "duration-200",
     "ease-in-out",
     "motion-reduce:!transition-none motion-reduce:!duration-0",
-    pathname === "/" ? "w-screen h-24" : "w-4/5 h-20"
+    pathname === "/" ? "w-screen h-24" : "w-4/5 sm:w-full h-20"
   );
 
   return (

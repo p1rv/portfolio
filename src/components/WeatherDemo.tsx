@@ -12,11 +12,11 @@ export const WeatherDemo: React.FC = () => {
   const mainClasses = classNames(
     "animate-[slideIn3_2.5s]",
     "ease-slide-in-3",
-    "h-96",
-    "w-[45vw]",
+    "h-96 sm:h-max",
+    "w-[45vw] sm:w-[80vw]",
     "absolute",
-    "top-32",
-    "right-0",
+    "top-32 sm:top-[16rem]",
+    "right-0 sm:right-[-60vw] sm:hover:right-0 sm:transition-all sm:duration-200",
     "bg-nightsky",
     "rounded-xl",
     "flex",
@@ -43,9 +43,9 @@ export const WeatherDemo: React.FC = () => {
           <SearchIcon className="w-6 h-6" />
         </div>
       </div>
-      <div className="w-4/5 h-2/3 bg-gray-100 rounded-lg my-4">
+      <div className="w-4/5 h-2/3 sm:h-[40%] bg-gray-100 rounded-lg my-4">
         <div className="p-2 text-sm w-full">New York, NY - 2PM EDT</div>
-        <div className="w-[96%] m-[2%] h-2/3 rounded-lg">
+        <div className="w-[96%] m-[2%] sm:m-auto h-[60%] sm:h-max rounded-lg">
           <WeatherChartSVG />
         </div>
         <div className="w-full text-right text-xs px-2">source: one.weather</div>

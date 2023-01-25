@@ -26,13 +26,13 @@ export const LandingPage: React.FC = () => {
   return (
     <div>
       <div className="animate-[slideIn1_1s_ease-in-out]">
-        <p className="text-7xl text-center leading-[75px] py-16">
+        <p className="text-7xl sm:text-4xl lg:text-5xl lg:py-12 text-center leading-[75px] py-16">
           Karol Król - Demo
           <br />
           React Project
         </p>
-        <p className="text-center text-theme-2">{welcomeMessage[language]}</p>
-        <div className="relative w-[80vw]">
+        <p className="text-center text-theme-2 sm:px-[2vw]">{welcomeMessage[language]}</p>
+        <div className="relative w-[80vw] sm:w-full">
           <MouseOverContextProvider>
             <ReactCode />
             <WeatherDemo />

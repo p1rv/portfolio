@@ -12,13 +12,13 @@ export const ReactCode: React.FC = () => {
     <div
       onMouseOver={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
-      className="group w-[55vw] animate-[slideIn2_2s] ease-slide-in-2 max-w-[85vw] min-w-[40rem] my-16 shadow-black-24-1/2 relative"
+      className="group w-[55vw] animate-[slideIn2_2s] ease-slide-in-2 max-w-[85vw] min-w-[40rem] sm:min-w-[96vw] sm:mx-[2vw] overflow-scroll my-16 shadow-black-24-1/2 relative"
     >
       <div
-        className="absolute inset-0 bg-theme-0 opacity-0 rounded-lg cursor-pointer group-hover:opacity-10 transition-all"
+        className="absolute inset-0 bg-theme-0 opacity-0 rounded-lg cursor-pointer group-hover:opacity-10 transition-all min-w-[40rem]"
         onClick={() => navigate(routes.react.path)}
       />
-      <div className="bg-code-background pl-8 pr-4 pt-1 pb-4 rounded-lg">
+      <div className="bg-code-background pl-8 pr-4 pt-1 pb-4 rounded-lg min-w-[40rem]">
         <code>
           <span className="flex flex-row items-center ml-4">
             <span className="text-code-jsxTags">src </span>
@@ -85,28 +85,24 @@ export const ReactCode: React.FC = () => {
           <span className="text-code-parentheses">(</span>
           <br />
           <span className="text-code-jsxTags">10</span>
-          <span className="text-code-variables pl-4"> document</span>.
-          <span className="text-code-methods">querySelector</span>
+          <span className="text-code-variables pl-4"> document</span>.<span className="text-code-methods">querySelector</span>
           <span className="text-code-modules">(</span>
           <span className="text-code-strings">"#root"</span>
           <span className="text-code-modules">) as</span>
           <span className="text-code-components"> HTMLDivElement</span>
           <br />
           <span className="text-code-jsxTags">11</span>
-          <span className="text-code-parentheses"> )</span>.
-          <span className="text-code-methods">render</span>
+          <span className="text-code-parentheses"> )</span>.<span className="text-code-methods">render</span>
           <span className="text-code-parentheses">(</span>
           <br />
           <span className="text-code-jsxTags">12</span>
           <span className="text-code-jsxTags pl-4"> &lt;</span>
-          <span className="text-code-components">React</span>.
-          <span className="text-code-components">StrictMode</span>
+          <span className="text-code-components">React</span>.<span className="text-code-components">StrictMode</span>
           <span className="text-code-jsxTags">&gt;</span>;
           <br /> <span className="text-code-jsxTags">13</span>
           <span className="text-code-jsxTags pl-8"> &lt;</span>
           <span className="text-code-components">Provider</span>
-          <span className="text-code-variables"> store</span>=
-          <span className="text-code-modules">&#123;</span>
+          <span className="text-code-variables"> store</span>=<span className="text-code-modules">&#123;</span>
           <span className="text-code-variables">store</span>
           <span className="text-code-modules">&#125;</span>
           <span className="text-code-jsxTags">&gt;</span>;
@@ -117,9 +113,7 @@ export const ReactCode: React.FC = () => {
           <br /> <span className="text-theme-0">15</span>
           <span className="text-code-jsxTags pl-16"> &lt;</span>
           <span className="text-code-components bg-[#ffffff30]">App</span>
-          <span className="-translate-x-1 absolute animate-[blink_1s_ease-in-out_infinite]">
-            |
-          </span>
+          <span className="-translate-x-1 absolute animate-[blink_1s_ease-in-out_infinite]">|</span>
           <span className="text-code-jsxTags"> /</span>
           <span className="text-code-jsxTags">&gt;</span>;
           <br />
@@ -136,8 +130,7 @@ export const ReactCode: React.FC = () => {
           <br /> <span className="text-code-jsxTags">18</span>
           <span className="text-code-jsxTags pl-4"> &lt;</span>
           <span className="text-code-jsxTags">/</span>
-          <span className="text-code-components">React</span>.
-          <span className="text-code-components">StrictMode</span>
+          <span className="text-code-components">React</span>.<span className="text-code-components">StrictMode</span>
           <span className="text-code-jsxTags">&gt;</span>; <br />
           <span className="text-code-jsxTags">19</span>
           <span className="text-code-parentheses"> )</span>;

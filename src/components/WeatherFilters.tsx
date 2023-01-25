@@ -60,7 +60,7 @@ export const WeatherFilters: React.FC = () => {
 
   return (
     <div
-      className="absolute right-[7vw] w-[15vw] text-center z-20"
+      className="absolute sm:relative right-0 w-max min-w-[200px] sm:w-[90vw] lg:min-w-[150px] text-center z-20"
       ref={filtersRef}
     >
       <Button
