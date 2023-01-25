@@ -1,22 +1,24 @@
 import classNames from "classnames";
-import { useContext } from "react";
+import { useContext, useEffect, useMemo, useRef } from "react";
 import { MouseOverContext } from "./MouseOverContextProvider";
 import { routes } from "./routes";
 import { useRouter } from "../hooks/useRouter";
 import { SearchIcon } from "../svg/SearchIcon";
 import { WeatherChartSVG } from "../svg/WeatherChart";
+import { useIsIntersecting } from "../hooks/useIsIntersecting";
 
 export const WeatherDemo: React.FC = () => {
   const { navigate } = useRouter();
   const { mouseOver } = useContext(MouseOverContext);
+  const divRef = useRef<HTMLDivElement | null>(null);
+  const { isIntersecting, wasIntersected } = useIsIntersecting(divRef, 0.35);
   const mainClasses = classNames(
-    "animate-[slideIn3_2.5s]",
     "ease-slide-in-3",
     "h-96 sm:h-max",
     "w-[45vw] sm:w-[80vw]",
     "absolute",
-    "top-32 sm:top-[16rem]",
-    "right-0 sm:right-[-60vw] sm:hover:right-0 sm:transition-all sm:duration-200",
+    "top-32 sm:top-[18rem]",
+    "right-0 sm:right-[-50vw]",
     "bg-nightsky",
     "rounded-xl",
     "flex",
@@ -26,11 +28,14 @@ export const WeatherDemo: React.FC = () => {
     "shadow-black-24-1/3",
     "group",
     "transition-opacity",
-    { "opacity-40": mouseOver }
+    { "opacity-40": mouseOver, "sm:animate-[weatherPeek_3s]": isIntersecting, "animate-[slideIn3_2.5s]": !wasIntersected }
   );
 
   return (
-    <div className={mainClasses}>
+    <div
+      className={mainClasses}
+      ref={divRef}
+    >
       <div
         className="absolute inset-0 bg-theme-0 rounded-lg opacity-0 cursor-pointer group-hover:opacity-10 transition-all"
         onClick={() => navigate(routes.weather.path)}

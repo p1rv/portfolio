@@ -131,6 +131,17 @@ module.exports = {
             transform: "translateX(0)",
           },
         },
+        weatherPeek: {
+          "0%": {
+            right: "-50vw",
+          },
+          "15%, 85%": {
+            right: "-10vw",
+          },
+          "100%": {
+            right: "-50vw",
+          },
+        },
       },
       transitionTimingFunction: {
         "slide-in-2": "cubic-bezier(0.75,0,0.5,0.7)",

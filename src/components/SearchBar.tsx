@@ -74,7 +74,7 @@ export const SearchBar: React.FC = () => {
   const inputWrapper = classNames("relative w-1/4 lg:w-1/3 sm:w-2/3 flex items-center transition-all duration-300 ease-in-out", {
     "after:content-[' '] after:w-6 after:h-6 after:rounded-full after:border-4 after:border-theme-0 after:border-l-transparent after:absolute after:right-2 after:animate-spin":
       isLoading,
-    "!w-[40%] sm:!w-[95vw] lg:!w-1/2": isFocused,
+    "!w-[40%] sm:!w-[80vw] lg:!w-1/2": isFocused,
   });
 
   const inputClasses = classNames(
