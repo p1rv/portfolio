@@ -15,7 +15,7 @@ export const fetchWeatherBit = createAsyncThunk<IForecast[], ICoordinates>("weat
     temp_min: min_temp,
     time: datetime,
     precip_sum: Math.round((precip + snow) * 10) / 10,
-    snow,
+    snow: Math.round(snow * 10) / 10,
     rain: Math.round(precip * 10) / 10,
     showers: 0,
     wind_gusts: Math.round(wind_gust_spd * 36) / 10,

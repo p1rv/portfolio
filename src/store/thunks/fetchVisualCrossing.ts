@@ -46,7 +46,7 @@ export const fetchVisualCrossing = createAsyncThunk<IForecast[], ICoordinates>("
         >
     )
     .map((day) => {
-      const rain = day["precip_sum"] - day["snow"];
+      const rain = Math.round((day["precip_sum"] - day["snow"]) * 10) / 10;
       const showers = 0;
       return { ...day, rain, showers } as IForecast;
     });
