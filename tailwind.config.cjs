@@ -36,7 +36,7 @@ module.exports = {
       },
       keyframes: {
         slideIn: {
-          "0%": { transform: "translateY(-25%)", opacity: 0 },
+          "0%": { transform: "translateY(-40%)", opacity: 0 },
           "100%": { transform: "translateY(0%)", opacity: 1 },
         },
         slideIn1: {
@@ -52,6 +52,10 @@ module.exports = {
           "0%": { transform: "translateX(100%)", opacity: 0 },
           "66%": { transform: "translateX(100%)", opacity: 0 },
           "100%": { transform: "translateX(0%)", opacity: 1 },
+        },
+        slideOut: {
+          "0%": { transform: "translateY(0%)", opacity: 1, zIndex: "1" },
+          "100%": { transform: "translateY(-40%)", opacity: 0, zIndex: "1" },
         },
         blink: {
           "0%": { opacity: 0 },

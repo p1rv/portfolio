@@ -5,13 +5,13 @@ import { useEffect } from "react";
 import { ForecastProvider } from "../context/ForecastProvider";
 import { createSearchParams } from "react-router-dom";
 import { SearchBar } from "./SearchBar";
-import { WeatherFilters } from "./WeatherFilters";
 import { OpenMeteoWrapper } from "./OpenMeteoWrapper";
 import { StormGlassWrapper } from "./StormGlassWrapper";
 import { VisualCrossingWrapper } from "./VisualCrossingWrapper";
 import { WeatherBitWrapper } from "./WeatherBitWrapper";
 import { LandingWeatherPage } from "./LandingWeatherPage";
 import { ElementFocusProvider } from "../context/ElementFocusProvider";
+import { WeatherControls } from "./WeatherControls";
 
 const Weather: React.FC = () => {
   const { query, navigate } = useRouter();
@@ -35,15 +35,15 @@ const Weather: React.FC = () => {
 
   return (
     <ForecastProvider>
-      <div className="flex flex-col md:w-[95vw] w-4/5 items-center h-full">
+      <div className="flex flex-col md:w-[95vw] w-4/5 lg:w-[90vw] items-center h-full pb-4">
         <div className="flex flex-row md:flex-col w-full items-center relative">
           <SearchBar />
-          <WeatherFilters />
+          <WeatherControls />
         </div>
         <OpenMeteoWrapper />
-        <StormGlassWrapper />
+        {/* <StormGlassWrapper /> */}
         <VisualCrossingWrapper />
-        <WeatherBitWrapper />
+        {/* <WeatherBitWrapper /> */}
       </div>
     </ForecastProvider>
   );

@@ -13,12 +13,16 @@ interface IForecastContext {
   types: typeof types;
   show: IForecastTypes[];
   setShow: (type: IForecastTypes[][number]) => void;
+  collapsed: boolean;
+  setCollapsed: () => void;
 }
 
 const initialContext: IForecastContext = {
   types,
   show: ["temp", "precip"],
   setShow: () => {},
+  collapsed: false,
+  setCollapsed: () => {},
 };
 
 const forceOneOf: IForecastTypes[] = ["temp", "wind"];
@@ -31,6 +35,7 @@ interface IForecastProvider {
 
 export const ForecastProvider: React.FC<PropsWithChildren<IForecastProvider>> = ({ children }) => {
   const [show, setInternalShow] = useState<IForecastTypes[]>(["temp", "precip"]);
+  const [collapsed, setInternalCollapsed] = useState(false);
 
   const setShow = (type: IForecastTypes[][number]) => {
     setInternalShow((currentShow) => {
@@ -44,7 +49,10 @@ export const ForecastProvider: React.FC<PropsWithChildren<IForecastProvider>> = 
       return showCopy;
     });
   };
-  const value = useMemo(() => ({ types, show, setShow }), [show]);
+  const setCollapsed = () => {
+    setInternalCollapsed((currentCollapsed) => !currentCollapsed);
+  };
+  const value = useMemo(() => ({ types, show, setShow, collapsed, setCollapsed }), [show, collapsed]);
 
   return <ForecastContext.Provider value={value}>{children}</ForecastContext.Provider>;
 };

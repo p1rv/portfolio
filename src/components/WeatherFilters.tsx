@@ -45,16 +45,7 @@ export const WeatherFilters: React.FC = () => {
     </Button>
   ));
 
-  const dropdownClasses = classNames(
-    "absolute",
-    "md:relative",
-    "right-0",
-    "w-[15vw]",
-    "min-w-[200px]",
-    "md:w-[70vw]",
-    "lg:!min-w-[165px]",
-    "md:mt-4"
-  );
+  const dropdownClasses = classNames("relative", "w-[15vw]", "min-w-[200px]", "md:w-[70vw]", "lg:!min-w-[165px]", "md:mt-4");
 
   const buttonClasses = classNames(
     "flex",
@@ -65,6 +56,7 @@ export const WeatherFilters: React.FC = () => {
     "bg-[#fefcfb0f]",
     "rounded-full",
     "py-2",
+    "lg:px-3",
     { "bg-[#fefcfb1b] text-theme-1": !hidden }
   );
 
@@ -79,7 +71,7 @@ export const WeatherFilters: React.FC = () => {
     "overflow-hidden",
     "shadow-[0_2px_10px]",
     "shadow-theme-4/70",
-    { hidden }
+    { "z-[-10] animate-[slideOut_0.2s_ease-in-out]": hidden }
   );
 
   return (
