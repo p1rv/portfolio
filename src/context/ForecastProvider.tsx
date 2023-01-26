@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useMemo, useState } from "react";
+import { createContext, Dispatch, PropsWithChildren, SetStateAction, useMemo, useState } from "react";
 import { IMessagesWithLanguage } from "./LanguageProvider";
 
 export type IForecastTypes = "temp" | "wind" | "precip";
@@ -14,7 +14,8 @@ interface IForecastContext {
   show: IForecastTypes[];
   setShow: (type: IForecastTypes[][number]) => void;
   collapsed: boolean;
-  setCollapsed: () => void;
+  setCollapsed: Dispatch<SetStateAction<boolean>>;
+  flipCollapsed: () => void;
 }
 
 const initialContext: IForecastContext = {
@@ -23,6 +24,7 @@ const initialContext: IForecastContext = {
   setShow: () => {},
   collapsed: false,
   setCollapsed: () => {},
+  flipCollapsed: () => {},
 };
 
 const forceOneOf: IForecastTypes[] = ["temp", "wind"];
@@ -35,7 +37,7 @@ interface IForecastProvider {
 
 export const ForecastProvider: React.FC<PropsWithChildren<IForecastProvider>> = ({ children }) => {
   const [show, setInternalShow] = useState<IForecastTypes[]>(["temp", "precip"]);
-  const [collapsed, setInternalCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
 
   const setShow = (type: IForecastTypes[][number]) => {
     setInternalShow((currentShow) => {
@@ -49,10 +51,10 @@ export const ForecastProvider: React.FC<PropsWithChildren<IForecastProvider>> = 
       return showCopy;
     });
   };
-  const setCollapsed = () => {
-    setInternalCollapsed((currentCollapsed) => !currentCollapsed);
+  const flipCollapsed = () => {
+    setCollapsed((currentCollapsed) => !currentCollapsed);
   };
-  const value = useMemo(() => ({ types, show, setShow, collapsed, setCollapsed }), [show, collapsed]);
+  const value = useMemo(() => ({ types, show, setShow, collapsed, setCollapsed, flipCollapsed }), [show, collapsed]);
 
   return <ForecastContext.Provider value={value}>{children}</ForecastContext.Provider>;
 };

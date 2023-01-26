@@ -1,6 +1,8 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { ForecastContext } from "../context/ForecastProvider";
 import { ILanguageObject, IMessagesWithLanguage, LanguageContext } from "../context/LanguageProvider";
+import { IRootState } from "../store";
 import { Button } from "./Button";
 import { WeatherFilters } from "./WeatherFilters";
 
@@ -10,16 +12,19 @@ const collapseMessage: IMessagesWithLanguage = {
 };
 
 export const WeatherCollapse: React.FC = () => {
-  const { collapsed, setCollapsed } = useContext(ForecastContext);
+  const { collapsed, setCollapsed, flipCollapsed } = useContext(ForecastContext);
   const { language } = useContext(LanguageContext);
+  const { address } = useSelector((state: IRootState) => state.location.data);
+
+  useEffect(() => setCollapsed(false), [address]);
 
   return (
     <Button
       primary
       className="bg-[#fefafb0f] py-2 rounded-full md:w-[70vw] lg:px-3"
-      onClick={setCollapsed}
+      onClick={flipCollapsed}
     >
-      {collapsed ? collapseMessage.collapsed[language] : collapseMessage.separated[language]}
+      <p className="translate-y-[-2px]">{collapsed ? collapseMessage.collapsed[language] : collapseMessage.separated[language]}</p>
     </Button>
   );
 };

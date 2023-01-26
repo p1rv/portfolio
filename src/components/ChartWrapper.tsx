@@ -9,16 +9,18 @@ import { ForecastContext } from "../context/ForecastProvider";
 import { getDayName } from "../utils/forecast";
 import { tooltipFormatter } from "../utils/formatChartTooltip";
 import { LoadingFallback } from "./LoadingFallback";
-import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
+import { IMessagesWithLanguage, LanguageContext } from "../context/LanguageProvider";
 
 interface IChartWrapperProps {
   data: IForecastState;
-  source: "OpenMeteo" | "StormGlass" | "VisualCrossing" | "WeatherBit";
+  source: "OpenMeteo" | "StormGlass" | "VisualCrossing" | "WeatherBit" | "collapsed";
 }
 
-const errorMessage: ILanguageObject = {
-  EN: "Error during data retrieval, please try again later...",
-  PL: "Błąd podczas pobierania danych, spróbuj ponownie...",
+const chartMessages: IMessagesWithLanguage = {
+  error: {
+    EN: "Error during data retrieval, please try again later...",
+    PL: "Błąd podczas pobierania danych, spróbuj ponownie...",
+  },
 };
 
 export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, error, data }, source }) => {
@@ -55,7 +57,7 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, 
       );
     }
     if (error) {
-      return <div>{errorMessage[language]}</div>;
+      return <div>{chartMessages.error[language]}</div>;
     }
   };
 
@@ -103,15 +105,14 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, 
             />
             <Tooltip
               wrapperClassName=""
-              labelFormatter={(day) => "Date: " + day}
               separator=": "
-              formatter={(i, d) => tooltipFormatter(i, d)}
+              formatter={(i, d) => tooltipFormatter(i, d, language)}
             />
             {show.includes("precip") &&
               ChartPrecip(
                 language,
                 data.map(({ precip_sum }) => precip_sum),
-                source === "StormGlass"
+                ["StormGlass", "collapsed"].includes(source)
               )}
             {show.includes("temp") &&
               ChartTemps(

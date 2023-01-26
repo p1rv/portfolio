@@ -51,7 +51,7 @@ export const WeatherFilters: React.FC = () => {
     "flex",
     "flex-row",
     "items-center",
-    "justify-between",
+    "justify-between md:justify-center",
     "w-full",
     "bg-[#fefcfb0f]",
     "rounded-full",
@@ -84,11 +84,11 @@ export const WeatherFilters: React.FC = () => {
         className={buttonClasses}
         onClick={(e) => setHidden((currentHidden) => !currentHidden)}
       >
-        <p>{filterMessages.main[language]}</p>
+        <p className="translate-y-[-2px]">{filterMessages.main[language]}</p>
         <img
           src={chevronIcon}
           alt="chevron"
-          className={`transition-all duration-200 ease-in-out w-3 h-3 ${!hidden && "rotate-90"}`}
+          className={`transition-all duration-200 ease-in-out w-3 h-3 ${!hidden && "rotate-90"} md:absolute md:right-2`}
         />
       </Button>
       <div className={typesListClasses}>{renderedButtons}</div>
