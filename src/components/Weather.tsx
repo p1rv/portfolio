@@ -1,14 +1,15 @@
 import { useRouter } from "../hooks/useRouter";
 import { IRootState } from "../store";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { ForecastProvider } from "../context/ForecastProvider";
 import { createSearchParams } from "react-router-dom";
 import { SearchBar } from "./SearchBar";
 import { LandingWeatherPage } from "./LandingWeatherPage";
 import { ElementFocusProvider } from "../context/ElementFocusProvider";
 import { WeatherControls } from "./WeatherControls";
-import { ForecastCharts } from "./ForecastCharts";
+import { LoadingFallback } from "./LoadingFallback";
+const ForecastCharts = lazy(() => import("./ForecastCharts"));
 
 const Weather: React.FC = () => {
   const { query, navigate } = useRouter();
@@ -36,7 +37,9 @@ const Weather: React.FC = () => {
           <WeatherControls />
           <SearchBar />
         </div>
-        <ForecastCharts />
+        <Suspense fallback={<LoadingFallback />}>
+          <ForecastCharts />
+        </Suspense>
       </div>
     </ForecastProvider>
   );

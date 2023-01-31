@@ -6,7 +6,7 @@ import { StormGlassWrapper } from "./StormGlassWrapper";
 import { VisualCrossingWrapper } from "./VisualCrossingWrapper";
 import { WeatherBitWrapper } from "./WeatherBitWrapper";
 
-export const ForecastCharts: React.FC = () => {
+const ForecastCharts: React.FC = () => {
   const { collapsed } = useContext(ForecastContext);
   if (collapsed) {
     return <CollapsedWrapper />;
@@ -20,3 +20,5 @@ export const ForecastCharts: React.FC = () => {
     </>
   );
 };
+
+export default ForecastCharts;
