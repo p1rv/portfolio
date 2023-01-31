@@ -41,14 +41,16 @@ export const ForecastProvider: React.FC<PropsWithChildren<IForecastProvider>> = 
 
   const setShow = (type: IForecastTypes[][number]) => {
     setInternalShow((currentShow) => {
-      if (!currentShow.includes(type)) {
-        return [...currentShow, type];
+      if (forceOneOf.includes(type)) {
+        return [
+          ...forceOneOf.filter((value) => !currentShow.includes(value)),
+          ...currentShow.filter((value) => !forceOneOf.includes(value)),
+        ];
       }
-      const showCopy = currentShow.filter((_type) => _type !== type);
-      if (!showCopy.some((type) => forceOneOf.includes(type))) {
-        return [...showCopy, "temp"];
+      if (currentShow.includes(type)) {
+        return [...currentShow.filter((value) => value !== type)];
       }
-      return showCopy;
+      return [...currentShow, type];
     });
   };
   const flipCollapsed = () => {

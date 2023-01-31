@@ -46,9 +46,10 @@ export const fetchVisualCrossing = createAsyncThunk<IForecast[], ICoordinates>("
         >
     )
     .map((day) => {
-      const rain = Math.round((day["precip_sum"] - day["snow"]) * 10) / 10;
+      const precip_sum = day["precip_sum"] > day["snow"] ? day["precip_sum"] : day["snow"];
+      const rain = Math.round((precip_sum - day["snow"]) * 10) / 10;
       const showers = 0;
-      return { ...day, rain, showers } as IForecast;
+      return { ...day, rain, showers, precip_sum } as IForecast;
     });
   const expires = new Date().getTime() + 86400000;
   localforage.setItem(`vc${lat.toPrecision(5)}${lon.toPrecision(5)}`, {
