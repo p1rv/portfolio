@@ -82,7 +82,7 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, 
 
   const getColumnTickValues = data.map(({ time }) => new Date(new Date(time).getTime() + 39600000));
   return (
-    <div className="w-full overflow-x-scroll overflow-y-hidden h-max">
+    <div className="w-full overflow-x-auto h-max">
       <div className="w-max m-auto">
         <svg
           width={width}

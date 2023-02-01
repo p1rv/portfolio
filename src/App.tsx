@@ -17,7 +17,7 @@ const App: React.FC = memo(() => {
   ));
 
   return (
-    <div className="app text-theme-0 h-screen w-screen flex flex-col items-center">
+    <div className="app text-theme-0 h-screen w-screen flex flex-col items-center overflow-auto">
       <LanguageProvider>
         <LanguageSelector />
         <Header />
