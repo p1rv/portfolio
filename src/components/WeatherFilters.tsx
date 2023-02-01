@@ -4,6 +4,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { ForecastContext, IForecastTypes } from "../context/ForecastProvider";
 import classNames from "classnames";
 import { IMessagesWithLanguage, LanguageContext } from "../context/LanguageProvider";
+import { useHistoryState } from "../hooks/useHistoryState";
 
 const filterMessages: IMessagesWithLanguage = {
   main: {
@@ -13,7 +14,7 @@ const filterMessages: IMessagesWithLanguage = {
 };
 
 export const WeatherFilters: React.FC = () => {
-  const [hidden, setHidden] = useState(true);
+  const [hidden, setHidden, changed] = useHistoryState(true);
   const filtersRef = useRef<HTMLDivElement | null>(null);
   const { types, show, setShow } = useContext(ForecastContext);
 
@@ -57,7 +58,7 @@ export const WeatherFilters: React.FC = () => {
     "rounded-full",
     "py-2",
     "lg:px-3",
-    { "bg-[#fefcfb1b] text-theme-1": !hidden }
+    { "bg-[#fefcfb1b] text-theme-1": !hidden && filtersRef.current }
   );
 
   const typesListClasses = classNames(
@@ -66,12 +67,11 @@ export const WeatherFilters: React.FC = () => {
     "w-full",
     "bg-theme-0",
     "z-10",
-    "animate-[slideIn_0.2s_ease-in-out]",
     "rounded-[10px]",
     "overflow-hidden",
     "shadow-[0_2px_10px]",
     "shadow-theme-4/70",
-    { "z-[-10] animate-[slideOut_0.2s_ease-in-out]": hidden }
+    { "z-[-10]": hidden, "animate-[slideIn_0.2s_ease-in-out]": !hidden, "animate-[slideOut_0.2s_ease-in-out]": hidden && changed }
   );
 
   return (
@@ -82,7 +82,7 @@ export const WeatherFilters: React.FC = () => {
       <Button
         primary
         className={buttonClasses}
-        onClick={(e) => setHidden((currentHidden) => !currentHidden)}
+        onClick={(e) => setHidden(!hidden)}
       >
         <p className="translate-y-[-2px]">{filterMessages.main[language]}</p>
         <img
