@@ -6,9 +6,9 @@ import { scaleLinear } from "@visx/scale";
 import { LinePath } from "@visx/shape";
 import { useContext } from "react";
 import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
-import { IForecast, IForecastState } from "../store";
+import { IForecast } from "../store";
 import { max } from "d3-array";
-import { dayScale, getDay } from "./ChartWrapper";
+import { dayScale, getDay } from "../utils/dayScale";
 import { ForecastContext } from "../context/ForecastProvider";
 import { IChartTypeProps } from "./ChartTemps";
 

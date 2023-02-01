@@ -8,7 +8,7 @@ import { useContext } from "react";
 import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
 import { IForecast, IForecastState } from "../store";
 import { min, max } from "d3-array";
-import { dayScale, getDay } from "./ChartWrapper";
+import { dayScale, getDay } from "../utils/dayScale";
 import { ForecastContext } from "../context/ForecastProvider";
 
 const message: ILanguageObject = {

@@ -1,14 +1,12 @@
 import { Axis, Orientation } from "@visx/axis";
-import { curveNatural } from "@visx/curve";
-import { GridRows } from "@visx/grid";
 import { Group } from "@visx/group";
 import { scaleLinear } from "@visx/scale";
-import { Bar, BarStack, LinePath } from "@visx/shape";
-import { useContext } from "react";
+import { Bar } from "@visx/shape";
+import { Fragment, useContext } from "react";
 import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
-import { IForecast, IForecastState } from "../store";
+import { IForecast } from "../store";
 import { max } from "d3-array";
-import { dayScale, getDay } from "./ChartWrapper";
+import { dayScale } from "../utils/dayScale";
 import { ForecastContext } from "../context/ForecastProvider";
 import { IChartTypeProps } from "./ChartTemps";
 
@@ -55,7 +53,7 @@ export const ChartPrecip: React.FC<IChartPrecipProps> = ({ dataState: { isLoadin
         {data.map((day, dayIndex) => {
           if (singleBar) {
             return (
-              <>
+              <Fragment key={`precip-${dayIndex}`}>
                 <Bar
                   x={0 + (dayIndex * width) / data.length}
                   y={precipScale(getPrecip(day))}
@@ -71,11 +69,11 @@ export const ChartPrecip: React.FC<IChartPrecipProps> = ({ dataState: { isLoadin
                 >
                   <tspan>{day.precip_sum}</tspan>
                 </text>
-              </>
+              </Fragment>
             );
           }
           return (
-            <>
+            <Fragment key={`precip-${dayIndex}`}>
               <Bar
                 x={0 + (dayIndex * width) / data.length}
                 y={precipScale(getShowers(day))}
@@ -105,7 +103,7 @@ export const ChartPrecip: React.FC<IChartPrecipProps> = ({ dataState: { isLoadin
               >
                 <tspan>{day.precip_sum}</tspan>
               </text>
-            </>
+            </Fragment>
           );
         })}
       </Group>

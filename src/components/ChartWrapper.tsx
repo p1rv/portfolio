@@ -1,14 +1,13 @@
 import { useContext, useEffect, useState } from "react";
-import { IForecast, IForecastState } from "../store";
+import { IForecastState } from "../store";
 import { ChartPrecip } from "./ChartPrecip";
 import { ChartTemps } from "./ChartTemps";
 import { ChartWinds } from "./ChartWinds";
 import { IMessagesWithLanguage, LanguageContext } from "../context/LanguageProvider";
-import { scaleTime } from "@visx/scale";
-import { max, min } from "d3-array";
 import { GridColumns } from "@visx/grid";
 import { Axis, Orientation } from "@visx/axis";
 import { RenderDateTick } from "../utils/RenderDateTick";
+import { dayScale } from "../utils/dayScale";
 
 interface IChartWrapperProps {
   data: IForecastState;
@@ -21,16 +20,6 @@ const chartMessages: IMessagesWithLanguage = {
     PL: "Błąd podczas pobierania danych, spróbuj ponownie...",
   },
 };
-
-export const getDay = (day: IForecast) => {
-  const date = new Date(day.time);
-  date.setHours(0);
-  return date;
-};
-export const dayScale = (data: IForecast[]) =>
-  scaleTime<number>({
-    domain: [new Date(min(data, getDay)!.getTime() - 43200000), new Date(max(data, getDay)!.getTime() + 43200000)] as [Date, Date],
-  });
 
 export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, error, data }, source }) => {
   const [width, setWidth] = useState(0);
@@ -103,7 +92,7 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, 
             top={chartHeight}
             left={(width - chartWidth) / 2}
             tickValues={data.map((day) => new Date(day.time).setHours(0))}
-            //@ts-ignore
+            //@ts-ignore ts doesn't support alternative date formats
             tickFormat={tickFormatter}
             hideTicks
             tickComponent={RenderDateTick}
