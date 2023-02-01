@@ -5,6 +5,7 @@
 @font-face {
   font-family: Arcon;
   src: url("./fonts/Arcon-Regular.otf");
+  font-display: swap;
 }
 
 .root {
