@@ -24,7 +24,7 @@ interface IChartPrecipProps extends IChartTypeProps {
   singleBar: boolean;
 }
 
-export const ChartPrecip: React.FC<IChartPrecipProps> = ({ dataState: { isLoading, error, data }, width, height, left = 0, singleBar }) => {
+export const ChartPrecip: React.FC<IChartPrecipProps> = ({ data, width, height, left = 0, singleBar }) => {
   const xScale = dayScale(data).range([0, width]);
   const { language } = useContext(LanguageContext);
   const { show } = useContext(ForecastContext);

@@ -98,20 +98,20 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, 
             tickComponent={RenderDateTick}
           />
           <ChartPrecip
-            dataState={{ data, isLoading, error }}
+            data={data}
             width={chartWidth}
             height={chartHeight}
             left={(width - chartWidth) / 2}
             singleBar={["StormGlass", "collapsed"].includes(source)}
           />
           <ChartTemps
-            dataState={{ data, isLoading, error }}
+            data={data}
             width={chartWidth}
             height={chartHeight}
             left={(width - chartWidth) / 2}
           />
           <ChartWinds
-            dataState={{ data, isLoading, error }}
+            data={data}
             width={chartWidth}
             height={chartHeight}
             left={(width - chartWidth) / 2}

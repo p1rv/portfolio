@@ -6,7 +6,7 @@ import { scaleLinear } from "@visx/scale";
 import { LinePath } from "@visx/shape";
 import { useContext } from "react";
 import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
-import { IForecast, IForecastState } from "../store";
+import { IForecast } from "../store";
 import { min, max } from "d3-array";
 import { dayScale, getDay } from "../utils/dayScale";
 import { ForecastContext } from "../context/ForecastProvider";
@@ -19,13 +19,13 @@ const getMinTemp = (day: IForecast) => day.temp_min;
 const getMaxTemp = (day: IForecast) => day.temp_max;
 
 export interface IChartTypeProps {
-  dataState: IForecastState;
+  data: IForecast[];
   width: number;
   height: number;
   left?: number;
 }
 
-export const ChartTemps: React.FC<IChartTypeProps> = ({ dataState: { isLoading, error, data }, width, height, left = 0 }) => {
+export const ChartTemps: React.FC<IChartTypeProps> = ({ data, width, height, left = 0 }) => {
   const xScale = dayScale(data).range([0, width]);
   const { language } = useContext(LanguageContext);
   const { show } = useContext(ForecastContext);

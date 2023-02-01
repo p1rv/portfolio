@@ -20,7 +20,7 @@ const message: ILanguageObject = {
 const getWindSpeed = (day: IForecast) => day.wind_speed;
 const getWindGusts = (day: IForecast) => day.wind_gusts;
 
-export const ChartWinds: React.FC<IChartTypeProps> = ({ dataState: { isLoading, error, data }, width, height, left = 0 }) => {
+export const ChartWinds: React.FC<IChartTypeProps> = ({ data, width, height, left = 0 }) => {
   const xScale = dayScale(data).range([0, width]);
   const { language } = useContext(LanguageContext);
   const { show } = useContext(ForecastContext);
