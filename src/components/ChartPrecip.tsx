@@ -6,7 +6,6 @@ import { Fragment, useContext } from "react";
 import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
 import { IForecast } from "../store";
 import { max } from "d3-array";
-import { dayScale } from "../utils/dayScale";
 import { ForecastContext } from "../context/ForecastProvider";
 import { IChartTypeProps } from "./ChartTemps";
 
@@ -25,7 +24,6 @@ interface IChartPrecipProps extends IChartTypeProps {
 }
 
 export const ChartPrecip: React.FC<IChartPrecipProps> = ({ data, width, height, left = 0, singleBar }) => {
-  const xScale = dayScale(data).range([0, width]);
   const { language } = useContext(LanguageContext);
   const { show } = useContext(ForecastContext);
 
@@ -48,6 +46,7 @@ export const ChartPrecip: React.FC<IChartPrecipProps> = ({ data, width, height, 
         tickLabelProps={(d) => {
           return { dx: d > 9 ? 10 : 15, dy: 5 };
         }}
+        hideTicks
       />
       <Group left={left}>
         {data.map((day, dayIndex) => {
@@ -90,7 +89,7 @@ export const ChartPrecip: React.FC<IChartPrecipProps> = ({ data, width, height, 
               />
               <Bar
                 x={0 + (dayIndex * width) / data.length}
-                y={precipScale(getSnow(day)) - (domainMax - precipScale(getShowers(day)) + domainMax - precipScale(getRain(day)))}
+                y={precipScale(getSnow(day)) - (2 * domainMax - precipScale(getShowers(day)) - precipScale(getRain(day)))}
                 width={width / data.length}
                 height={domainMax - precipScale(getSnow(day))}
                 fill="#00c8f8"

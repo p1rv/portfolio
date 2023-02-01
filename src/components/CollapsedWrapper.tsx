@@ -16,26 +16,24 @@ const sourceMessage: ILanguageObject = {
 
 export const CollapsedWrapper: React.FC = () => {
   const { openMeteo, visualCrossing, weatherBit, stormGlass } = useSelector((state: IRootState) => state);
-  const sourcesList = [openMeteo, visualCrossing, weatherBit, stormGlass].sort(
-    ({ data: dataA }, { data: dataB }) => dataB.length - dataA.length
-  );
+  const sourcesList = [openMeteo, visualCrossing, weatherBit, stormGlass]
+    .filter(({ error, data }) => !error && data.length > 0)
+    .sort((a, b) => b.data.length - a.data.length);
   const { language } = useContext(LanguageContext);
 
-  const parsedSources = sourcesList
-    .map((source) => source.data.map((day, i) => Object.fromEntries(Object.entries(day).map(([key, value]) => [key, [value]]))))
-    .reduce((acc, currentSource) => {
-      const addedSource = acc.map((day, dayIndex) =>
-        Object.fromEntries(
-          Object.entries(day).map(([key, value]) => {
-            return currentSource[dayIndex] ? [key, [...value, ...currentSource[dayIndex][key]]] : [key, value];
+  const parsedSources = sourcesList.reduce(
+    (acc, { data }) =>
+      acc.map((day, dayIndex) => {
+        if (!data[dayIndex]) return day;
+        return Object.fromEntries(
+          Object.entries(data[dayIndex]).map(([key, value]) => {
+            if (key === "time") return [key, value];
+            return [key, (day[key as keyof Omit<IForecast, "time">] || 0) + value / sourcesList.length];
           })
-        )
-      );
-      return addedSource;
-    })
-    .map((day) =>
-      Object.fromEntries(Object.entries(day).map(([key, value]) => (key === "time" ? [key, value[0]] : [key, getAvg(value)])))
-    ) as IForecast[];
+        ) as IForecast;
+      }),
+    new Array(sourcesList[0].data.length).fill(null).map(() => ({} as IForecast))
+  );
 
   return (
     <div className="w-full bg-theme-0 mt-4 rounded-[30px] text-theme-4 py-[1vh] sm:rounded-[20px]">
