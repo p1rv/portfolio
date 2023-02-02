@@ -96,7 +96,7 @@ export const SearchBar: React.FC = () => {
         />
       </div>
       <div
-        className="bg-theme-3 p-2 rounded-r-full cursor-pointer group hover:bg-theme-2 transition-colors duration-200 flex items-center"
+        className="bg-theme-3 p-2 rounded-r-full cursor-pointer group hover:bg-theme-2 transition-colors duration-200 flex items-center z-10"
         onClick={handleSubmit}
       >
         <SearchIcon className="w-6 h-6" />
