@@ -12,9 +12,9 @@ const sourceMessage: ILanguageObject = {
 const getAvg = (key: string, values: IForecast[keyof IForecast][]) => {
   if (key === "time") return values[0];
   return (
-    Math.round((values as IForecast[keyof Omit<IForecast, "time">][]).reduce((acc: number, current: number) => acc + current) * 10) /
-    10 /
-    values.length
+    Math.round(
+      ((values as IForecast[keyof Omit<IForecast, "time">][]).reduce((acc: number, current: number) => acc + current) * 10) / values.length
+    ) / 10
   );
 };
 
