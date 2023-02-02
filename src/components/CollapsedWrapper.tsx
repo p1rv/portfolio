@@ -9,6 +9,15 @@ const sourceMessage: ILanguageObject = {
   EN: "sources: all available providers",
 };
 
+const getAvg = (key: string, values: IForecast[keyof IForecast][]) => {
+  if (key === "time") return values[0];
+  return (
+    Math.round((values as IForecast[keyof Omit<IForecast, "time">][]).reduce((acc: number, current: number) => acc + current) * 10) /
+    10 /
+    values.length
+  );
+};
+
 export const CollapsedWrapper: React.FC = () => {
   const { openMeteo, visualCrossing, weatherBit, stormGlass } = useSelector((state: IRootState) => state);
   const sourcesList = [openMeteo, visualCrossing, weatherBit, stormGlass]
@@ -16,19 +25,20 @@ export const CollapsedWrapper: React.FC = () => {
     .sort((a, b) => b.data.length - a.data.length);
   const { language } = useContext(LanguageContext);
 
-  const parsedSources = sourcesList.reduce(
-    (acc, { data }) =>
-      acc.map((day, dayIndex) => {
-        if (!data[dayIndex]) return day;
-        return Object.fromEntries(
-          Object.entries(data[dayIndex]).map(([key, value]) => {
-            if (key === "time") return [key, value];
-            return [key, Math.round(((day[key as keyof Omit<IForecast, "time">] || 0) + value / sourcesList.length) * 10) / 10];
-          })
-        ) as IForecast;
-      }),
-    new Array(sourcesList[0].data.length).fill(null).map(() => ({} as IForecast))
-  );
+  const parsedSources = sourcesList
+    .reduce(
+      (acc, { data }) =>
+        acc.map((day, dayIndex) => {
+          if (!data[dayIndex]) return day;
+          return Object.fromEntries(
+            Object.entries(data[dayIndex]).map(([key, value]) => {
+              return [key, [...(day[key as keyof IForecast] || []), value]];
+            })
+          ) as { [key in keyof IForecast]: any[] };
+        }),
+      new Array(sourcesList[0].data.length).fill(null).map(() => ({} as { [key in keyof IForecast]: any[] }))
+    )
+    .map((day) => Object.fromEntries(Object.entries(day).map(([key, values]) => [key, getAvg(key, values)])) as unknown as IForecast);
 
   return (
     <div className="w-full bg-theme-0 mt-4 rounded-[30px] text-theme-4 py-[1vh] sm:rounded-[20px]">
