@@ -54,6 +54,7 @@ export const ChartTemps: React.FC<IChartTypeProps> = ({ data, width, height, lef
         scale={tempScale}
         width={width}
         height={height}
+        strokeDasharray="5 3"
         left={left}
         stroke="#b0b0b050"
       />

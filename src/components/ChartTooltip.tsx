@@ -2,7 +2,7 @@ import { localPoint } from "@visx/event";
 import { Group } from "@visx/group";
 import { Bar, Line } from "@visx/shape";
 import { useTooltip, useTooltipInPortal } from "@visx/tooltip";
-import { Fragment, useState } from "react";
+import { Fragment, TouchEvent, useState } from "react";
 import { IForecast } from "../store";
 import { IChartTypeProps } from "./ChartTemps";
 import { TooltipWindow } from "./TooltipWindow";
