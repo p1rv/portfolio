@@ -1,4 +1,5 @@
-import { createContext, Dispatch, PropsWithChildren, SetStateAction, useMemo, useState } from "react";
+import localforage from "localforage";
+import { createContext, Dispatch, PropsWithChildren, SetStateAction, useEffect, useMemo, useState } from "react";
 
 export const languages = ["EN", "PL"] as const;
 
@@ -26,6 +27,14 @@ export const LanguageContext = createContext<ILanguageContext>(initialContext);
 
 export const LanguageProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [language, setLanguage] = useState<typeof languages[number]>("EN");
+
+  useEffect(() => {
+    localforage.getItem("lang").then((lang) => lang && setLanguage(lang as typeof languages[number]));
+  }, []);
+
+  useEffect(() => {
+    localforage.setItem("lang", language);
+  }, [language]);
 
   const value = useMemo(() => ({ language, languages, setLanguage }), [language]);
 
