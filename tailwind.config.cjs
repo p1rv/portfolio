@@ -61,6 +61,10 @@ module.exports = {
           "80%": { opacity: 0 },
           "100%": { opacity: 0 },
         },
+        rotate: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
         foldToRight: {
           "0%": {
             width: "100%",
