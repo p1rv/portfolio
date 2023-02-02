@@ -10,6 +10,7 @@ import { IForecast } from "../store";
 import { min, max } from "d3-array";
 import { dayScale, getDay } from "../utils/dayScale";
 import { ForecastContext } from "../context/ForecastProvider";
+import { ChartComponentContext } from "../context/ChartComponentProvider";
 
 const message: ILanguageObject = {
   EN: "Temperature [°C]",
@@ -18,14 +19,8 @@ const message: ILanguageObject = {
 const getMinTemp = (day: IForecast) => day.temp_min;
 const getMaxTemp = (day: IForecast) => day.temp_max;
 
-export interface IChartTypeProps {
-  data: IForecast[];
-  width: number;
-  height: number;
-  left?: number;
-}
-
-export const ChartTemps: React.FC<IChartTypeProps> = ({ data, width, height, left = 0 }) => {
+export const ChartTemps: React.FC = () => {
+  const { data, width, height, left = 0 } = useContext(ChartComponentContext);
   const xScale = dayScale(data).range([0, width]);
   const { language } = useContext(LanguageContext);
   const { show } = useContext(ForecastContext);

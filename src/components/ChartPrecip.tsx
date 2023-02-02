@@ -7,7 +7,7 @@ import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
 import { IForecast } from "../store";
 import { max } from "d3-array";
 import { ForecastContext } from "../context/ForecastProvider";
-import { IChartTypeProps } from "./ChartTemps";
+import { ChartComponentContext } from "../context/ChartComponentProvider";
 
 const message: ILanguageObject = {
   EN: "Precipitation [mm]",
@@ -19,11 +19,8 @@ const getRain = (day: IForecast) => day.rain;
 const getSnow = (day: IForecast) => day.snow;
 const getShowers = (day: IForecast) => day.showers;
 
-interface IChartPrecipProps extends IChartTypeProps {
-  singleBar: boolean;
-}
-
-export const ChartPrecip: React.FC<IChartPrecipProps> = ({ data, width, height, left = 0, singleBar }) => {
+export const ChartPrecip: React.FC = () => {
+  const { data, width, height, left = 0, singleBar } = useContext(ChartComponentContext);
   const { language } = useContext(LanguageContext);
   const { show } = useContext(ForecastContext);
 

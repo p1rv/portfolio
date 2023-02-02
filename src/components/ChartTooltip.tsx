@@ -2,12 +2,13 @@ import { localPoint } from "@visx/event";
 import { Group } from "@visx/group";
 import { Bar, Line } from "@visx/shape";
 import { useTooltip, useTooltipInPortal } from "@visx/tooltip";
-import { Fragment, TouchEvent, useState } from "react";
+import { Fragment, useContext, useState } from "react";
+import { ChartComponentContext } from "../context/ChartComponentProvider";
 import { IForecast } from "../store";
-import { IChartTypeProps } from "./ChartTemps";
 import { TooltipWindow } from "./TooltipWindow";
 
-export const ChartTooltip: React.FC<IChartTypeProps> = ({ data, width, height, left = 0 }) => {
+export const ChartTooltip: React.FC = () => {
+  const { data, width, height, left = 0 } = useContext(ChartComponentContext);
   const [mouseCoord, setMouseCoord] = useState({ x: 0, y: 0 });
   const {
     tooltipData,

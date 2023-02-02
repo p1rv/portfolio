@@ -10,7 +10,7 @@ import { IForecast } from "../store";
 import { max } from "d3-array";
 import { dayScale, getDay } from "../utils/dayScale";
 import { ForecastContext } from "../context/ForecastProvider";
-import { IChartTypeProps } from "./ChartTemps";
+import { ChartComponentContext } from "../context/ChartComponentProvider";
 
 const message: ILanguageObject = {
   EN: "Wind [km/h]",
@@ -20,7 +20,8 @@ const message: ILanguageObject = {
 const getWindSpeed = (day: IForecast) => day.wind_speed;
 const getWindGusts = (day: IForecast) => day.wind_gusts;
 
-export const ChartWinds: React.FC<IChartTypeProps> = ({ data, width, height, left = 0 }) => {
+export const ChartWinds: React.FC = () => {
+  const { data, width, height, left = 0 } = useContext(ChartComponentContext);
   const xScale = dayScale(data).range([0, width]);
   const { language } = useContext(LanguageContext);
   const { show } = useContext(ForecastContext);

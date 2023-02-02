@@ -9,6 +9,7 @@ import { Axis, Orientation } from "@visx/axis";
 import { RenderDateTick } from "../utils/RenderDateTick";
 import { dayScale } from "../utils/dayScale";
 import { ChartTooltip } from "./ChartTooltip";
+import { ChartComponentProvider } from "../context/ChartComponentProvider";
 
 interface IChartWrapperProps {
   data: IForecastState;
@@ -98,31 +99,18 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, 
             hideTicks
             tickComponent={RenderDateTick}
           />
-          <ChartPrecip
+          <ChartComponentProvider
             data={data}
             width={chartWidth}
             height={chartHeight}
             left={(width - chartWidth) / 2}
             singleBar={["StormGlass", "collapsed"].includes(source)}
-          />
-          <ChartTemps
-            data={data}
-            width={chartWidth}
-            height={chartHeight}
-            left={(width - chartWidth) / 2}
-          />
-          <ChartWinds
-            data={data}
-            width={chartWidth}
-            height={chartHeight}
-            left={(width - chartWidth) / 2}
-          />
-          <ChartTooltip
-            data={data}
-            width={chartWidth}
-            height={chartHeight}
-            left={(width - chartWidth) / 2}
-          />
+          >
+            <ChartPrecip />
+            <ChartTemps />
+            <ChartWinds />
+            <ChartTooltip />
+          </ChartComponentProvider>
         </svg>
       </div>
     </div>
