@@ -4,11 +4,6 @@ import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
 import { IForecast, IRootState } from "../store";
 import { ChartWrapper } from "./ChartWrapper";
 
-const getAvg = (numbers: number[]) => {
-  const sum = numbers.reduce((acc, value) => acc + value);
-  return Math.round((10 * sum) / numbers.length) / 10;
-};
-
 const sourceMessage: ILanguageObject = {
   PL: "źródła: wszyscy dostępni dostawcy",
   EN: "sources: all available providers",
@@ -28,7 +23,7 @@ export const CollapsedWrapper: React.FC = () => {
         return Object.fromEntries(
           Object.entries(data[dayIndex]).map(([key, value]) => {
             if (key === "time") return [key, value];
-            return [key, (day[key as keyof Omit<IForecast, "time">] || 0) + value / sourcesList.length];
+            return [key, Math.round(((day[key as keyof Omit<IForecast, "time">] || 0) + value / sourcesList.length) * 10) / 10];
           })
         ) as IForecast;
       }),
