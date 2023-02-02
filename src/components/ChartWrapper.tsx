@@ -8,6 +8,7 @@ import { GridColumns } from "@visx/grid";
 import { Axis, Orientation } from "@visx/axis";
 import { RenderDateTick } from "../utils/RenderDateTick";
 import { dayScale } from "../utils/dayScale";
+import { ChartTooltip } from "./ChartTooltip";
 
 interface IChartWrapperProps {
   data: IForecastState;
@@ -111,6 +112,12 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, 
             left={(width - chartWidth) / 2}
           />
           <ChartWinds
+            data={data}
+            width={chartWidth}
+            height={chartHeight}
+            left={(width - chartWidth) / 2}
+          />
+          <ChartTooltip
             data={data}
             width={chartWidth}
             height={chartHeight}
