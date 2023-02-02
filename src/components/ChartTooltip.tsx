@@ -8,7 +8,7 @@ import { IChartTypeProps } from "./ChartTemps";
 import { TooltipWindow } from "./TooltipWindow";
 
 export const ChartTooltip: React.FC<IChartTypeProps> = ({ data, width, height, left = 0 }) => {
-  const [lineLeft, setLineLeft] = useState(0);
+  const [mouseCoord, setMouseCoord] = useState({ x: 0, y: 0 });
   const {
     tooltipData,
     tooltipLeft = 0,
@@ -20,8 +20,8 @@ export const ChartTooltip: React.FC<IChartTypeProps> = ({ data, width, height, l
   const { TooltipInPortal } = useTooltipInPortal({ detectBounds: true, scroll: true });
   const handleMouseMove = (day: IForecast, event: React.MouseEvent<SVGRectElement, MouseEvent>) => {
     const { clientX, clientY } = event;
-    const { x } = localPoint(event) || { x: 0 };
-    setLineLeft(x);
+    const { x, y } = localPoint(event) || { x: 0, y: 0 };
+    setMouseCoord({ x, y });
     showTooltip({
       tooltipLeft: clientX,
       tooltipTop: clientY,
@@ -57,12 +57,19 @@ export const ChartTooltip: React.FC<IChartTypeProps> = ({ data, width, height, l
           </TooltipInPortal>
 
           <Line
-            from={{ x: lineLeft, y: 0 }}
-            to={{ x: lineLeft, y: height }}
+            from={{ x: mouseCoord.x, y: 0 }}
+            to={{ x: mouseCoord.x, y: height }}
             className="stroke-theme-3"
             strokeWidth={2}
             pointerEvents="none"
             strokeDasharray="5,2"
+          />
+          <circle
+            cx={mouseCoord.x}
+            cy={mouseCoord.y}
+            r={4}
+            pointerEvents="none"
+            className="stroke-theme-4 stroke-[3px] fill-theme-1"
           />
         </>
       )}
