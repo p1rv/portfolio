@@ -63,7 +63,7 @@ export const ChartPrecip: React.FC = () => {
                   dx={width / data.length / 2}
                   y={precipScale(getPrecip(day)) - 5}
                 >
-                  <tspan>{day.precip_sum}</tspan>
+                  <tspan>{day.precip_sum > 0 && day.precip_sum}</tspan>
                 </text>
               </Fragment>
             );
@@ -97,7 +97,7 @@ export const ChartPrecip: React.FC = () => {
                 dx={width / data.length / 2}
                 y={precipScale(getPrecip(day)) - 5}
               >
-                <tspan>{day.precip_sum}</tspan>
+                <tspan>{day.precip_sum > 0 && day.precip_sum}</tspan>
               </text>
             </Fragment>
           );
