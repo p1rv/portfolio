@@ -4,16 +4,17 @@ import { ReactIcon } from "../svg/ReactIcon";
 import { WeatherIcon } from "../svg/WeatherIcon";
 import { lazy } from "react";
 import { ILanguageObject } from "../context/LanguageProvider";
+import { AboutIcon } from "../svg/AboutIcon";
 const Home = lazy(() => import("./Home"));
 const React = lazy(() => import("./React"));
 const Weather = lazy(() => import("./Weather"));
-const Contact = lazy(() => import("./Contact"));
+const About = lazy(() => import("./About"));
 
 const routeNames: { [key: string]: ILanguageObject } = {
   home: { EN: "Home", PL: "Strona główna" },
   react: { EN: "React", PL: "React" },
   weather: { EN: "Weather", PL: "Pogoda" },
-  contact: { EN: "Contact", PL: "Kontakt" },
+  about: { EN: "About", PL: "Info" },
 };
 
 export const routes = {
@@ -25,10 +26,10 @@ export const routes = {
     Component: Weather,
     icon: WeatherIcon,
   },
-  contact: {
-    name: routeNames.contact,
-    path: "/contact",
-    Component: Contact,
-    icon: ContactIcon,
+  about: {
+    name: routeNames.about,
+    path: "/about",
+    Component: About,
+    icon: AboutIcon,
   },
 };
