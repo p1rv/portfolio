@@ -30,7 +30,7 @@ export const ChartPrecip: React.FC = () => {
   }).range([height, height * 0.1]);
   const domainMax = precipScale.range()[0] as number;
 
-  if (!show.includes("precip")) return null;
+  if (!show.includes("precip") || maxValue === 0) return null;
 
   return (
     <>
