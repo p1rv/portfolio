@@ -1,9 +1,11 @@
 import localforage from "localforage";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { ForecastContext } from "../context/ForecastProvider";
+import { LanguageContext } from "../context/LanguageProvider";
 import { IRootState, useAppDispatch, setStormGlass, fetchStormGlass } from "../store";
 import { ChartWrapper } from "./ChartWrapper";
-import { IForageForecast } from "./OpenMeteoWrapper";
+import { IForageForecast, sourceMessage } from "./OpenMeteoWrapper";
 
 export interface IForecastWrapperProps {}
 
@@ -17,6 +19,9 @@ export const StormGlassWrapper: React.FC<IForecastWrapperProps> = () => {
     },
     stormGlass,
   } = useSelector(({ location, stormGlass }: IRootState) => ({ location, stormGlass }));
+
+  const { language } = useContext(LanguageContext);
+  const { collapsed } = useContext(ForecastContext);
 
   const dispatch = useAppDispatch();
 
@@ -35,6 +40,8 @@ export const StormGlassWrapper: React.FC<IForecastWrapperProps> = () => {
     updateForecast();
   }, [address]);
 
+  if (collapsed) return null;
+
   return (
     <div className="w-full bg-theme-0 mt-4 rounded-[30px] text-theme-4 py-[1vh] sm:rounded-[20px]">
       <ChartWrapper
@@ -42,7 +49,7 @@ export const StormGlassWrapper: React.FC<IForecastWrapperProps> = () => {
         source="StormGlass"
       />
       <div className="w-full text-right pr-4">
-        <span className="text-xs">source: </span>
+        <span className="text-xs">{sourceMessage[language]}: </span>
         <a
           href="https://stormglass.io"
           target="_blank"

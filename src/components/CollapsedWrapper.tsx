@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { useSelector } from "react-redux";
+import { ForecastContext } from "../context/ForecastProvider";
 import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
 import { IForecast, IRootState } from "../store";
 import { ChartWrapper } from "./ChartWrapper";
@@ -21,6 +22,10 @@ const getAvg = (key: string, values: IForecast[keyof IForecast][]) => {
 
 export const CollapsedWrapper: React.FC = () => {
   const { openMeteo, visualCrossing, weatherBit, stormGlass } = useSelector((state: IRootState) => state);
+  const { collapsed } = useContext(ForecastContext);
+
+  if (!collapsed) return null;
+
   const sourcesList = [openMeteo, visualCrossing, weatherBit, stormGlass]
     .filter(({ error, data }) => !error && data.length > 0)
     .sort((a, b) => b.data.length - a.data.length);

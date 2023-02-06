@@ -1,6 +1,7 @@
 import localforage from "localforage";
 import { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { ForecastContext } from "../context/ForecastProvider";
 import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
 import { IForecast, IRootState, setOpenMeteo, useAppDispatch, fetchOpenMeteo } from "../store";
 import { ChartWrapper } from "./ChartWrapper";
@@ -11,7 +12,7 @@ export interface IForageForecast {
   forecast: IForecast[];
 }
 
-const sourceMessage: ILanguageObject = {
+export const sourceMessage: ILanguageObject = {
   EN: "source",
   PL: "źródło",
 };
@@ -28,6 +29,7 @@ export const OpenMeteoWrapper: React.FC<IForecastWrapperProps> = () => {
   } = useSelector(({ location, openMeteo }: IRootState) => ({ location, openMeteo }));
 
   const { language } = useContext(LanguageContext);
+  const { collapsed } = useContext(ForecastContext);
 
   const dispatch = useAppDispatch();
 
@@ -45,6 +47,8 @@ export const OpenMeteoWrapper: React.FC<IForecastWrapperProps> = () => {
   useEffect(() => {
     updateForecast();
   }, [address]);
+
+  if (collapsed) return null;
 
   return (
     <div className="w-full bg-theme-0 mt-4 rounded-[30px] text-theme-4 py-[1vh] sm:rounded-[20px]">

@@ -1,24 +1,19 @@
-import { useContext } from "react";
-import { ForecastContext } from "../context/ForecastProvider";
 import { CollapsedWrapper } from "./CollapsedWrapper";
 import { OpenMeteoWrapper } from "./OpenMeteoWrapper";
 import { StormGlassWrapper } from "./StormGlassWrapper";
 import { VisualCrossingWrapper } from "./VisualCrossingWrapper";
 import { WeatherBitWrapper } from "./WeatherBitWrapper";
 
-const ForecastCharts: React.FC = () => {
-  const { collapsed } = useContext(ForecastContext);
-  if (collapsed) {
-    return <CollapsedWrapper />;
-  }
+const Charts: React.FC = () => {
   return (
     <>
+      <CollapsedWrapper />
       <OpenMeteoWrapper />
-      {/* <StormGlassWrapper /> */}
+      <StormGlassWrapper />
       <VisualCrossingWrapper />
-      {/* <WeatherBitWrapper /> */}
+      <WeatherBitWrapper />
     </>
   );
 };
 
-export default ForecastCharts;
+export default Charts;

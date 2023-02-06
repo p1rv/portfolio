@@ -1,8 +1,6 @@
-import { useContext, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useContext } from "react";
 import { ForecastContext } from "../context/ForecastProvider";
 import { IMessagesWithLanguage, LanguageContext } from "../context/LanguageProvider";
-import { IRootState } from "../store";
 import { Button } from "./Button";
 
 const collapseMessage: IMessagesWithLanguage = {
@@ -11,11 +9,8 @@ const collapseMessage: IMessagesWithLanguage = {
 };
 
 export const WeatherCollapse: React.FC = () => {
-  const { collapsed, setCollapsed, flipCollapsed } = useContext(ForecastContext);
+  const { collapsed, flipCollapsed } = useContext(ForecastContext);
   const { language } = useContext(LanguageContext);
-  const { address } = useSelector((state: IRootState) => state.location.data);
-
-  useEffect(() => setCollapsed(false), [address]);
 
   return (
     <Button
