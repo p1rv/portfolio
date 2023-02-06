@@ -2,7 +2,7 @@ import { ILanguageObject } from "../context/LanguageProvider";
 import { IForecast } from "../store";
 
 type ITooltipKeyDict = {
-  [key in keyof Omit<IForecast, "wind_dir" | "time">]: { label: ILanguageObject; unit: string };
+  [key in keyof Omit<IForecast, "wind_dir" | "time" | "code">]: { label: ILanguageObject; unit: string };
 };
 
 const tooltipKeyDict: ITooltipKeyDict = {
