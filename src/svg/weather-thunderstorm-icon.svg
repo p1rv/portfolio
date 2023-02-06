@@ -10,8 +10,8 @@
    inkscape:export-filename="../3e43f5bf/weather-storm-rain-icon.svg"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
-   sodipodi:docname="weather-rain-icon.svg"
-   inkscape:version="1.2.2 (b0a8486541, 2022-12-01, custom)"
+   sodipodi:docname="weather-thunderstorm-icon.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09, custom)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -28,8 +28,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.5"
-     inkscape:cx="-336"
-     inkscape:cy="490"
+     inkscape:cx="34"
+     inkscape:cy="560"
      inkscape:window-width="1920"
      inkscape:window-height="1003"
      inkscape:window-x="1920"
@@ -81,7 +81,7 @@
        sodipodi:nodetypes="csc" />
     <path
        style="fill:#eca400;fill-opacity:1;stroke:none;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:13.6;stroke-dasharray:none;stroke-opacity:1"
-       d="m 106,120 -21,31 h 5 l -9,25 21,-31 h -5 z"
+       d="M 115,110 90.011028,141 99,141 90,166 114.99936,135 106,135 Z"
        id="path7582"
        sodipodi:nodetypes="ccccccc" />
   </g>
