@@ -88,6 +88,7 @@ export const ChartTemps: React.FC = () => {
             (day) =>
               day.code && (
                 <IconCode
+                  key={day.time}
                   code={day.code}
                   x={xScale(getDay(day)) - 20}
                   y={tempScale(getMaxTemp(day)) - 50}
