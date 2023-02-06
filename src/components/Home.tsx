@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ILanguageObject, IMessagesWithLanguage, LanguageContext } from "../context/LanguageProvider";
+import { IMessagesWithLanguage, LanguageContext } from "../context/LanguageProvider";
 import { MouseOverContextProvider } from "../context/MouseOverContextProvider";
 import { ReactCode } from "./ReactCode";
 import { WeatherDemo } from "./WeatherDemo";

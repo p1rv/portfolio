@@ -1,10 +1,9 @@
 import { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { ForecastContext } from "../context/ForecastProvider";
-import { ILanguageObject, IMessagesWithLanguage, LanguageContext } from "../context/LanguageProvider";
+import { IMessagesWithLanguage, LanguageContext } from "../context/LanguageProvider";
 import { IRootState } from "../store";
 import { Button } from "./Button";
-import { WeatherFilters } from "./WeatherFilters";
 
 const collapseMessage: IMessagesWithLanguage = {
   separated: { EN: "Collapse into one chart", PL: "Zwiń w jeden wykres" },

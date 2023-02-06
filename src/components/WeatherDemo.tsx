@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { useContext, useEffect, useMemo, useRef } from "react";
+import { useContext, useRef } from "react";
 import { MouseOverContext } from "../context/MouseOverContextProvider";
 import { routes } from "../routes";
 import { useRouter } from "../hooks/useRouter";

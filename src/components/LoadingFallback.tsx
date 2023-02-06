@@ -1,6 +1,4 @@
 import classNames from "classnames";
-import { useContext } from "react";
-import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
 import logo from "../svg/logo.svg";
 import { WeatherChartSVG } from "../svg/WeatherChart";
 
