@@ -4,7 +4,7 @@ import { GridRows } from "@visx/grid";
 import { Group } from "@visx/group";
 import { scaleLinear } from "@visx/scale";
 import { LinePath } from "@visx/shape";
-import { useContext } from "react";
+import { Suspense, useContext } from "react";
 import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
 import { IForecast } from "../store";
 import { min, max } from "d3-array";
@@ -83,16 +83,18 @@ export const ChartTemps: React.FC = () => {
           strokeWidth={3}
           shapeRendering="geometricPrecision"
         />
-        {data.map(
-          (day) =>
-            day.code && (
-              <IconCode
-                code={day.code}
-                x={xScale(getDay(day)) - 20}
-                y={tempScale(getMaxTemp(day)) - 50}
-              />
-            )
-        )}
+        <Suspense fallback={<></>}>
+          {data.map(
+            (day) =>
+              day.code && (
+                <IconCode
+                  code={day.code}
+                  x={xScale(getDay(day)) - 20}
+                  y={tempScale(getMaxTemp(day)) - 50}
+                />
+              )
+          )}
+        </Suspense>
       </Group>
     </>
   );

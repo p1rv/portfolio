@@ -1,12 +1,13 @@
-import Sunny from "../svg/SunnyIcon";
+import { lazy } from "react";
+const Sunny = lazy(() => import("../svg/SunnyIcon"));
 import { WeatherIcon as Main } from "../svg/WeatherIcon";
-import Cloudy from "../svg/CloudyIcon";
-import Fog from "../svg/FogIcon";
-import Rain from "../svg/RainIcon";
-import HeavyRain from "../svg/HeavyRainIcon";
-import Snow from "../svg/SnowIcon";
-import Thunderstorm from "../svg/ThunderstormIcon";
-import StormRain from "../svg/StormRainIcon";
+const Cloudy = lazy(() => import("../svg/CloudyIcon"));
+const Fog = lazy(() => import("../svg/FogIcon"));
+const Rain = lazy(() => import("../svg/RainIcon"));
+const HeavyRain = lazy(() => import("../svg/HeavyRainIcon"));
+const Snow = lazy(() => import("../svg/SnowIcon"));
+const Thunderstorm = lazy(() => import("../svg/ThunderstormIcon"));
+const StormRain = lazy(() => import("../svg/StormRainIcon"));
 import { IIconProps } from "./HomeIcon";
 import { icons, IIconCodes } from "../utils/weatherIcons";
 
