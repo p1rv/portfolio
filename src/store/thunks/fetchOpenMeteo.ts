@@ -13,6 +13,7 @@ const forecastParameters = [
   "windspeed_10m_max",
   "windgusts_10m_max",
   "winddirection_10m_dominant",
+  "weathercode",
 ].join(",");
 
 const buildURL = ({ lat, lon }: ICoordinates) =>
@@ -40,6 +41,8 @@ const translateOpenMeteoKeys = (key: string): keyof IForecast => {
       return "wind_dir";
     case "time":
       return "time";
+    case "weathercode":
+      return "code";
     default:
       return "time";
   }

@@ -3,7 +3,7 @@ import axios from "axios";
 import localforage from "localforage";
 import { ICoordinates, IForecast, IVisualCrossingData } from "../types";
 
-const params = ["datetime", "tempmax", "tempmin", "precip", "snow", "windgust", "windspeed", "winddir"].join(",");
+const params = ["datetime", "tempmax", "tempmin", "precip", "snow", "windgust", "windspeed", "winddir", "icon"].join(",");
 
 const buildURL = ({ lat, lon }: ICoordinates) =>
   `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${lat},${lon}?unitGroup=metric&contentType=json&key=${
@@ -28,6 +28,8 @@ const translateVisualCrossingKeys = (key: string): keyof IForecast => {
       return "wind_dir";
     case "datetime":
       return "time";
+    case "icon":
+      return "code";
     default:
       return "wind_dir";
   }

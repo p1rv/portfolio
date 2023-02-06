@@ -1,4 +1,5 @@
 import { SerializedError } from "@reduxjs/toolkit";
+import { IIconCodes } from "../../utils/weatherIcons";
 
 export type Entries<T> = {
   [K in keyof T]: [K, T[K]];
@@ -30,6 +31,7 @@ export interface IForecast {
   wind_dir: number;
   wind_gusts: number;
   wind_speed: number;
+  code?: IIconCodes;
 }
 
 export const initialForecastState: IForecastState = {
@@ -55,6 +57,7 @@ export interface IOpenMeteoDaily {
   winddirection_10m_dominant: number[];
   windgusts_10m_max: number[];
   windspeed_10m_max: number[];
+  weathercode: IIconCodes[];
 }
 
 export type IOpenMeteoDailyKeys = Array<keyof IOpenMeteoDaily>;
@@ -97,6 +100,7 @@ export interface IVisualCrossingDay {
   windgust: number;
   windspeed: number;
   winddir: number;
+  icon: IIconCodes;
 }
 
 export interface IVisualCrossingData {
@@ -112,4 +116,5 @@ export interface IWeatherBitData {
   wind_gust_spd: number;
   wind_spd: number;
   wind_dir: number;
+  weather: { code: IIconCodes };
 }
