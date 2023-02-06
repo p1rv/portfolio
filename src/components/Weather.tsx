@@ -5,11 +5,11 @@ import { useEffect, lazy, Suspense } from "react";
 import { ForecastProvider } from "../context/ForecastProvider";
 import { createSearchParams } from "react-router-dom";
 import { SearchBar } from "./SearchBar";
-import { LandingWeatherPage } from "./LandingWeatherPage";
+import { LandingWeatherPage } from "./WeatherLanding";
 import { ElementFocusProvider } from "../context/ElementFocusProvider";
 import { WeatherControls } from "./WeatherControls";
 import { LoadingFallback } from "./LoadingFallback";
-const ForecastCharts = lazy(() => import("./ForecastCharts"));
+const ForecastCharts = lazy(() => import("./Charts"));
 
 const Weather: React.FC = () => {
   const { query, navigate } = useRouter();

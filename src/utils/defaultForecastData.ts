@@ -1,4 +1,4 @@
-import { getDayName } from "../utils/forecast";
+import { getDayName } from "./forecast";
 
 export const defaultData = (() => {
   var date = new Date();

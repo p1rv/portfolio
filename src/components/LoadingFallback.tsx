@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { useContext } from "react";
 import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
-import logo from "../svg/fav.svg";
+import logo from "../svg/logo.svg";
 import { WeatherChartSVG } from "../svg/WeatherChart";
 
 interface ILoadingFallbackProps {
@@ -41,7 +41,7 @@ export const LoadingFallback: React.FC<ILoadingFallbackProps> = ({ className, we
       <img
         src={logo}
         id="fallback-icon"
-        alt="Logo"
+        alt="«O»"
       />
     </div>
   );

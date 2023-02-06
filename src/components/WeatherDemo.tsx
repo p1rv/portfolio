@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { useContext, useEffect, useMemo, useRef } from "react";
-import { MouseOverContext } from "./MouseOverContextProvider";
-import { routes } from "./routes";
+import { MouseOverContext } from "../context/MouseOverContextProvider";
+import { routes } from "../routes";
 import { useRouter } from "../hooks/useRouter";
 import { SearchIcon } from "../svg/SearchIcon";
 import { WeatherChartSVG } from "../svg/WeatherChart";

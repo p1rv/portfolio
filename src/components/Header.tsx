@@ -1,6 +1,6 @@
 import { Button } from "./Button";
 import { Menu } from "./Menu";
-import { routes } from "./routes";
+import { routes } from "../routes";
 import { useRouter } from "../hooks/useRouter";
 import { HomeIcon } from "../svg/HomeIcon";
 import classNames from "classnames";

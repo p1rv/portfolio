@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { NavButton } from "./NavButton";
-import { routes } from "./routes";
+import { routes } from "../routes";
 import { useRouter } from "../hooks/useRouter";
 import { LanguageContext } from "../context/LanguageProvider";
 

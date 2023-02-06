@@ -1,6 +1,6 @@
 import { useRouter } from "../hooks/useRouter";
 import React, { useContext } from "react";
-import { routes } from "./routes";
+import { routes } from "../routes";
 import { HomeIcon } from "../svg/HomeIcon";
 import chevronRight from "../svg/chevron-right.min.svg";
 import { useSelector } from "react-redux";
