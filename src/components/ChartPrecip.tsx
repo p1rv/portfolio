@@ -26,7 +26,7 @@ export const ChartPrecip: React.FC = () => {
 
   const maxValue = max(data, getPrecip) as number;
   const precipScale = scaleLinear<number>({
-    domain: [0, maxValue * 3],
+    domain: [0, maxValue * 4],
   }).range([height, height * 0.1]);
   const domainMax = precipScale.range()[0] as number;
 
