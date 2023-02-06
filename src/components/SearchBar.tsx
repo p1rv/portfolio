@@ -35,23 +35,37 @@ export const SearchBar: React.FC = () => {
 
   const { query } = useRouter();
 
-  const updateLocation = async (query: string) => {
+  const updateLocation = async (query: string | null) => {
+    if (!query) {
+      const lastAddress: ILocationData | null = await localforage.getItem("lastAddress");
+      if (lastAddress) {
+        dispatch(setLocation(lastAddress));
+        return;
+      }
+      return;
+    }
+
     const savedLocation: ILocationData | null = await localforage.getItem(query);
     if (savedLocation) {
       dispatch(setLocation(savedLocation));
+      localforage.setItem("lastAddress", savedLocation);
       return;
     }
+
     dispatch(fetchLocation(query))
       .unwrap()
-      .then((res) => localforage.setItem(query, res))
+      .then((res) => {
+        localforage.setItem("lastAddress", res);
+        localforage.setItem(query, res);
+      })
       .catch(() => {
         setTouched(false);
       });
   };
 
   useEffect(() => {
-    const addressQuery = query.get("address") || "";
-    if (addressQuery !== "" && addressQuery !== address) {
+    const addressQuery = query.get("address");
+    if (addressQuery !== address) {
       updateLocation(addressQuery);
       return;
     }

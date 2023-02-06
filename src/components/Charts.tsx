@@ -14,9 +14,9 @@ const ForecastCharts: React.FC = () => {
   return (
     <>
       <OpenMeteoWrapper />
-      <StormGlassWrapper />
+      {/* <StormGlassWrapper /> */}
       <VisualCrossingWrapper />
-      <WeatherBitWrapper />
+      {/* <WeatherBitWrapper /> */}
     </>
   );
 };
