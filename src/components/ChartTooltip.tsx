@@ -32,7 +32,10 @@ export const ChartTooltip: React.FC = () => {
 
   return (
     <Fragment>
-      <Group left={left}>
+      <Group
+        left={left}
+        className="cursor-none"
+      >
         {data.map((day, dayIndex) => (
           <Fragment key={`precip-${dayIndex}`}>
             <Bar
