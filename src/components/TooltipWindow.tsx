@@ -12,18 +12,18 @@ export const TooltipWindow: React.FC<ITooltipWindow> = memo(({ data }) => {
 
   if (!data) return null;
 
-  const { time, ...rest } = data;
+  const { time, code, ...rest } = data;
   const renderedLines = Object.entries(rest).map(([key, value]) => {
-    if (value !== 0 || tooltipKeyDict[key as keyof Omit<IForecast, "time">].unit !== " mm")
+    if (value !== 0 || tooltipKeyDict[key as keyof Omit<IForecast, "time" | "code">].unit !== " mm")
       return (
         <div
           className="w-full flex justify-between"
           key={`tooltip-${key}`}
         >
-          <span>{tooltipKeyDict[key as keyof Omit<IForecast, "time">].label[language]}: </span>
+          <span>{tooltipKeyDict[key as keyof Omit<IForecast, "time" | "code">].label[language]}: </span>
           <span>
             {value}
-            {tooltipKeyDict[key as keyof Omit<IForecast, "time">].unit}
+            {tooltipKeyDict[key as keyof Omit<IForecast, "time" | "code">].unit}
           </span>
         </div>
       );

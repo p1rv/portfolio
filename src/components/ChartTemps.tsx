@@ -11,6 +11,7 @@ import { min, max } from "d3-array";
 import { dayScale, getDay } from "../utils/dayScale";
 import { ForecastContext } from "../context/ForecastProvider";
 import { ChartComponentContext } from "../context/ChartComponentProvider";
+import { IconCode } from "../svg/IconCode";
 
 const message: ILanguageObject = {
   EN: "Temperature [°C]",
@@ -82,6 +83,16 @@ export const ChartTemps: React.FC = () => {
           strokeWidth={3}
           shapeRendering="geometricPrecision"
         />
+        {data.map(
+          (day) =>
+            day.code && (
+              <IconCode
+                code={day.code}
+                x={xScale(getDay(day)) - 20}
+                y={tempScale(getMaxTemp(day)) - 50}
+              />
+            )
+        )}
       </Group>
     </>
   );
