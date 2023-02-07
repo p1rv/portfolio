@@ -107,9 +107,9 @@ const About: React.FC = () => {
   const { language } = useContext(LanguageContext);
 
   return (
-    <div className="flex flex-col w-4/5 bg-[#fefcfb0f] rounded-[30px] p-8 [&>div]:mb-8 [&>div]:[&>div]:text-[20px]">
+    <div className="flex flex-col w-4/5 bg-[#fefcfb0f] md:w-[95vw] rounded-[30px] p-8 md:p-4 [&>div]:mb-8 [&>div]:[&>div]:text-[20px] md:[&>div]:[&>div]:text-[18px]">
       <div>
-        <div className="flex !text-5xl mb-8">{aboutText.header[language]}</div>
+        <div className="flex !text-5xl md:!text-2xl md:text-center mb-8">{aboutText.header[language]}</div>
         <div>{aboutText.technologies[language]}</div>
       </div>
       <div>
