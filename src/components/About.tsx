@@ -8,8 +8,8 @@ import { WeatherIcon } from "../svg/WeatherIcon";
 
 const aboutText: IMessagesWithLanguage = {
   header: {
-    EN: `More about the technologies...`,
-    PL: `Więcej o wykorzystanych technologiach...`,
+    EN: `More about the website...`,
+    PL: `Więcej o stronie...`,
   },
   technologies: {
     EN: (
@@ -123,7 +123,10 @@ const About: React.FC = () => {
       </div>
       <div>
         <div className="flex justify-center group">
-          <WeatherIcon className="w-16 h-16" />
+          <WeatherIcon
+            className="w-16 h-16"
+            fill="#00000000"
+          />
         </div>
         <div>{aboutText.weather[language]}</div>
       </div>
