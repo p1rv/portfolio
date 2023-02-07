@@ -17,5 +17,5 @@ export const LanguageSelector: React.FC = () => {
       </Button>
     </Fragment>
   ));
-  return <div className="absolute top-0 right-[1vw] z-10">{renderedLanguageButtons}</div>;
+  return <div className="absolute top-[0px] right-[1vw] z-10">{renderedLanguageButtons}</div>;
 };

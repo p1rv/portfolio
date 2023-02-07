@@ -28,7 +28,8 @@ export const Header: React.FC = () => {
     "duration-200",
     "ease-in-out",
     "motion-reduce:!transition-none motion-reduce:!duration-0",
-    pathname === "/" ? "w-screen h-24 mt-6" : "w-4/5 sm:w-full h-20 lg:w-[90vw]"
+    pathname === "/" ? "w-screen h-24 mt-6" : "w-4/5 sm:w-full h-20 lg:w-[90vw]",
+    "md:!mt-4"
   );
 
   return (
