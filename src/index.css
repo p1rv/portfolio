@@ -60,35 +60,12 @@ code span {
   animation: gradient 4s ease infinite;
 }
 
-.weather-demo.md\:animate-\[weatherPeek_3s\] > .weather-demo-overlay {
-  animation: topLeftClick 3s ease-out;
-}
-
 @keyframes gradient {
   0% {
     left: -100%;
   }
   100% {
     left: 100%;
-  }
-}
-@keyframes topLeftClick {
-  0%,
-  10%,
-  70%,
-  100% {
-    opacity: 0;
-    background: radial-gradient(circle at 10% 15%, #fafefb 2%, #000000 5%);
-  }
-  30%,
-  35%,
-  45%,
-  50% {
-    opacity: 0.4;
-    background: radial-gradient(circle at 10% 15%, #fafefb 2%, #000000 5%);
-  }
-  40% {
-    background: radial-gradient(circle at 10% 15%, #fafefb 4%, #000000 5%);
   }
 }
 @keyframes pulse {

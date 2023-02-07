@@ -1,6 +1,5 @@
 import classNames from "classnames";
-import { useContext, useRef } from "react";
-import { MouseOverContext } from "../context/MouseOverContextProvider";
+import { useRef } from "react";
 import { routes } from "../routes";
 import { useRouter } from "../hooks/useRouter";
 import { SearchIcon } from "../svg/SearchIcon";
@@ -9,11 +8,9 @@ import { useIsIntersecting } from "../hooks/useIsIntersecting";
 
 export const WeatherDemo: React.FC = () => {
   const { navigate } = useRouter();
-  const { mouseOver } = useContext(MouseOverContext);
   const divRef = useRef<HTMLDivElement | null>(null);
   const { isIntersecting, wasIntersected } = useIsIntersecting(divRef, 0.35);
   const mainClasses = classNames(
-    "weather-demo",
     "ease-slide-in-3",
     "h-max",
     "w-[45vw] md:w-[80vw]",
@@ -30,7 +27,20 @@ export const WeatherDemo: React.FC = () => {
     "hover:shadow-black-24-1/2",
     "group",
     "transition-opacity",
-    { "opacity-40": mouseOver, "md:animate-[weatherPeek_3s]": isIntersecting, "animate-[slideIn3_2.5s]": !wasIntersected }
+    "z-10",
+    { "md:animate-[weatherPeek_3s]": isIntersecting, "animate-[slideIn3_2.5s]": !wasIntersected }
+  );
+
+  const overlayClasses = classNames(
+    "absolute",
+    "inset-0",
+    "bg-theme-0",
+    "rounded-xl",
+    "opacity-0",
+    "cursor-pointer",
+    "group-hover:opacity-10",
+    "transition-all",
+    { "md:animate-[topLeftClick_3s_ease]": isIntersecting }
   );
 
   return (
@@ -39,7 +49,7 @@ export const WeatherDemo: React.FC = () => {
       ref={divRef}
     >
       <div
-        className="weather-demo-overlay absolute inset-0 bg-theme-0 rounded-xl opacity-0 cursor-pointer group-hover:opacity-10 transition-all"
+        className={overlayClasses}
         onClick={() => navigate(routes.weather.path)}
       />
       <div className="w-full flex flex-row items-center justify-center mt-4 mb-2">

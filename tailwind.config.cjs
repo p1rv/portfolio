@@ -146,6 +146,19 @@ module.exports = {
             right: "-50vw",
           },
         },
+        topLeftClick: {
+          "0%, 10%, 70%, 100%": {
+            opacity: "0",
+            background: "radial-gradient(circle at 10% 40px, #fafefb 10px, #000000 20px)",
+          },
+          "30%, 35%, 45%, 50%": {
+            opacity: "0.4",
+            background: "radial-gradient(circle at 10% 40px, #fafefb 10px, #000000 20px)",
+          },
+          "40%": {
+            background: "radial-gradient(circle at 10% 40px, #fafefb 16px, #000000 20px)",
+          },
+        },
       },
       transitionTimingFunction: {
         "slide-in-2": "cubic-bezier(0.75,0,0.5,0.7)",
