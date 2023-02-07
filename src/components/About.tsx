@@ -51,13 +51,14 @@ const aboutText: IMessagesWithLanguage = {
   weather: {
     EN: (
       <>
-        /weather is ready to use - you can type in address, which then will be submitted to Google's GeoCoding API* in order to get
-        geographical coordinates. In case of an error, you will be notified to try more precise phrase. After response is successfully
-        received, coordinates are saved to Redux store, as well as to IndexedDB (using localforage library) with original search term. In
-        the next step actions to fetch forecast data from available sources' APIs will be dispatched*. Some of them allow very few requests
-        per day (as few as 10), so, naturally, limit is reached pretty often. In that case error message will be shown in place of chart. If
-        GET request did not contain errors, incoming response will be parsed to the same format and saved in Redux store (+ in IndexedDB*),
-        resulting in chart components' update and displayed forecast. <br />
+        /weather is ready to use - you can type in address, which then will be submitted to Google's GeoCoding API
+        <span className="text-theme-1">✶</span> in order to get geographical coordinates. In case of an error, you will be notified to try
+        more precise phrase. After response is successfully received, coordinates are saved to Redux store, as well as to IndexedDB (using
+        localforage library) with original search term. In the next step actions to fetch forecast data from available sources' APIs will be
+        dispatched<span className="text-theme-1">✶</span>. Some of them allow very few requests per day (as few as 10), so, naturally, limit
+        is reached pretty often. In that case error message will be shown in place of chart. If GET request did not contain errors, incoming
+        response will be parsed to the same format and saved in Redux store (+ in IndexedDB
+        <span className="text-theme-1">✶</span>), resulting in chart components' update and displayed forecast. <br />
         On the left of search bar you can choose to collapse data into single chart - values from all sources will be averaged, containing
         as many days as available in any of them. Additionally, there is a filters dropdown on the other side of the screen, allowing
         switching between wind and temperature lines, plus toggling precipitation bars. <br />
@@ -65,23 +66,25 @@ const aboutText: IMessagesWithLanguage = {
         in rendering times on older mobile devices and on certain browsers. Visx requires more configuration and sometimes working directly
         with svg elements, but offers more customization and is incomparably faster.
         <br />
-        <br />* - localforage is saving or overwriting every redux state change if it comes from fetch response. Addresses are saved
-        permanently, as they will not need updating and every user will most likely search for similar locations. Forecast data with
-        corresponding provider and coordinates is saved with `expires` value containing time of response + 1 day. If forecast expired, is
-        not available for searched location or address is not present, fetch requests will be called. Otherwise data will be read from
-        IndexedDB and saved in store. Solution reduces amount of requests that would normally be made.
+        <br />
+        <span className="text-theme-1">✶</span> - localforage is saving or overwriting every redux state change if it comes from fetch
+        response. Addresses are saved permanently, as they will not need updating and every user will most likely search for similar
+        locations. Forecast data with corresponding provider and coordinates is saved with `expires` value containing time of response + 1
+        day. If forecast expired, is not available for searched location or address is not present, fetch requests will be called. Otherwise
+        data will be read from IndexedDB and saved in store. Solution reduces amount of requests that would normally be made.
       </>
     ),
     PL: (
       <>
-        /weather jest gotowa do użycia - po otwarciu możemy wpisać adres, który będzie przekazany do GeoCoding API Google'a* w celu
-        uzyskania współrzędnych geograficznych. W przypadku błędu (adres nie znaleziony) wyświetlony zostanie komunikat z prośbą o
-        doprecyzowanie wyszukiwanego adresu. Jeżeli odpowiedź nie będzie zawierać błędu, otrzymane współrzędne zostaną zapisane w store
-        Reduxa i w pamięci IndexedDB (za pomocą biblioteki localforage) wraz z oryginalnym zapytaniem. W kolejnym kroku wykonane zostaną
-        zapytania do wszystkich obsługiwanych dostawców prognozy pogody*. Niektórzy z nich pozwalają na tylko kilka zapytań/dzień, więc
-        dzienny limit jest osiągany dosyć często. W tym przypadku wyświetlona zostanie wiadomość błędu z miejscu wykresu. Jeśli nie ma
-        błędów, przychodzące dane zostaną dostosowane do obsługiwanego formatu i zapisane w magazynie Redux i IndexedDB*, co będzie
-        skutkowało aktualizacją komponentów i wyświetleniem wykresów.
+        /weather jest gotowa do użycia - po otwarciu możemy wpisać adres, który będzie przekazany do GeoCoding API Google'a
+        <span className="text-theme-1">✶</span> w celu uzyskania współrzędnych geograficznych. W przypadku błędu (adres nie znaleziony)
+        wyświetlony zostanie komunikat z prośbą o doprecyzowanie wyszukiwanego adresu. Jeżeli odpowiedź nie będzie zawierać błędu, otrzymane
+        współrzędne zostaną zapisane w store Reduxa i w pamięci IndexedDB (za pomocą biblioteki localforage) wraz z oryginalnym zapytaniem.
+        W kolejnym kroku wykonane zostaną zapytania do wszystkich obsługiwanych dostawców prognozy pogody
+        <span className="text-theme-1">✶</span>. Niektórzy z nich pozwalają na tylko kilka zapytań/dzień, więc dzienny limit jest osiągany
+        dosyć często. W tym przypadku wyświetlona zostanie wiadomość błędu z miejscu wykresu. Jeśli nie ma błędów, przychodzące dane zostaną
+        dostosowane do obsługiwanego formatu i zapisane w magazynie Redux i IndexedDB
+        <span className="text-theme-1">✶</span>, co będzie skutkowało aktualizacją komponentów i wyświetleniem wykresów.
         <br />
         Po lewej stronie paska wyszukiwania dostępna jest opcja "zwinięcia" danych od wszystkich dostawców w jeden wykres, to znaczy
         obliczenia średniej z dostępnych wartości dla każdego dnia. Po drugiej stronie ekranu znajdziemy przycisk otwierający listę
@@ -93,11 +96,12 @@ const aboutText: IMessagesWithLanguage = {
         Visx wymaga większej ilości kodu, co jest jedynym minusem - czas ładowania i możliwości dostosowania interfejsu wykresu są
         nieporównywalnie lepsze.
         <br />
-        <br />* - localforage zapisuje lub nadpisuje każdą zmianę stanu aplikacji jeżeli była spowodowana nowym zapytaniem. Dane prognoz są
-        zapisywane z odpowiadającym dostawcą usług, współrzędnymi i czasem wygaśnięcia równym czasowi otrzymania odpowiedzi + 1 dzień, a
-        adresy bez limitu czasowego. Jeżeli prognoza jest odczytana po czasie wygaśnięcia, nie istnieje dla danej lokacji lub adres nie
-        został wcześniej przetłumaczony, zostanie wykonane nowe zapytanie. W innym przypadku dane zostaną odczytane z IndexedDB i przekazane
-        do odpowiedniego reducera. Rozwiązanie pozwala znacznie zaoszczędzić ilość wykonywanych zapytań.
+        <br />
+        <span className="text-theme-1">✶</span> - localforage zapisuje lub nadpisuje każdą zmianę stanu aplikacji jeżeli była spowodowana
+        nowym zapytaniem. Dane prognoz są zapisywane z odpowiadającym dostawcą usług, współrzędnymi i czasem wygaśnięcia równym czasowi
+        otrzymania odpowiedzi + 1 dzień, a adresy bez limitu czasowego. Jeżeli prognoza jest odczytana po czasie wygaśnięcia, nie istnieje
+        dla danej lokacji lub adres nie został wcześniej przetłumaczony, zostanie wykonane nowe zapytanie. W innym przypadku dane zostaną
+        odczytane z IndexedDB i przekazane do odpowiedniego reducera. Rozwiązanie pozwala znacznie zaoszczędzić ilość wykonywanych zapytań.
       </>
     ),
   },
