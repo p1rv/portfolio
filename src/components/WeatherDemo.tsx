@@ -13,6 +13,7 @@ export const WeatherDemo: React.FC = () => {
   const divRef = useRef<HTMLDivElement | null>(null);
   const { isIntersecting, wasIntersected } = useIsIntersecting(divRef, 0.35);
   const mainClasses = classNames(
+    "weather-demo",
     "ease-slide-in-3",
     "h-max",
     "w-[45vw] md:w-[80vw]",
@@ -38,7 +39,7 @@ export const WeatherDemo: React.FC = () => {
       ref={divRef}
     >
       <div
-        className="absolute inset-0 bg-theme-0 rounded-xl opacity-0 cursor-pointer group-hover:opacity-10 transition-all"
+        className="weather-demo-overlay absolute inset-0 bg-theme-0 rounded-xl opacity-0 cursor-pointer group-hover:opacity-10 transition-all"
         onClick={() => navigate(routes.weather.path)}
       />
       <div className="w-full flex flex-row items-center justify-center mt-4 mb-2">
