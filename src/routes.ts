@@ -18,18 +18,20 @@ const routeNames: { [key: string]: ILanguageObject } = {
 };
 
 export const routes = {
-  home: { name: routeNames.home, path: "/", Component: Home, icon: HomeIcon },
-  react: { name: routeNames.react, path: "/react", Component: React, icon: ReactIcon },
+  home: { name: routeNames.home, path: "/", Component: Home, icon: HomeIcon, extendPath: false },
+  react: { name: routeNames.react, path: "/react", extendPath: true, Component: React, icon: ReactIcon },
   weather: {
     name: routeNames.weather,
     path: "/weather",
     Component: Weather,
     icon: WeatherIcon,
+    extendPath: false,
   },
   about: {
     name: routeNames.about,
     path: "/about",
     Component: About,
     icon: AboutIcon,
+    extendPath: false,
   },
 };
