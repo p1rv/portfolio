@@ -41,7 +41,7 @@ const welcomeMessage: IMessagesWithLanguage = {
 const Home: React.FC = () => {
   const { language } = useContext(LanguageContext);
   return (
-    <div className="flex flex-col w-screen h-full items-center overflow-x-hidden">
+    <div className="flex flex-col w-screen h-full items-center">
       <div className="animate-[slideIn1_1s_ease-in-out]">
         <p className="text-7xl sm:text-4xl lg:text-5xl lg:py-12 text-center leading-[75px] py-16">{welcomeMessage.main[language]}</p>
         <p className="text-center text-theme-2 sm:px-[2vw]">{welcomeMessage.sub[language]}</p>

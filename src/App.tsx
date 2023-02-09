@@ -17,7 +17,7 @@ const App: React.FC = () => {
   ));
 
   return (
-    <div className="app text-theme-0 h-screen w-screen flex flex-col items-center overflow-x-auto relative">
+    <div className="app text-theme-0 h-screen w-screen flex flex-col items-center overflow-x-hidden relative">
       <LanguageProvider>
         <LanguageSelector />
         <Header />
