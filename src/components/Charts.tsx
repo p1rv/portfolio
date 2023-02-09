@@ -9,9 +9,9 @@ const Charts: React.FC = () => {
     <>
       <CollapsedWrapper />
       <OpenMeteoWrapper />
-      <StormGlassWrapper />
       <VisualCrossingWrapper />
       <WeatherBitWrapper />
+      <StormGlassWrapper />
     </>
   );
 };

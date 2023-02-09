@@ -9,7 +9,7 @@ import { LandingWeatherPage } from "./WeatherLanding";
 import { ElementFocusProvider } from "../context/ElementFocusProvider";
 import { WeatherControls } from "./WeatherControls";
 import { LoadingFallback } from "./LoadingFallback";
-const ForecastCharts = lazy(() => import("./Charts"));
+const Charts = lazy(() => import("./Charts"));
 
 const Weather: React.FC = () => {
   const { query, navigate } = useRouter();
@@ -39,7 +39,7 @@ const Weather: React.FC = () => {
           <SearchBar />
         </div>
         <Suspense fallback={<LoadingFallback />}>
-          <ForecastCharts />
+          <Charts />
         </Suspense>
       </div>
     </ForecastProvider>
