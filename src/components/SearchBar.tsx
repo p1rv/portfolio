@@ -85,10 +85,10 @@ export const SearchBar: React.FC = () => {
     "animate-[shake_0.5s_ease-out]": !touched && error && !searchTerm,
   });
 
-  const inputWrapper = classNames("relative w-1/4 lg:w-1/3 md:w-2/3 flex items-center transition-all duration-300 ease-in-out", {
+  const inputWrapper = classNames("relative w-1/4 lg:w-1/3 md:w-full flex items-center transition-all duration-300 ease-in-out", {
     "after:content-[' '] after:w-6 after:h-6 after:rounded-full after:border-4 after:border-theme-0 after:border-l-transparent after:absolute after:right-2 after:animate-spin":
       isLoading,
-    "!w-[40%] md:!w-[80vw] md:!w-[90vw]": isFocused,
+    "!w-[40%] lg:!w-1/3 md:!w-full": isFocused,
   });
 
   const inputClasses = classNames("bg-[#fefcfb0f] rounded-l-full py-2 px-4 !outline-none w-full focus:bg-[#fefcfb1b]", {

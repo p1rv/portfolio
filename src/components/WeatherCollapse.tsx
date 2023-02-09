@@ -15,7 +15,7 @@ export const WeatherCollapse: React.FC = () => {
   return (
     <Button
       primary
-      className="bg-[#fefafb0f] py-2 rounded-full md:w-[70vw] lg:px-3"
+      className="bg-[#fefafb0f] py-2 rounded-full md:w-full lg:px-3"
       onClick={flipCollapsed}
     >
       <p className="translate-y-[-2px]">{collapsed ? collapseMessage.collapsed[language] : collapseMessage.separated[language]}</p>

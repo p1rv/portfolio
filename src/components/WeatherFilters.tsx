@@ -64,7 +64,7 @@ export const WeatherFilters: React.FC = () => {
       </Button>
     ));
 
-  const dropdownClasses = classNames("relative", "w-[15vw]", "min-w-[200px]", "md:w-[70vw]", "lg:!min-w-[165px]", "md:mt-3");
+  const dropdownClasses = classNames("relative", "w-[15vw]", "min-w-[200px]", "md:w-full", "lg:!min-w-[165px]", "md:mt-3");
 
   const buttonClasses = classNames(
     "flex",
@@ -109,7 +109,7 @@ export const WeatherFilters: React.FC = () => {
         <img
           src={chevronIcon}
           alt="chevron"
-          className={`transition-all duration-200 ease-in-out w-3 h-3 ${!hidden && "rotate-90"} md:absolute md:right-2`}
+          className={`transition-all duration-200 ease-in-out w-3 h-3 ${!hidden && "rotate-90"} md:absolute md:right-3`}
         />
       </Button>
       <div className={typesListClasses}>

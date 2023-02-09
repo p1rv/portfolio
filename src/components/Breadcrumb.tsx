@@ -28,7 +28,7 @@ export const Breadcrumb: React.FC = () => {
           alt=">"
           className="w-3 h-3 mx-3"
         />
-        {address}
+        <p>{address}</p>
       </React.Fragment>
     );
   }
@@ -56,9 +56,9 @@ export const Breadcrumb: React.FC = () => {
   ));
 
   return (
-    <div className="flex items-center w-4/5 pt-4 pb-6 w-4/5">
+    <div className="flex items-center w-4/5 lg:w-[95vw] pt-4 pb-6 w-4/5">
       <HomeIcon
-        className="group w-4 h-4 cursor-pointer"
+        className="group min-w-4 w-4 h-4 cursor-pointer"
         pathClassName="group-hover:stroke-theme-1"
         onClick={() => navigate(routes.home.path)}
       />
