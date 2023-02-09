@@ -8,8 +8,11 @@ import { useIsIntersecting } from "../hooks/useIsIntersecting";
 
 export const WeatherDemo: React.FC = () => {
   const { navigate } = useRouter();
+
   const divRef = useRef<HTMLDivElement | null>(null);
+
   const { isIntersecting, wasIntersected } = useIsIntersecting(divRef, 0.35);
+
   const mainClasses = classNames(
     "ease-in",
     "h-max",

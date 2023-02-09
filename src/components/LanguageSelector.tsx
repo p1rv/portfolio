@@ -4,6 +4,7 @@ import { Button } from "./Button";
 
 export const LanguageSelector: React.FC = () => {
   const { language, languages, setLanguage } = useContext(LanguageContext);
+
   const renderedLanguageButtons = languages.map((lang, i) => (
     <Fragment key={lang}>
       {i !== 0 && " | "}
@@ -17,5 +18,6 @@ export const LanguageSelector: React.FC = () => {
       </Button>
     </Fragment>
   ));
+
   return <div className="absolute top-[0px] right-[1vw] z-10">{renderedLanguageButtons}</div>;
 };

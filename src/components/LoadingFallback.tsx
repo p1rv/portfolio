@@ -20,6 +20,7 @@ export const LoadingFallback: React.FC<ILoadingFallbackProps> = ({ className, we
     },
     className
   );
+
   if (weather) {
     return (
       <div
@@ -34,6 +35,7 @@ export const LoadingFallback: React.FC<ILoadingFallbackProps> = ({ className, we
       </div>
     );
   }
+
   return (
     <div className={classes}>
       <img

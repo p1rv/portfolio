@@ -14,9 +14,10 @@ const filterMessages: IMessagesWithLanguage = {
 
 export const WeatherFilters: React.FC = () => {
   const [hidden, setHidden] = useState(true);
-  const filtersRef = useRef<HTMLDivElement | null>(null);
-  const { types, show, setShow } = useContext(ForecastContext);
 
+  const filtersRef = useRef<HTMLDivElement | null>(null);
+
+  const { types, show, setShow } = useContext(ForecastContext);
   const { language } = useContext(LanguageContext);
 
   useEffect(() => {

@@ -22,14 +22,15 @@ const getAvg = (key: string, values: IForecast[keyof IForecast][]) => {
 
 export const CollapsedWrapper: React.FC = () => {
   const { openMeteo, visualCrossing, weatherBit, stormGlass } = useSelector((state: IRootState) => state);
+
   const { collapsed } = useContext(ForecastContext);
+  const { language } = useContext(LanguageContext);
 
   if (!collapsed) return null;
 
   const sourcesList = [openMeteo, visualCrossing, weatherBit, stormGlass]
     .filter(({ error, data }) => !error && data.length > 0)
     .sort((a, b) => b.data.length - a.data.length);
-  const { language } = useContext(LanguageContext);
 
   const parsedSources = sourcesList
     .reduce(

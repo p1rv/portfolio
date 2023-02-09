@@ -9,7 +9,9 @@ import { TooltipWindow } from "./TooltipWindow";
 
 export const ChartTooltip: React.FC = () => {
   const { data, width, height, left = 0 } = useContext(ChartComponentContext);
+
   const [mouseCoord, setMouseCoord] = useState({ x: 0, y: 0 });
+
   const {
     tooltipData,
     tooltipLeft = 0,
@@ -18,7 +20,9 @@ export const ChartTooltip: React.FC = () => {
     showTooltip,
     hideTooltip,
   } = useTooltip({ tooltipData: {} as IForecast });
+
   const { TooltipInPortal } = useTooltipInPortal({ detectBounds: true, scroll: true });
+
   const handleMouseMove = (day: IForecast, event: React.MouseEvent<SVGRectElement, MouseEvent>) => {
     const { clientX, clientY } = event;
     const { x, y } = localPoint(event) || { x: 0, y: 0 };

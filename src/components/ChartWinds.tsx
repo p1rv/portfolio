@@ -22,11 +22,13 @@ const getWindGusts = (day: IForecast) => day.wind_gusts;
 
 export const ChartWinds: React.FC = () => {
   const { data, width, height, left = 0 } = useContext(ChartComponentContext);
-  const xScale = dayScale(data).range([0, width]);
   const { language } = useContext(LanguageContext);
   const { show } = useContext(ForecastContext);
 
+  const xScale = dayScale(data).range([0, width]);
+
   const domainMax = max(data, getWindGusts) as number;
+
   const windScale = scaleLinear<number>({
     domain: [0, domainMax + domainMax / 4],
   }).range([height, height * 0.1]);

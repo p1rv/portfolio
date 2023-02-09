@@ -13,6 +13,7 @@ const ForecastCharts = lazy(() => import("./Charts"));
 
 const Weather: React.FC = () => {
   const { query, navigate } = useRouter();
+
   const {
     data: { address },
   } = useSelector((state: IRootState) => state.location);

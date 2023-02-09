@@ -22,12 +22,14 @@ const getMaxTemp = (day: IForecast) => day.temp_max;
 
 export const ChartTemps: React.FC = () => {
   const { data, width, height, left = 0 } = useContext(ChartComponentContext);
-  const xScale = dayScale(data).range([0, width]);
   const { language } = useContext(LanguageContext);
   const { show } = useContext(ForecastContext);
 
+  const xScale = dayScale(data).range([0, width]);
+
   const domainMin = min(data, getMinTemp) as number;
   const domainMax = max(data, getMaxTemp) as number;
+
   const tempScale = scaleLinear<number>({
     domain: [domainMin - (domainMax - domainMin) / 2, domainMax + (domainMax - domainMin) / 2],
   }).range([height, height * 0.1]);

@@ -20,6 +20,7 @@ export const Menu: React.FC = () => {
     setPrevSelected(selected);
     setSelected(-1);
   }
+
   const renderedRoutes = filteredRoutes.map(([key, value], index) => {
     if (pathname.includes(value.path) && selected !== index) {
       setPrevSelected(selected);

@@ -26,6 +26,7 @@ const chartMessages: IMessagesWithLanguage = {
 export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, error, data }, source }) => {
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
+
   const { language } = useContext(LanguageContext);
 
   const recalculateScreenSize = () => {
@@ -34,6 +35,10 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, 
     const newHeight = window.innerHeight * 0.4;
     newHeight < 350 ? setHeight(350) : setHeight(newHeight);
   };
+
+  const chartWidth = width * 0.8;
+  const chartHeight = height * 0.85;
+
   useEffect(() => {
     recalculateScreenSize();
     window.addEventListener("resize", recalculateScreenSize);
@@ -50,8 +55,6 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, 
       return <div>{chartMessages.error[language]}</div>;
     }
   };
-  const chartWidth = width * 0.8;
-  const chartHeight = height * 0.85;
 
   if (isLoading || data.length === 0 || error) {
     const content = getDefaultContent();

@@ -53,9 +53,11 @@ export const ForecastProvider: React.FC<PropsWithChildren<IForecastProvider>> = 
       return [...currentShow, type];
     });
   };
+
   const flipCollapsed = () => {
     setCollapsed((currentCollapsed) => !currentCollapsed);
   };
+
   const value = useMemo(() => ({ types, show, setShow, collapsed, setCollapsed, flipCollapsed }), [show, collapsed]);
 
   return <ForecastContext.Provider value={value}>{children}</ForecastContext.Provider>;

@@ -7,6 +7,7 @@ export const SingleStar: React.FC = () => {
   const defaultSize = useRef(Math.round(Math.random() * 30 + 15) / 10).current;
   const deviation = useRef(Math.round(Math.random() * 10 + 2) / 10).current;
   const blinkSpeed = useRef(Math.round(Math.random() * 5) / 100).current;
+
   const [direction, setDirection] = useState(Math.random() > 0.5 ? 1 : -1);
   const [size, setSize] = useState(defaultSize);
 
@@ -17,12 +18,8 @@ export const SingleStar: React.FC = () => {
         setSize((currentSize) => currentSize + direction * blinkSpeed * -1);
         return;
       }
-      setX(
-        (currentX) => currentX + Math.floor(Math.random() * 100 - 50) / 1000
-      );
-      setY(
-        (currentY) => currentY + Math.floor(Math.random() * 100 - 50) / 1000
-      );
+      setX((currentX) => currentX + Math.floor(Math.random() * 100 - 50) / 1000);
+      setY((currentY) => currentY + Math.floor(Math.random() * 100 - 50) / 1000);
       setSize((currentSize) => currentSize + direction * blinkSpeed);
     }, 100);
 
@@ -31,13 +28,7 @@ export const SingleStar: React.FC = () => {
     };
   }, [size]);
 
-  const className = classNames(
-    "absolute",
-    "rounded-full",
-    "bg-theme-0",
-    "shadow-theme-0",
-    "shadow-star"
-  );
+  const className = classNames("absolute", "rounded-full", "bg-theme-0", "shadow-theme-0", "shadow-star");
 
   return (
     <div

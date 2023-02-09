@@ -7,6 +7,7 @@ import classNames from "classnames";
 
 export const ReactCode: React.FC = () => {
   const { navigate } = useRouter();
+
   const { setMouseOver } = useContext(MouseOverContext);
 
   const navigateAway = () => {

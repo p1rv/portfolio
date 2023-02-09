@@ -40,6 +40,7 @@ export const Button: React.FC<PropsWithChildren<IButtonProps>> = ({
     },
     className
   );
+
   return (
     <button
       disabled={disabled}

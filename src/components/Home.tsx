@@ -37,13 +37,14 @@ const welcomeMessage: IMessagesWithLanguage = {
     ),
   },
 };
-
 const Home: React.FC = () => {
   useEffect(() => {
     const timerId = setTimeout(() => sessionStorage.setItem("home", "loaded"), 1000);
     return () => clearTimeout(timerId);
   }, []);
+
   const { language } = useContext(LanguageContext);
+
   return (
     <div className="flex flex-col w-screen h-full items-center">
       <div>

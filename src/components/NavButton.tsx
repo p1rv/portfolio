@@ -20,13 +20,12 @@ export const NavButton: React.FC<PropsWithChildren<INavButtonProps>> = ({
   const classes = classNames(className, "overflow-hidden", {
     "hover:text-theme-1": !selected,
     "hover:text-theme-2 text-theme-2 selected": selected,
-    "after:animate-[unfoldFromLeft_0.5s] ease-out":
-      selected && prevSelected < 0,
-    "after:animate-[unfoldFromRight_0.5s] ease-out":
-      selected && prevSelected > 0,
+    "after:animate-[unfoldFromLeft_0.5s] ease-out": selected && prevSelected < 0,
+    "after:animate-[unfoldFromRight_0.5s] ease-out": selected && prevSelected > 0,
     "after:animate-[foldToRight_0.5s] ease-in": wasSelected && prevSelected < 0,
     "after:animate-[foldToLeft_0.5s] ease-in": wasSelected && prevSelected > 0,
   });
+
   return (
     <Button
       className={classes}
