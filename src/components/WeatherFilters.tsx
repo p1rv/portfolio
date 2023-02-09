@@ -44,7 +44,7 @@ export const WeatherFilters: React.FC = () => {
         rounded
         selected={show.includes(key as IForecastTypes)}
         onClick={() => onDropdownSelect(key as IForecastTypes)}
-        className="mt-4"
+        className="mt-4 border-2 border-theme-1"
       >
         {value[language]}
       </Button>
@@ -83,13 +83,14 @@ export const WeatherFilters: React.FC = () => {
     "absolute",
     "top-14",
     "w-[300px] md:w-full",
-    "bg-[#12141b]",
+    "bg-[#030412]",
     "z-10",
-    "right-0",
+    "right-[10px]",
+    "mt-[10px]",
     "rounded-[28px]",
     "overflow-hidden",
-    "shadow-[0_2px_10px]",
-    "shadow-theme-4/70",
+    "shadow-[0_2px_5px]",
+    "shadow-nightsky",
     "p-4",
     { "z-[-10]": hidden, "animate-[slideIn_0.2s_ease-in-out]": !hidden }
   );
@@ -112,7 +113,7 @@ export const WeatherFilters: React.FC = () => {
         />
       </Button>
       <div className={typesListClasses}>
-        <div className="flex rounded-full overflow-hidden">{radioButtons}</div>
+        <div className="flex rounded-full overflow-hidden border-2 border-theme-1">{radioButtons}</div>
         {checkButtons}
       </div>
     </div>

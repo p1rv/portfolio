@@ -24,25 +24,17 @@ export const Button: React.FC<PropsWithChildren<IButtonProps>> = ({
   rounded,
   ...rest
 }) => {
-  const classes = classNames(
-    "button",
-    "py-4",
-    "px-6 sm:px-4",
-    "duration-200",
-    "transition-colors",
-    "min-w-min",
-    {
-      "cursor-pointer": !disabled,
-      "primary flex flex-col items-center overflow-hidden group relative": navButton,
-      "hover:text-theme-1": primary,
-      "bg-theme-0 text-nightsky w-full hover:bg-theme-1 py-2 px-2": secondary,
-      "bg-theme-2": secondary && selected,
-      "text-theme-1": primary && disabled,
-      "hover:!bg-theme-2": secondary && disabled,
-      "rounded-full": rounded,
-    },
-    className
-  );
+  const classes = classNames(className, "button", "py-4", "px-6 sm:px-4", "duration-200", "transition-colors", "min-w-min", {
+    "cursor-pointer": !disabled,
+    "rounded-full": rounded,
+    "primary flex flex-col items-center overflow-hidden group relative": navButton,
+    "hover:text-theme-1": primary,
+    "text-theme-1": primary && disabled,
+    "bg-transparent !text-theme-1 w-full py-2 px-2 hover:bg-theme-1 hover:!text-theme-4": secondary,
+    "!bg-theme-1 !text-theme-4": secondary && selected,
+    "text-theme-4": secondary && !disabled,
+    "hover:!bg-theme-1 hover:!text-theme-4": secondary && disabled,
+  });
 
   return (
     <button
