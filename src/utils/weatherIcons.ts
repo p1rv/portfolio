@@ -38,6 +38,7 @@ export const icons = {
   301: "Rain",
   302: "Rain",
   521: "Rain",
+  404: "",
   500: "HeavyRain",
   501: "HeavyRain",
   502: "HeavyRain",

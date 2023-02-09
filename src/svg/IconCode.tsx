@@ -44,14 +44,6 @@ export const IconCode: React.FC<IIconCodeProps> = ({ code, ...rest }) => {
         />
       );
     default:
-      return (
-        <Main
-          width={40}
-          height={40}
-          fill="#00a8e8"
-          stroke="#00a8e8"
-          {...rest}
-        />
-      );
+      return null;
   }
 };

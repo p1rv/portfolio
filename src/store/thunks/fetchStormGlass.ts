@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import localforage from "localforage";
-import { ICoordinates, IForecast, IStormGlassDaily, IStormGlassData, IStormGlassDay, IStormGlassHours, Entries } from "../types";
+import { ICoordinates, IStormGlassDaily, IStormGlassData, IStormGlassDay, IStormGlassHours, Entries, IForecast } from "../types";
 
 const forecastParameters = ["airTemperature", "precipitation", "windSpeed", "gust", "windDirection"].join(",");
 
@@ -45,7 +45,8 @@ export const fetchStormGlass = createAsyncThunk<IForecast[], ICoordinates>("stor
       showers: 0,
       rain: 0,
       time: date,
-    };
+      code: 404,
+    } as IForecast;
   });
   const expires = new Date().getTime() + 86400000;
   localforage.setItem(`sg${lat.toPrecision(5)}${lon.toPrecision(5)}`, {
