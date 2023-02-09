@@ -9,10 +9,13 @@ const types: IMessagesWithLanguage = {
   precip: { EN: "Precipitation", PL: "Opady" },
 } as const;
 
+const forceOneOf: IForecastTypes[] = ["temp", "wind"];
+
 interface IForecastContext {
   types: typeof types;
   show: IForecastTypes[];
   setShow: (type: IForecastTypes[][number]) => void;
+  forceOneOf: typeof forceOneOf;
   collapsed: boolean;
   setCollapsed: Dispatch<SetStateAction<boolean>>;
   flipCollapsed: () => void;
@@ -22,12 +25,11 @@ const initialContext: IForecastContext = {
   types,
   show: ["temp", "precip"],
   setShow: () => {},
+  forceOneOf,
   collapsed: false,
   setCollapsed: () => {},
   flipCollapsed: () => {},
 };
-
-const forceOneOf: IForecastTypes[] = ["temp", "wind"];
 
 export const ForecastContext = createContext<IForecastContext>(initialContext);
 
@@ -58,7 +60,7 @@ export const ForecastProvider: React.FC<PropsWithChildren<IForecastProvider>> = 
     setCollapsed((currentCollapsed) => !currentCollapsed);
   };
 
-  const value = useMemo(() => ({ types, show, setShow, collapsed, setCollapsed, flipCollapsed }), [show, collapsed]);
+  const value = useMemo(() => ({ types, show, setShow, forceOneOf, collapsed, setCollapsed, flipCollapsed }), [show, collapsed]);
 
   return <ForecastContext.Provider value={value}>{children}</ForecastContext.Provider>;
 };

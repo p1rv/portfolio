@@ -17,7 +17,7 @@ export const WeatherFilters: React.FC = () => {
 
   const filtersRef = useRef<HTMLDivElement | null>(null);
 
-  const { types, show, setShow } = useContext(ForecastContext);
+  const { types, show, setShow, forceOneOf } = useContext(ForecastContext);
   const { language } = useContext(LanguageContext);
 
   useEffect(() => {
@@ -35,18 +35,36 @@ export const WeatherFilters: React.FC = () => {
     setHidden(true);
   };
 
-  const renderedButtons = Object.entries(types).map(([key, value]) => (
-    <Button
-      key={key}
-      secondary
-      selected={show.includes(key as IForecastTypes)}
-      onClick={() => onDropdownSelect(key as IForecastTypes)}
-    >
-      {value[language]}
-    </Button>
-  ));
+  const checkButtons = Object.entries(types)
+    .filter(([key]) => !forceOneOf.includes(key as IForecastTypes))
+    .map(([key, value]) => (
+      <Button
+        key={key}
+        secondary
+        rounded
+        selected={show.includes(key as IForecastTypes)}
+        onClick={() => onDropdownSelect(key as IForecastTypes)}
+        className="mt-4"
+      >
+        {value[language]}
+      </Button>
+    ));
 
-  const dropdownClasses = classNames("relative", "w-[15vw]", "min-w-[200px]", "md:w-[70vw]", "lg:!min-w-[165px]", "md:mt-4");
+  const radioButtons = Object.entries(types)
+    .filter(([key]) => forceOneOf.includes(key as IForecastTypes))
+    .map(([key, value]) => (
+      <Button
+        key={key}
+        secondary
+        selected={show.includes(key as IForecastTypes)}
+        disabled={show.includes(key as IForecastTypes)}
+        onClick={() => onDropdownSelect(key as IForecastTypes)}
+      >
+        {value[language]}
+      </Button>
+    ));
+
+  const dropdownClasses = classNames("relative", "w-[15vw]", "min-w-[200px]", "md:w-[70vw]", "lg:!min-w-[165px]", "md:mt-3");
 
   const buttonClasses = classNames(
     "flex",
@@ -64,13 +82,15 @@ export const WeatherFilters: React.FC = () => {
   const typesListClasses = classNames(
     "absolute",
     "top-14",
-    "w-full",
-    "bg-theme-0",
+    "w-[300px] md:w-full",
+    "bg-[#12141b]",
     "z-10",
-    "rounded-[10px]",
+    "right-0",
+    "rounded-[28px]",
     "overflow-hidden",
     "shadow-[0_2px_10px]",
     "shadow-theme-4/70",
+    "p-4",
     { "z-[-10]": hidden, "animate-[slideIn_0.2s_ease-in-out]": !hidden }
   );
 
@@ -91,7 +111,10 @@ export const WeatherFilters: React.FC = () => {
           className={`transition-all duration-200 ease-in-out w-3 h-3 ${!hidden && "rotate-90"} md:absolute md:right-2`}
         />
       </Button>
-      <div className={typesListClasses}>{renderedButtons}</div>
+      <div className={typesListClasses}>
+        <div className="flex rounded-full overflow-hidden">{radioButtons}</div>
+        {checkButtons}
+      </div>
     </div>
   );
 };

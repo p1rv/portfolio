@@ -8,6 +8,7 @@ export interface IButtonProps {
   selected?: boolean;
   className?: string;
   disabled?: boolean;
+  rounded?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => any;
   [key: string]: any;
 }
@@ -20,6 +21,7 @@ export const Button: React.FC<PropsWithChildren<IButtonProps>> = ({
   selected,
   primary,
   secondary,
+  rounded,
   ...rest
 }) => {
   const classes = classNames(
@@ -33,10 +35,11 @@ export const Button: React.FC<PropsWithChildren<IButtonProps>> = ({
       "cursor-pointer": !disabled,
       "primary flex flex-col items-center overflow-hidden group relative": navButton,
       "hover:text-theme-1": primary,
-      "bg-theme-0 text-theme-3 w-full hover:!bg-nightsky/50 py-3 border-theme-0 border-b border-t-0 border-x-0 last:border-0 hover:!text-theme-3":
-        secondary,
-      "!bg-[#000010] !text-theme-1": secondary && selected,
-      "!text-theme-1": primary && disabled,
+      "bg-theme-0 text-nightsky w-full hover:bg-theme-1 py-2 px-2": secondary,
+      "bg-theme-2": secondary && selected,
+      "text-theme-1": primary && disabled,
+      "hover:!bg-theme-2": secondary && disabled,
+      "rounded-full": rounded,
     },
     className
   );
