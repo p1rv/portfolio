@@ -37,14 +37,14 @@ const aboutText: IMessagesWithLanguage = {
   react: {
     EN: (
       <>
-        /react subpage is meant to show easy to follow, accessible and (for now) basic guide on how to start building your own websites
-        using React, but at this moment it is under continuous development.
+        /react subpage aims to show basic concepts of React and how to handle common problems which solutions are not immediately apparent.
+        As of right now, it is being developed.
       </>
     ),
     PL: (
       <>
-        podstrona /react docelowo będzie prezentować prosty, przystępny i (początkowo) podstawowy poradnik jak zacząć budować strony
-        wykorzystując React, ale na ten moment ta część aplikacji jest w trakcie rozwoju.
+        podstrona /react docelowo będzie prezentować podstawowe założenia Reacta i sposoby na radzenie sobie z częstymi problemami, których
+        rozwiązania nie są łatwe do dostrzeżenia. Na ten moment ta część aplikacji jest w trakcie rozwoju.
       </>
     ),
   },
