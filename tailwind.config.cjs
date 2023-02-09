@@ -39,18 +39,12 @@ module.exports = {
           "0%": { transform: "translateY(-40%)", opacity: 0 },
           "100%": { transform: "translateY(0%)", opacity: 1 },
         },
-        slideIn1: {
-          "0%": { transform: "translateY(-100%)", opacity: 0 },
-          "100%": { transform: "translateY(0%)", opacity: 1 },
-        },
-        slideIn2: {
-          "0%": { transform: "translateX(-100%)", opacity: 0 },
-          "50%": { transform: "translateX(-100%)", opacity: 0 },
+        slideInLeft: {
+          "0%, 33%": { transform: "translateX(-100%)", opacity: 0 },
           "100%": { transform: "translateX(0%)", opacity: 1 },
         },
-        slideIn3: {
-          "0%": { transform: "translateX(100%)", opacity: 0 },
-          "66%": { transform: "translateX(100%)", opacity: 0 },
+        slideInRight: {
+          "0%, 33%": { transform: "translateX(100%)", opacity: 0 },
           "100%": { transform: "translateX(0%)", opacity: 1 },
         },
         blink: {
@@ -159,10 +153,6 @@ module.exports = {
             background: "radial-gradient(circle at 10% 40px, #fafefb 16px, #000000 20px)",
           },
         },
-      },
-      transitionTimingFunction: {
-        "slide-in-2": "cubic-bezier(0.75,0,0.5,0.7)",
-        "slide-in-3": "cubic-bezier(1,0,0.5,0.7)",
       },
     },
   },

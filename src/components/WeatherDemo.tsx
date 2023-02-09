@@ -11,7 +11,7 @@ export const WeatherDemo: React.FC = () => {
   const divRef = useRef<HTMLDivElement | null>(null);
   const { isIntersecting, wasIntersected } = useIsIntersecting(divRef, 0.35);
   const mainClasses = classNames(
-    "ease-slide-in-3",
+    "ease-in",
     "h-max",
     "w-[45vw] md:w-[80vw]",
     "absolute",
@@ -28,7 +28,10 @@ export const WeatherDemo: React.FC = () => {
     "group",
     "transition-opacity",
     "z-10",
-    { "md:animate-[weatherPeek_3s]": isIntersecting, "animate-[slideIn3_2.5s]": !wasIntersected }
+    {
+      "md:animate-[weatherPeek_3s]": isIntersecting,
+      "animate-[slideInRight_1s]": !wasIntersected && sessionStorage.getItem("home") !== "loaded",
+    }
   );
 
   const overlayClasses = classNames(

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { IMessagesWithLanguage, LanguageContext } from "../context/LanguageProvider";
 import { ReactCode } from "./ReactCode";
 import { WeatherDemo } from "./WeatherDemo";
@@ -7,16 +7,16 @@ const welcomeMessage: IMessagesWithLanguage = {
   sub: {
     EN: (
       <>
-        Demonstrative portfolio project built with React, Typescript and Vite.
+        Portfolio project built with React, Typescript and Vite.
         <br />
-        Explore available functionalities in the top-right corner.
+        Navigate to respective pages by clicking below or in top-right corner.
       </>
     ),
     PL: (
       <>
-        Pokazowy projekt zbudowany na bibliotece React z Typescriptem przy pomocy Vite.
+        Projekt do portfolio zbudowany przy pomocy Reacta, Typescripta i Vite.
         <br />
-        Dalsze funkcjonalności dostępne w prawym górnym rogu.
+        Przejdź do wybranej strony klikając poniżej lub w prawym górnym rogu.
       </>
     ),
   },
@@ -39,10 +39,14 @@ const welcomeMessage: IMessagesWithLanguage = {
 };
 
 const Home: React.FC = () => {
+  useEffect(() => {
+    const timerId = setTimeout(() => sessionStorage.setItem("home", "loaded"), 1000);
+    return () => clearTimeout(timerId);
+  }, []);
   const { language } = useContext(LanguageContext);
   return (
     <div className="flex flex-col w-screen h-full items-center">
-      <div className="animate-[slideIn1_1s_ease-in-out]">
+      <div>
         <p className="text-7xl sm:text-4xl lg:text-5xl lg:py-12 text-center leading-[75px] py-16">{welcomeMessage.main[language]}</p>
         <p className="text-center text-theme-2 sm:px-[2vw]">{welcomeMessage.sub[language]}</p>
         <div className="relative w-[80vw] md:w-full">
