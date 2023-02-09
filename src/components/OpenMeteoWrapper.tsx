@@ -51,7 +51,7 @@ export const OpenMeteoWrapper: React.FC<IForecastWrapperProps> = () => {
   if (collapsed) return null;
 
   return (
-    <div className="w-full bg-theme-0 mt-4 rounded-[30px] text-theme-4 py-[1vh] sm:rounded-[20px]">
+    <div className="w-full bg-theme-0 mt-6 rounded-[30px] text-theme-4 py-[1vh] sm:rounded-[20px]">
       <ChartWrapper
         data={openMeteo}
         source="OpenMeteo"
