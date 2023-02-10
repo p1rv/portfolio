@@ -1,14 +1,14 @@
-import { ContactIcon } from "./svg/ContactIcon";
-import { HomeIcon } from "./svg/HomeIcon";
-import { ReactIcon } from "./svg/ReactIcon";
-import { WeatherIcon } from "./svg/WeatherIcon";
+import { ContactIcon } from "../svg/ContactIcon";
+import { HomeIcon } from "../svg/HomeIcon";
+import { ReactIcon } from "../svg/ReactIcon";
+import { WeatherIcon } from "../svg/WeatherIcon";
 import { lazy } from "react";
-import { ILanguageObject } from "./context/LanguageProvider";
-import { AboutIcon } from "./svg/AboutIcon";
-const Home = lazy(() => import("./components/Home"));
-const React = lazy(() => import("./components/React"));
-const Weather = lazy(() => import("./components/Weather"));
-const About = lazy(() => import("./components/About"));
+import { ILanguageObject } from "../context/LanguageProvider";
+import { AboutIcon } from "../svg/AboutIcon";
+const Home = lazy(() => import("../components/Home"));
+const React = lazy(() => import("../components/React"));
+const Weather = lazy(() => import("../components/Weather"));
+const About = lazy(() => import("../components/About"));
 
 const routeNames: { [key: string]: ILanguageObject } = {
   home: { EN: "Home", PL: "Strona główna" },

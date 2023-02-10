@@ -1,11 +1,12 @@
 import { Button } from "./Button";
 import { Menu } from "./Menu";
-import { routes } from "../routes";
+import { routes } from "../utils/routes";
 import { useRouter } from "../hooks/useRouter";
 import { HomeIcon } from "../svg/HomeIcon";
 import classNames from "classnames";
 import { useContext } from "react";
 import { ILanguageObject, LanguageContext } from "../context/LanguageProvider";
+import { Link } from "react-router-dom";
 
 const homeButtonText: ILanguageObject = {
   EN: "Home",
@@ -14,7 +15,6 @@ const homeButtonText: ILanguageObject = {
 
 export const Header: React.FC = () => {
   const {
-    navigate,
     location: { pathname },
   } = useRouter();
 
@@ -37,14 +37,15 @@ export const Header: React.FC = () => {
       <Button
         primary
         navButton
-        onClick={() => navigate(routes.home.path)}
-        className="flex flex-col items-center"
+        link
       >
-        <HomeIcon
-          className="w-8 h-8"
-          pathClassName="group-hover:stroke-theme-1"
-        />
-        {homeButtonText[language]}
+        <Link
+          to={routes.home.path}
+          className="flex flex-col items-center py-4 px-6 sm:px-4"
+        >
+          <HomeIcon pathClassName="group-hover:stroke-theme-1" />
+          {homeButtonText[language]}
+        </Link>
       </Button>
       <Menu />
     </div>

@@ -16,7 +16,7 @@ export const App: React.FC = () => {
   )
 }`;
 
-export const ReactFirstApp: React.FC = () => {
+export const ReactState: React.FC = () => {
   return (
     <div className="w-full">
       <pre

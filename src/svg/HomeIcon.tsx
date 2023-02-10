@@ -12,25 +12,9 @@ export interface IIconProps {
 }
 
 export const HomeIcon: React.FC<IIconProps> = memo(
-  ({
-    stroke = "#fefcfb",
-    fill = "none",
-    className,
-    pathClassName,
-    ...rest
-  }) => {
-    const classes = classNames(
-      "transition-colors",
-      "duration-200",
-      "ease-out",
-      className
-    );
-    const pathClasses = classNames(
-      "transition-colors",
-      "duration-200",
-      "ease-out",
-      pathClassName
-    );
+  ({ stroke = "#fefcfb", fill = "none", className = "w-6 h-6", pathClassName, ...rest }) => {
+    const classes = classNames("transition-colors", "duration-200", "ease-out", className);
+    const pathClasses = classNames("transition-colors", "duration-200", "ease-out", pathClassName);
     return (
       <svg
         width="200mm"

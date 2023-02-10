@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { memo } from "react";
 import { IIconProps } from "./HomeIcon";
 
-export const ReactIcon: React.FC<IIconProps> = memo(({ stroke = "#fefcfbff", className = "w-8 h-8", selected, infinite }) => {
+export const ReactIcon: React.FC<IIconProps> = memo(({ stroke = "#fefcfbff", className = "w-6 h-6", selected, infinite }) => {
   const classes = classNames(
     "transition-all duration-700 ease-in-out",
     {

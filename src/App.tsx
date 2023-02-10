@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import { routes } from "./routes";
+import { routes } from "./utils/routes";
 import { LanguageProvider } from "./context/LanguageProvider";
 import { Breadcrumb } from "./components/Breadcrumb";
 import { Header } from "./components/Header";

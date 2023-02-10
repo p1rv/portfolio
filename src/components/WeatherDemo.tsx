@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { useRef } from "react";
-import { routes } from "../routes";
+import { routes } from "../utils/routes";
 import { useRouter } from "../hooks/useRouter";
 import { SearchIcon } from "../svg/SearchIcon";
 import { WeatherChartSVG } from "../svg/WeatherChart";

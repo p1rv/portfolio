@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Chevron from "../svg/chevron-right.min.svg";
 import { MouseOverContext } from "../context/MouseOverContextProvider";
-import { routes } from "../routes";
+import { routes } from "../utils/routes";
 import { useRouter } from "../hooks/useRouter";
 import classNames from "classnames";
 

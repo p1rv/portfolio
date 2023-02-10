@@ -1,8 +1,9 @@
 import { useContext, useState } from "react";
 import { NavButton } from "./NavButton";
-import { routes } from "../routes";
+import { routes } from "../utils/routes";
 import { useRouter } from "../hooks/useRouter";
 import { LanguageContext } from "../context/LanguageProvider";
+import { Link } from "react-router-dom";
 
 export const Menu: React.FC = () => {
   const [selected, setSelected] = useState(-1);
@@ -11,7 +12,6 @@ export const Menu: React.FC = () => {
   const { language } = useContext(LanguageContext);
 
   const {
-    navigate,
     location: { pathname },
   } = useRouter();
 
@@ -38,11 +38,16 @@ export const Menu: React.FC = () => {
         key={key}
         wasSelected={prevSelected === index}
         prevSelected={_prevSelected}
+        link
         selected={selected === index}
-        onClick={() => navigate(value.path)}
       >
-        <value.icon selected={selected === index} />
-        {value.name[language]}
+        <Link
+          to={value.path}
+          className="flex flex-col justify-center items-center py-4 px-6 sm:px-4"
+        >
+          <value.icon selected={selected === index} />
+          {value.name[language]}
+        </Link>
       </NavButton>
     );
   });
