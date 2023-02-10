@@ -14,6 +14,7 @@ export const LoadingFallback: React.FC<ILoadingFallbackProps> = ({ className, we
     "flex",
     "items-center",
     "justify-center",
+    "backdrop-blur-[4px]",
     {
       "absolute inset-0": !className && !weather,
       "relative p-4 rounded-[30px] overflow-hidden bg-white/50": weather,
