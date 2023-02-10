@@ -12,7 +12,7 @@ export const LandingWeatherPage: React.FC = () => {
   );
 
   return (
-    <div className="flex flex-col w-full h-full relative">
+    <div className="flex flex-col w-full lg:w-[95vw] h-full relative">
       <div
         className={innerClasses}
         onFocus={() => setIsFocused(true)}
