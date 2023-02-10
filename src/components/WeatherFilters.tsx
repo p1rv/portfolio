@@ -86,7 +86,7 @@ export const WeatherFilters: React.FC = () => {
     "bg-[#030412]",
     "z-10",
     "right-[10px] md:right-0",
-    "mt-[10px] md:mt-[20px]",
+    "mt-[18px] md:mt-[20px]",
     "rounded-[28px]",
     "overflow-hidden",
     "shadow-[0_2px_5px]",
