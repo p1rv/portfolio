@@ -1,5 +1,5 @@
 import { useRouter } from "../hooks/useRouter";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { routes } from "../routes";
 import { HomeIcon } from "../svg/HomeIcon";
 import chevronRight from "../svg/chevron-right.min.svg";
@@ -17,6 +17,8 @@ export const Breadcrumb: React.FC = () => {
 
   const { address } = useSelector((state: IRootState) => state.location.data);
 
+  const [overflowHidden, setOverflowHidden] = useState(true);
+
   const explodedPath = pathname.split(/\//g);
 
   let renderedSearch;
@@ -28,7 +30,12 @@ export const Breadcrumb: React.FC = () => {
           alt=">"
           className="w-3 h-3 mx-3"
         />
-        <p>{address}</p>
+        <p
+          className={`text-ellipsis overflow-hidden ${overflowHidden && "whitespace-nowrap"}`}
+          onClick={() => setOverflowHidden((currentState) => !currentState)}
+        >
+          {address}
+        </p>
       </React.Fragment>
     );
   }
@@ -46,12 +53,12 @@ export const Breadcrumb: React.FC = () => {
         alt=">"
         className="w-3 h-3 mx-3"
       />
-      {Object.values(routes).map((route, ind) => {
-        if (route.path.replace("/", "") === piece) {
+      {Object.values(routes)
+        .filter((route, ind) => route.path.replace("/", "") === piece)
+        .map((route) => {
           document.title = route.name[language] + "  |  Karol Król";
           return route.name[language];
-        }
-      })}
+        })}
     </React.Fragment>
   ));
 
