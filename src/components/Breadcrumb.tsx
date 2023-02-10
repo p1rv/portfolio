@@ -63,7 +63,7 @@ export const Breadcrumb: React.FC = () => {
   ));
 
   return (
-    <div className="flex items-center w-4/5 lg:w-[95vw] pt-4 pb-6">
+    <div className="flex items-center w-4/5 lg:w-[90vw] md:w-[95vw] pt-4 pb-6">
       <HomeIcon
         className="group min-w-[18px] w-[18px] h-[18px] cursor-pointer"
         pathClassName="group-hover:stroke-theme-1"

@@ -6,6 +6,7 @@ import { Breadcrumb } from "./components/Breadcrumb";
 import { Header } from "./components/Header";
 import { LoadingFallback } from "./components/LoadingFallback";
 import { LanguageSelector } from "./components/LanguageSelector";
+import { Footer } from "./components/Footer";
 
 const App: React.FC = () => {
   const assignedRoutes = Object.values(routes).map(({ path, Component, extendPath }) => (
@@ -17,14 +18,17 @@ const App: React.FC = () => {
   ));
 
   return (
-    <div className="app text-theme-0 h-screen w-screen flex flex-col items-center overflow-x-hidden relative">
+    <div className="app text-theme-0 h-screen w-screen flex flex-col items-center justify-between overflow-x-hidden relative">
       <LanguageProvider>
-        <LanguageSelector />
-        <Header />
-        <Breadcrumb />
-        <Suspense fallback={<LoadingFallback />}>
-          <Routes>{assignedRoutes}</Routes>
-        </Suspense>
+        <div className="flex flex-col items-center w-screen">
+          <LanguageSelector />
+          <Header />
+          <Breadcrumb />
+          <Suspense fallback={<LoadingFallback />}>
+            <Routes>{assignedRoutes}</Routes>
+          </Suspense>
+        </div>
+        <Footer />
       </LanguageProvider>
     </div>
   );
