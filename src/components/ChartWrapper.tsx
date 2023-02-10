@@ -6,7 +6,7 @@ import { ChartWinds } from "./ChartWinds";
 import { IMessagesWithLanguage, LanguageContext } from "../context/LanguageProvider";
 import { GridColumns } from "@visx/grid";
 import { Axis, Orientation } from "@visx/axis";
-import { RenderDateTick } from "../utils/RenderDateTick";
+import { RenderDateTick } from "./RenderDateTick";
 import { dayScale } from "../utils/dayScale";
 import { ChartTooltip } from "./ChartTooltip";
 import { ChartComponentProvider } from "../context/ChartComponentProvider";
