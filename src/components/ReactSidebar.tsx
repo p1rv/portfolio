@@ -13,7 +13,7 @@ export const ReactSidebar: React.FC = () => {
   } = useRouter();
 
   return (
-    <div className="flex-1 lg:w-[75vw] lg:items-center flex flex-col lg:mb-6">
+    <div className="flex-1 lg:w-[75vw] lg:items-center flex flex-col lg:mb-6 min-w-[300px]">
       <Dropdown
         buttonText="Environments"
         className="w-3/4 lg:w-[90vw] md:w-[95vw]"
@@ -39,7 +39,7 @@ export const ReactSidebar: React.FC = () => {
         </div>
       </Dropdown>
       <Dropdown
-        buttonText="State"
+        buttonText="useState"
         className="w-3/4 lg:w-[90vw] md:w-[95vw]"
       >
         <div className="flex flex-col ml-6 my-2">
