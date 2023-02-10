@@ -15,7 +15,7 @@ export const ReactExamples: React.FC = () => {
   ));
 
   return (
-    <div className="flex-[2_2_0%] flex items-center justify-center">
+    <div className="flex-[3_3_0%] xl:flex-[2_2_0%] flex items-center justify-center">
       <Routes>{renderedRoutes}</Routes>
     </div>
   );

@@ -6,6 +6,7 @@ import chevronRight from "../svg/chevron-right.min.svg";
 import { useSelector } from "react-redux";
 import { IRootState } from "../store";
 import { LanguageContext } from "../context/LanguageProvider";
+import { reactRoutes } from "../utils/reactRoutes";
 
 export const Breadcrumb: React.FC = () => {
   const {
@@ -59,6 +60,9 @@ export const Breadcrumb: React.FC = () => {
           document.title = route.name[language] + "  |  Karol Król";
           return route.name[language];
         })}
+      {Object.values(reactRoutes)
+        .filter((route) => route.path === piece)
+        .map(({ name }) => name[language])}
     </React.Fragment>
   ));
 
