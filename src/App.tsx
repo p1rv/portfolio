@@ -24,7 +24,7 @@ const App: React.FC = () => {
           <LanguageSelector />
           <Header />
           <Breadcrumb />
-          <Suspense fallback={<LoadingFallback />}>
+          <Suspense fallback={<LoadingFallback weather />}>
             <Routes>{assignedRoutes}</Routes>
           </Suspense>
         </div>
