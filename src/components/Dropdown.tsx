@@ -9,6 +9,7 @@ interface IDropdownProps {
   dropdownClassName?: string;
   autoClose?: boolean;
   className?: string;
+  mobileConstant?: boolean;
 }
 
 export const Dropdown: React.FC<PropsWithChildren<IDropdownProps>> = ({
@@ -17,6 +18,7 @@ export const Dropdown: React.FC<PropsWithChildren<IDropdownProps>> = ({
   buttonClassName = "",
   dropdownClassName = "",
   className = "",
+  mobileConstant,
   autoClose,
 }) => {
   const [hidden, setHidden] = useState(true);
@@ -34,7 +36,10 @@ export const Dropdown: React.FC<PropsWithChildren<IDropdownProps>> = ({
     return () => window.removeEventListener("click", hide, { capture: true });
   }, []);
 
-  const wrapperClasses = classNames(className, "relative", { "w-[15vw] min-w-[200px] md:w-full lg:!min-w-[165px] md:mt-3": !className });
+  const wrapperClasses = classNames(className, "relative", {
+    "w-[15vw] min-w-[200px] md:w-full lg:!min-w-[165px] md:mt-3": !className,
+    "md:!m-0": mobileConstant,
+  });
 
   const buttonClasses = classNames(
     "flex",
@@ -47,6 +52,7 @@ export const Dropdown: React.FC<PropsWithChildren<IDropdownProps>> = ({
     "lg:px-3",
     {
       "bg-[#fefcfb1b] text-theme-1": !hidden && wrapperRef.current,
+      "md:hidden": mobileConstant,
     },
     buttonClassName
   );
@@ -54,6 +60,7 @@ export const Dropdown: React.FC<PropsWithChildren<IDropdownProps>> = ({
   const dropdownClasses = classNames(
     {
       "absolute z-10 overflow-hidden bg-[#030412] w-[300px] md:w-full shadow-[0_2px_5px] shadow-nightsky rounded-[28px]": autoClose,
+      "md:relative md:z-10": mobileConstant,
       "z-[-10]": hidden && autoClose,
       hidden: hidden && !autoClose,
       "animate-[slideIn_0.2s_ease-in-out]": !hidden && autoClose,

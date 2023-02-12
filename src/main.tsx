@@ -13,7 +13,7 @@ createRoot(document.querySelector("#root") as HTMLDivElement).render(
     <Provider store={store}>
       <StarryBackgroundWrapper>
         <HashRouter>
-            <App />
+          <App />
         </HashRouter>
       </StarryBackgroundWrapper>
     </Provider>

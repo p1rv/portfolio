@@ -53,8 +53,9 @@ export const WeatherFilters: React.FC = () => {
   return (
     <Dropdown
       autoClose
+      mobileConstant
       buttonText={filterMessages.main[language]}
-      dropdownClassName="right-[10px] md:right-0 mt-[28px] md:mt-[10px] p-4"
+      dropdownClassName="right-[10px] mt-[35px] md:mt-0 md:right-0 p-4 md:px-0"
     >
       <>
         <div className="flex rounded-full overflow-hidden border-2 border-theme-1">{radioButtons}</div>
