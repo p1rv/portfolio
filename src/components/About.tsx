@@ -17,74 +17,59 @@ const aboutText: IMessagesWithLanguage = {
         This website is using React + TypeScript. Built by Vite, which is a faster and more versatile CRA alternative.
         <br />
         TailWindCSS was used to style almost entire website, with few minor inline styling tweaks. As far as CSS libraries I am aware of go,
-        TailWind is offering most freedom of all of them. <br />
-        Components that are not displayed all of the time or are needed later on incoroporate lazy load to reduce index bundle weight.
+        TailWind is offering most freedom of all of them.
       </>
     ),
     PL: (
       <>
         Strona używa React + Typescript. Została zbudowana przy pomocy Vite, który jest znacznie szybszy i bardziej wszechstronny niż CRA.
         <br />
-        Do zastosowania odpowiednich stylów został wykorzystany TailWindCSS (w kilku przypadkach wymagane były style w linii). Biorąc pod
-        uwagę wszystkie biblioteki CSS które znam, TailWind jako jedyny nie narzuca w żadnym stopniu struktury komponentów, przez co oferuje
-        największą wszechstronność.
-        <br />
-        Komponenty które nie są wyświetlane w momencie załadowania aplikacji lub są na innych podstronach są ładowane z opóźnieniem, w celu
-        zredukowania wagi głównego bundla.
+        Do zastosowania odpowiednich stylów został wykorzystany TailWindCSS. Biorąc pod uwagę wszystkie biblioteki CSS które znam, TailWind
+        jako jedyny nie narzuca w żadnym stopniu struktury komponentów, przez co oferuje największą wszechstronność.
       </>
     ),
   },
   react: {
     EN: (
       <>
-        /react subpage aims to show basic concepts of React and how to handle common problems which solutions are not immediately apparent.
-        As of right now, it is being developed.
+        /react subpage aims to explain basic concepts of React and how to handle common problems. As of right now, it is being developed
+        with plans on implementing ESBuild in order to enable testing code snippets.
       </>
     ),
     PL: (
       <>
-        podstrona /react docelowo będzie prezentować podstawowe założenia Reacta i sposoby na radzenie sobie z częstymi problemami, których
-        rozwiązania nie są łatwe do dostrzeżenia. Na ten moment ta część aplikacji jest w trakcie rozwoju.
+        podstrona /react docelowo będzie prezentować podstawowe założenia Reacta i sposoby na radzenie sobie z często napotykanymi
+        problemami. Na ten moment ta część aplikacji jest w trakcie rozwoju, z planami zaimplementowania ESBuild w celu testowania
+        fragmentów kodu bezpośrednio w przeglądarce klienta.
       </>
     ),
   },
   weather: {
     EN: (
       <>
-        /weather is ready to use - you can type in address, which then will be submitted to Google's GeoCoding API
-        <span className="text-theme-1">✶</span> in order to get geographical coordinates. In case of an error, you will be notified to try
-        more precise phrase. After response is successfully received, coordinates are saved to Redux store, as well as to IndexedDB (using
-        localforage library) with original search term. In the next step actions to fetch forecast data from available sources' APIs will be
-        dispatched<span className="text-theme-1">✶</span>. Some of them allow very few requests per day (as few as 10), so, naturally, limit
-        is reached pretty often. In that case error message will be shown in place of chart. If GET request did not contain errors, incoming
-        response will be parsed to the same format and saved in Redux store (+ in IndexedDB
-        <span className="text-theme-1">✶</span>), resulting in chart components' update and displayed forecast. <br />
-        On the left of search bar you can choose to collapse data into single chart - values from all sources will be averaged, containing
-        as many days as available in any of them. Additionally, there is a filters dropdown on the other side of the screen, allowing
-        switching between wind and temperature lines, plus toggling precipitation bars. <br />
+        /weather is ready to use - you can type in address, which then will be submitted to Google's GeoCoding API in order to get
+        geographical coordinates. After response is successfully received, coordinates are saved to Redux store, as well as to IndexedDB
+        with original search term. In the next step actions to fetch forecast data from available sources' APIs will be dispatched. Some of
+        them allow very few requests per day (as few as 10), so, naturally, limit is reached pretty often. In that case error message will
+        be shown in place of chart. If GET request did not contain errors, incoming response will be parsed to the same format and saved in
+        Redux store (+ in IndexedDB), resulting in chart components' update and displayed forecast. <br />
+        On the left of search bar you can choose to collapse data into single chart - values from all sources will be averaged.
+        Additionally, there is a filters dropdown on the other side of the screen, allowing for switching between wind and temperature lines
+        + toggling precipitation bars. <br />
         Library responsible for rendering charts is Visx. That was a recent change, because previously implemented one was causing troubles
         in rendering times on older mobile devices and on certain browsers. Visx requires more configuration and sometimes working directly
         with svg elements, but offers more customization and is incomparably faster.
-        <br />
-        <br />
-        <span className="text-theme-1">✶</span> - localforage is saving or overwriting every redux state change if it comes from fetch
-        response. Addresses are saved permanently, as they will not need updating and every user will most likely search for similar
-        locations. Forecast data with corresponding provider and coordinates is saved with `expires` value containing time of response + 1
-        day. If forecast expired, is not available for searched location or address is not present, fetch requests will be called. Otherwise
-        data will be read from IndexedDB and saved in store. Solution reduces amount of requests that would normally be made.
       </>
     ),
     PL: (
       <>
-        /weather jest gotowa do użycia - po otwarciu możemy wpisać adres, który będzie przekazany do GeoCoding API Google'a
-        <span className="text-theme-1">✶</span> w celu uzyskania współrzędnych geograficznych. W przypadku błędu (adres nie znaleziony)
-        wyświetlony zostanie komunikat z prośbą o doprecyzowanie wyszukiwanego adresu. Jeżeli odpowiedź nie będzie zawierać błędu, otrzymane
-        współrzędne zostaną zapisane w store Reduxa i w pamięci IndexedDB (za pomocą biblioteki localforage) wraz z oryginalnym zapytaniem.
-        W kolejnym kroku wykonane zostaną zapytania do wszystkich obsługiwanych dostawców prognozy pogody
-        <span className="text-theme-1">✶</span>. Niektórzy z nich pozwalają na tylko kilka zapytań/dzień, więc dzienny limit jest osiągany
-        dosyć często. W tym przypadku wyświetlona zostanie wiadomość błędu z miejscu wykresu. Jeśli nie ma błędów, przychodzące dane zostaną
-        dostosowane do obsługiwanego formatu i zapisane w magazynie Redux i IndexedDB
-        <span className="text-theme-1">✶</span>, co będzie skutkowało aktualizacją komponentów i wyświetleniem wykresów.
+        /weather jest gotowa do użycia - po otwarciu możemy wpisać adres, który będzie przekazany do GeoCoding API Google'a w celu uzyskania
+        współrzędnych geograficznych. W przypadku błędu (adres nie znaleziony) wyświetlony zostanie komunikat z prośbą o doprecyzowanie
+        wyszukiwanego adresu. Jeżeli odpowiedź nie będzie zawierać błędu, otrzymane współrzędne zostaną zapisane w store Reduxa i w pamięci
+        IndexedDB wraz z oryginalnym zapytaniem. W kolejnym kroku wykonane zostaną zapytania do wszystkich obsługiwanych dostawców prognozy
+        pogody. Niektórzy z nich pozwalają na tylko kilka zapytań/dzień, więc dzienny limit jest osiągany dosyć często. W tym przypadku
+        wyświetlona zostanie wiadomość błędu w miejscu wykresu. Jeśli nie ma błędów, przychodzące dane zostaną dostosowane do obsługiwanego
+        formatu i zapisane w magazynie Redux i IndexedDB, co będzie skutkowało aktualizacją komponentów i wyświetleniem wykresów.
         <br />
         Po lewej stronie paska wyszukiwania dostępna jest opcja "zwinięcia" danych od wszystkich dostawców w jeden wykres, to znaczy
         obliczenia średniej z dostępnych wartości dla każdego dnia. Po drugiej stronie ekranu znajdziemy przycisk otwierający listę
@@ -95,13 +80,6 @@ const aboutText: IMessagesWithLanguage = {
         wymagająca obliczeniowo, co powodowało długie ładowanie strony na starszych urządzeniach mobilnych i w niektórych przeglądarkach.
         Visx wymaga większej ilości kodu, co jest jedynym minusem - czas ładowania i możliwości dostosowania interfejsu wykresu są
         nieporównywalnie lepsze.
-        <br />
-        <br />
-        <span className="text-theme-1">✶</span> - localforage zapisuje lub nadpisuje każdą zmianę stanu aplikacji jeżeli była spowodowana
-        nowym zapytaniem. Dane prognoz są zapisywane z odpowiadającym dostawcą usług, współrzędnymi i czasem wygaśnięcia równym czasowi
-        otrzymania odpowiedzi + 1 dzień, a adresy bez limitu czasowego. Jeżeli prognoza jest odczytana po czasie wygaśnięcia, nie istnieje
-        dla danej lokacji lub adres nie został wcześniej przetłumaczony, zostanie wykonane nowe zapytanie. W innym przypadku dane zostaną
-        odczytane z IndexedDB i przekazane do odpowiedniego reducera. Rozwiązanie pozwala znacznie zaoszczędzić ilość wykonywanych zapytań.
       </>
     ),
   },
