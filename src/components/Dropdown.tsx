@@ -60,7 +60,7 @@ export const Dropdown: React.FC<PropsWithChildren<IDropdownProps>> = ({
   const dropdownClasses = classNames(
     {
       "absolute z-10 overflow-hidden bg-[#030412] w-[300px] md:w-full shadow-[0_2px_5px] shadow-nightsky rounded-[28px]": autoClose,
-      "md:relative md:z-10": mobileConstant,
+      "md:relative md:z-10 md:bg-transparent md:shadow-none": mobileConstant,
       "z-[-10]": hidden && autoClose,
       hidden: hidden && !autoClose,
       "animate-[slideIn_0.2s_ease-in-out]": !hidden && autoClose,
