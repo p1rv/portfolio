@@ -74,7 +74,8 @@ export const ChartWrapper: React.FC<IChartWrapperProps> = ({ data: { isLoading, 
   const xScale = dayScale(data).range([0, chartWidth]);
   const tickFormatter = xScale.tickFormat(data.length, "%a, %Y %b %d");
 
-  const getColumnTickValues = data.map(({ time }) => new Date(new Date(time).getTime() + 39600000));
+  const getColumnTickValues = data.map(({ time }) => new Date(time).setHours(12));
+
   return (
     <div className="w-full overflow-x-auto h-max">
       <div className="w-max m-auto">

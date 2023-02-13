@@ -61,8 +61,8 @@ export const ReactState: React.FC = () => {
     <div className="flex flex-col items-justify w-full">
       <p className="text-5xl text-right w-full mb-4">useState</p>
       <p className="mb-3">
-        Below you can see code of basic App component utilizing useState hook to implement counter (incremented by clicking a button) and
-        display whether current value is even or odd:
+        Below you can see the code of basic App component utilizing useState hook to implement counter (incremented by clicking a button)
+        and display whether current value is even or odd:
       </p>
       <pre
         className="font-mono [&>span]:font-mono bg-code-background/80 p-6 rounded-xl text-[14px] font-light [&>span]:font-light [&>span]:text-[14px] mb-3"
