@@ -60,6 +60,10 @@ code span {
   animation: gradient 4s ease infinite;
 }
 
+pre {
+  overflow-x: scroll;
+}
+
 @keyframes gradient {
   0% {
     left: -100%;
