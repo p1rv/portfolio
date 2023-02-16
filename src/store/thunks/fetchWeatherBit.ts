@@ -10,6 +10,7 @@ export const fetchWeatherBit = createAsyncThunk<IForecast[], ICoordinates>("weat
   const {
     data: { data },
   }: { data: { data: IWeatherBitData[] } } = await axios.get(buildURL({ lat, lon }));
+
   const forecast: IForecast[] = data.map(
     ({ max_temp, min_temp, datetime, precip, snow, wind_gust_spd, wind_spd, wind_dir, weather: { code } }) => ({
       temp_max: max_temp,
@@ -25,10 +26,13 @@ export const fetchWeatherBit = createAsyncThunk<IForecast[], ICoordinates>("weat
       code,
     })
   );
+
   const expires = new Date().getTime() + 86400000;
+
   localforage.setItem(`wb${lat.toPrecision(5)}${lon.toPrecision(5)}`, {
     forecast,
     expires,
   });
+
   return forecast;
 });

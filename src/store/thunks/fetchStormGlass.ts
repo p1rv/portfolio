@@ -20,6 +20,7 @@ export const fetchStormGlass = createAsyncThunk<IForecast[], ICoordinates>("stor
     const dateObj = new Date(entry.time);
     const date = `${dateObj.getFullYear()}-${(dateObj.getMonth() + 1).toString().padStart(2, "0")}-${dateObj.getDate()}`;
     const hoursEntries = Object.entries(entry) as Entries<IStormGlassHours>;
+
     if (!daily.hasOwnProperty(date)) {
       daily[date] = {} as IStormGlassDay;
       hoursEntries.forEach(([key, value]) => {
@@ -28,11 +29,13 @@ export const fetchStormGlass = createAsyncThunk<IForecast[], ICoordinates>("stor
       });
       return;
     }
+
     hoursEntries.forEach(([key, value]) => {
       if (key === "time") return;
       daily[date][key].push(value.sg);
     });
   });
+
   const forecast = Object.entries(daily).map(([date, values]) => {
     return {
       temp_max: Math.round(Math.max(...values.airTemperature) * 10) / 10,
@@ -48,7 +51,9 @@ export const fetchStormGlass = createAsyncThunk<IForecast[], ICoordinates>("stor
       code: 404,
     } as IForecast;
   });
+
   const expires = new Date().getTime() + 86400000;
+
   localforage.setItem(`sg${lat.toPrecision(5)}${lon.toPrecision(5)}`, {
     forecast,
     expires,

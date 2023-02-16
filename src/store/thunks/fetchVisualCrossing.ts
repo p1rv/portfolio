@@ -39,6 +39,7 @@ export const fetchVisualCrossing = createAsyncThunk<IForecast[], ICoordinates>("
   const {
     data: { days },
   }: { data: IVisualCrossingData } = await axios.get(buildURL({ lat, lon }));
+
   const forecast = days
     .map(
       (day) =>
@@ -53,10 +54,13 @@ export const fetchVisualCrossing = createAsyncThunk<IForecast[], ICoordinates>("
       const showers = 0;
       return { ...day, rain, showers, precip_sum } as IForecast;
     });
+
   const expires = new Date().getTime() + 86400000;
+
   localforage.setItem(`vc${lat.toPrecision(5)}${lon.toPrecision(5)}`, {
     forecast,
     expires,
   });
+
   return forecast;
 });

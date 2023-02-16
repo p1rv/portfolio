@@ -8,15 +8,19 @@ export const fetchLocation = createAsyncThunk<ILocationData, string>("location/g
       import.meta.env.VITE_GEOCODING_KEY
     }`
   );
+
   const {
     results: [retrieved],
   } = data;
+
   const address = retrieved.formatted_address;
+
   const {
     geometry: {
       location: { lat, lng: lon },
     },
   } = retrieved;
+
   return { address, coordinates: { lat, lon } };
 });
 

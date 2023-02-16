@@ -52,11 +52,15 @@ export const fetchOpenMeteo = createAsyncThunk<IForecast[], ICoordinates>("openM
   const {
     data: { daily },
   }: { data: IOpenMeteoData } = await axios.get(buildURL({ lat, lon }));
+
   const keys = Object.keys(daily) as IOpenMeteoDailyKeys;
+
   const forecast = daily.time
     .map((_, index) => Object.fromEntries(keys.map((key) => [translateOpenMeteoKeys(key), daily[key][index]])) as unknown as IForecast)
     .map((day) => ({ ...day, precip_sum: Math.round((day.rain + day.showers + day.snow) * 10) / 10 }));
+
   const expires = new Date().getTime() + 86400000;
+
   localforage.setItem(`om${lat.toPrecision(5)}${lon.toPrecision(5)}`, {
     forecast,
     expires,
