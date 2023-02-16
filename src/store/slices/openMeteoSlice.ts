@@ -23,6 +23,7 @@ const openMeteo = createSlice({
     builder.addCase(fetchOpenMeteo.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error;
+      state.data = [];
     });
     builder.addCase(fetchOpenMeteo.fulfilled, (state, action) => {
       state.isLoading = false;

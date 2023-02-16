@@ -23,6 +23,7 @@ const stormGlass = createSlice({
     builder.addCase(fetchStormGlass.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error;
+      state.data = [];
     });
     builder.addCase(fetchStormGlass.fulfilled, (state, action) => {
       state.isLoading = false;

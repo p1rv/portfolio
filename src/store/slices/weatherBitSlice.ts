@@ -27,13 +27,14 @@ const weatherBit = createSlice({
       state.isLoading = true;
     });
     builder.addCase(fetchWeatherBit.rejected, (state, action) => {
-      state.error = action.error;
       state.isLoading = false;
+      state.error = action.error;
+      state.data = [];
     });
     builder.addCase(fetchWeatherBit.fulfilled, (state, action) => {
-      state.data = action.payload;
-      state.error = null;
       state.isLoading = false;
+      state.error = null;
+      state.data = action.payload;
     });
   },
 });
