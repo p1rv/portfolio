@@ -8,6 +8,7 @@ import { AboutIcon } from "../svg/AboutIcon";
 const Home = lazy(() => import("../components/Home"));
 const React = lazy(() => import("../components/React"));
 const Weather = lazy(() => import("../components/Weather"));
+const ZuzannaSarna = lazy(() => import("../components/ZuzannaSarna"));
 const About = lazy(() => import("../components/About"));
 
 const routeNames: { [key: string]: ILanguageObject } = {
@@ -15,6 +16,7 @@ const routeNames: { [key: string]: ILanguageObject } = {
   react: { EN: "React", PL: "React" },
   weather: { EN: "Weather", PL: "Pogoda" },
   about: { EN: "About", PL: "Info" },
+  zuzannaSarna: { EN: "Zuzanna Sarna", PL: "Zuzanna Sarna" },
 };
 
 export const routes = {
@@ -31,6 +33,13 @@ export const routes = {
     name: routeNames.about,
     path: "/about",
     Component: About,
+    icon: AboutIcon,
+    extendPath: false,
+  },
+  zuzannaSarna: {
+    name: routeNames.zuzannaSarna,
+    path: "/zuzanna-sarna",
+    Component: ZuzannaSarna,
     icon: AboutIcon,
     extendPath: false,
   },

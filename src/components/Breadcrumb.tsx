@@ -55,7 +55,7 @@ export const Breadcrumb: React.FC = () => {
         className="w-3 h-3 mx-3"
       />
       {Object.values(routes)
-        .filter((route, ind) => route.path.replace("/", "") === piece)
+        .filter((route) => route.path.replace("/", "") === piece)
         .map((route) => {
           document.title = route.name[language] + "  |  Karol Król";
           return route.name[language];

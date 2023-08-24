@@ -15,7 +15,7 @@ export const Menu: React.FC = () => {
     location: { pathname },
   } = useRouter();
 
-  const filteredRoutes = Object.entries(routes).filter(([key]) => key !== "home");
+  const filteredRoutes = Object.entries(routes).filter(([key]) => !["home", "zuzannaSarna"].includes(key));
   if (pathname === "/" && selected !== -1) {
     setPrevSelected(selected);
     setSelected(-1);
